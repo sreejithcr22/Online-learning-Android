@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="secText" type="id">secText</item>
+    <item name="minuteText" type="id">minuteText</item>
+    <item name="colonText" type="id">colonText</item>
+    <item name="adId" type="id">adRowId</item>
+    <item name="loading_text" type="id">loading_text_id</item>
+
+</resources>

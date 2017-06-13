@@ -1,0 +1,83 @@
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="horizontal"
+    android:background="?attr/mildWhite"
+
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/parent"
+    android:layout_height="match_parent"
+    android:background="?attr/mildWhite"
+    android:orientation="vertical"
+    tools:context="com.codit.interview.aptitude.ParentCategoryFragment">
+
+
+    <include
+
+        android:id="@+id/card1"
+        layout="@layout/main_category"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_category_height"
+        android:layout_marginBottom="@dimen/main_category_margin_bottom"
+        android:layout_marginLeft="@dimen/main_category_left_right_margin"
+        android:layout_marginRight="@dimen/main_category_left_right_margin"
+
+        android:layout_marginTop="@dimen/main_category_left_right_margin">
+
+    </include>
+
+    <include
+        android:id="@+id/card2"
+        layout="@layout/main_category"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_category_height"
+        android:layout_marginBottom="@dimen/main_category_margin_bottom"
+        android:layout_marginLeft="@dimen/main_category_left_right_margin"
+        android:layout_marginRight="@dimen/main_category_left_right_margin"
+        android:layout_marginTop="@dimen/main_category_margin_top">
+
+    </include>
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:visibility="gone"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_parent_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_category_height"
+        android:layout_marginBottom="@dimen/main_category_margin_bottom"
+        android:layout_marginLeft="@dimen/main_category_left_right_margin"
+        android:layout_marginRight="@dimen/main_category_left_right_margin"
+        android:layout_marginTop="@dimen/main_category_margin_top"
+        android:padding="0dp"
+        card_view:cardBackgroundColor="?attr/mainCardbg"
+        card_view:cardElevation="@dimen/main_category_elevation"
+        card_view:cardPreventCornerOverlap="true">
+
+
+    </android.support.v7.widget.CardView>
+
+
+    <include
+        android:id="@+id/card3"
+        layout="@layout/main_category"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/main_category_height"
+        android:layout_marginBottom="@dimen/main_category_left_right_margin"
+        android:layout_marginLeft="@dimen/main_category_left_right_margin"
+        android:layout_marginRight="@dimen/main_category_left_right_margin"
+        android:layout_marginTop="@dimen/main_category_margin_top">
+
+    </include>
+
+
+
+
+
+
+
+</LinearLayout>
+
+</ScrollView>

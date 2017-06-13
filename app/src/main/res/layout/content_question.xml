@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/questionLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codit.interview.aptitude.QuestionActivity"
+    tools:showIn="@layout/activity_question">
+
+    <fragment
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.codit.interview.aptitude.QuestionFragment"
+        android:id="@+id/questionFragment"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

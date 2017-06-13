@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#4caf50</color>
+    <color name="colorPrimaryDark">#388e3c</color>
+    <color name="colorAccent">#4caf50</color>
+    <color name="icons">#4caf50</color>
+    <color name="divider">#4caf50</color>
+
+
+   <color name="colorPrimaryBlack">#37474f</color>
+    <color name="colorPrimaryDarkBlack">#263238</color>
+    <color name="red">#f44336</color>
+
+
+
+
+
+
+
+
+
+</resources>

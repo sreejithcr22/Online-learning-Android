@@ -1,0 +1,212 @@
+<android.support.v7.widget.CardView
+
+
+
+    android:id="@+id/mainProgressCard"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardElevation="@dimen/main_progress_layout_elevation"
+
+    card_view:cardBackgroundColor="?attr/secondaryColor"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/main_progress_layout_size"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:background="?attr/secondaryColor"
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginBottom="5dp"
+            android:padding="2dp"
+            android:layout_weight=".55"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+
+            <TextView
+
+                android:layout_marginTop="@dimen/main_layout_title_margin_top"
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/cardTitle"
+                android:gravity="center"
+                android:textSize="@dimen/main_layout_title_size"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="#EEEEEE"
+            android:layout_height="1dp"></View>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="3.75"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+       >
+
+        <com.dinuscxj.progressbar.CircleProgressBar
+            android:layout_marginTop="@dimen/main_progressbar_margin_top"
+            android:layout_marginBottom="@dimen/main_progressbar_margin_bottom"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_gravity="center"
+            android:id="@+id/circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:style="solid_line"
+            app:progress_text_color="?attr/progressTextColor"
+
+            app:progress_text_size="@dimen/progress_text_size"
+            app:draw_progress_text="true"
+            app:progress_background_color="#EEEEEE"
+
+            app:progress_stroke_width="@dimen/progress_stroke_width"
+            app:progress_start_color="?attr/CircleProgressDrBg"
+            app:progress_end_color="?attr/CircleProgressDrBg"
+
+            app:progress_stroke_cap="butt" />
+        </LinearLayout>
+
+
+        <View
+            android:visibility="gone"
+            android:layout_marginTop="10dp"
+            android:background="#EEEEEE"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></View>
+
+        <LinearLayout
+
+android:layout_marginBottom="0dp"
+            android:orientation="horizontal"
+            android:layout_weight="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+
+            <RelativeLayout
+
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:gravity="center"
+                    android:textStyle="normal"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/main_value_size"
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/label1"
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_marginTop="1dp"
+                    android:layout_below="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+
+            <View
+                android:visibility="gone"
+                android:layout_width="1dp"
+                android:background="#EEEEEE"
+                android:layout_height="match_parent"></View>
+            <RelativeLayout
+                android:gravity="center"
+
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textStyle="normal"
+
+                    android:gravity="center"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/main_value_size"
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/label2"
+
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_below="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+            <View
+                android:visibility="gone"
+                android:layout_width="1dp"
+                android:background="#EEEEEE"
+                android:layout_height="match_parent"></View>
+
+            <RelativeLayout
+                android:gravity="center"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textStyle="normal"
+
+                    android:gravity="center"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/main_value_size"
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/label3"
+
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_below="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+
+
+</android.support.v7.widget.CardView>

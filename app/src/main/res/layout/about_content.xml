@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="30dp"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_reading"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+
+
+</LinearLayout>
+
+    <View
+
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/like"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            app:srcCompat="@drawable/ic_facebook"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="left|center"
+            android:textSize="18sp"
+            android:text="Like Us"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <View
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/shareapp"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            app:srcCompat="@drawable/ic_share"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="left|center"
+            android:textSize="18sp"
+            android:text="Share App"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <View
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/rating"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            app:srcCompat="@drawable/ic_star"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="left|center"
+            android:textSize="18sp"
+            android:text="Rate and Review"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <View
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/contact"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            app:srcCompat="@drawable/ic_mail"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="left|center"
+            android:textSize="18sp"
+            android:text="Contact us"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <View
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+
+    <LinearLayout
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/credit"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <ImageView
+            app:srcCompat="@drawable/ic_copyright"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:gravity="left|center"
+            android:textSize="18sp"
+            android:text="Credits"
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <View
+        android:background="?attr/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:background="@android:color/black"
+    android:alpha=".8"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_weight="2"
+        android:id="@+id/icon"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_stopwatch"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:text="Time Up"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginTop="3dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"></View>
+
+    <Button
+        android:theme="@style/Base.Widget.AppCompat.Button"
+        android:id="@+id/btnIgnore"
+        android:textColor="?attr/colorPrimary"
+        android:background="@android:color/black"
+        android:text="IGNORE"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

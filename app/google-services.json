@@ -1,0 +1,50 @@
+{
+  "project_info": {
+    "project_number": "128071116553",
+    "firebase_url": "https://aptitude-923dc.firebaseio.com",
+    "project_id": "aptitude-923dc",
+    "storage_bucket": "aptitude-923dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128071116553:android:e5ddfb065e912f6b",
+        "android_client_info": {
+          "package_name": "com.codit.interview.aptitude"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128071116553-grla4j12eejdlitcttoc750bvibgh3fi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codit.interview.aptitude",
+            "certificate_hash": "de84696383738326054563fb31f92b9a85b8cf63"
+          }
+        },
+        {
+          "client_id": "128071116553-uuqcdvrafsrtrnkn6kiiferr08n06acr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrs939OKEGGVW0lcpLF3oc3Pd4USb0J_k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

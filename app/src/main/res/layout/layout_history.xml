@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:textColor="?attr/blackText"
+        android:id="@+id/textHistory"
+        android:layout_width="match_parent"
+        android:text="Do some calculations and they will appear here !"
+        android:textSize="15sp"
+        android:padding="6dp"
+        android:gravity="center"
+        android:minLines="10"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

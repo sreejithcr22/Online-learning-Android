@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+
+  >
+
+    <PreferenceCategory android:title="Notes">
+
+        <SwitchPreference android:title="Auto save"
+            android:summary="Enabled"
+            android:key="note_save"
+            android:defaultValue="true"></SwitchPreference>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Calculator">
+
+        <SwitchPreference android:title="Copy history to notes"
+            android:summary="Enabled"
+            android:key="calc_save"
+            android:defaultValue="true"></SwitchPreference>
+
+    </PreferenceCategory>
+
+
+
+
+   <PreferenceCategory android:title="Timer">
+
+       <SwitchPreference android:title="Timer alerts"
+           android:summary="Enabled"
+           android:key="timer_alert"
+           android:defaultValue="true"></SwitchPreference>
+
+       <SwitchPreference android:title="Vibrate on time up"
+           android:summary="Enabled"
+           android:key="timeup_vibrate"
+           android:dependency="timer_alert"
+           android:defaultValue="false"></SwitchPreference>
+
+
+       <Preference android:title="Default time"
+           android:summary="Set default time for timer"
+           android:key="timer_time"
+           android:defaultValue="02:30"
+
+           ></Preference>
+
+
+
+   </PreferenceCategory>
+
+    <PreferenceCategory android:title="Mock Tests">
+
+
+        <Preference android:title="Test duration"
+            android:summary="Set default time for timer"
+            android:key="mock_time"
+            android:defaultValue="35:00"
+
+            ></Preference>
+
+
+
+
+    </PreferenceCategory>
+
+
+
+    </PreferenceScreen>

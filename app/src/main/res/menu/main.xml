@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item android:id="@+id/settings"
+        android:title="Options"
+        android:icon="@drawable/more_black"
+        android:visible="true"
+
+        android:orderInCategory="900"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/mockSubmit"
+        android:visible="false"
+        android:title="SUBMIT"
+        android:orderInCategory="300"
+
+        app:showAsAction="always"></item>
+
+    <item android:id="@+id/progressChat"
+        android:visible="false"
+        android:title="Progress"
+        android:icon="@drawable/ic_pie_chart"
+        android:orderInCategory="200"
+        app:showAsAction="always" />
+
+
+    <item android:id="@+id/formula"
+        android:visible="false"
+        android:title="Formula"
+        android:icon="@drawable/ic_formula"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+</menu>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<LinearLayout
+    android:layout_margin="20dp" xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2"
+        android:layout_marginRight="5dp">
+
+
+        <TextView
+            android:textSize="16sp"
+
+
+            android:text="Min"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_horizontal"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="7dp" />
+
+        <NumberPicker
+
+            android:descendantFocusability="blocksDescendants"
+            android:clickable="false"
+            android:id="@+id/minutesPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"></NumberPicker>
+
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:layout_marginLeft="5dp">
+
+
+        <TextView
+            android:text="Sec"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="left|center_horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="7dp" />
+
+        <NumberPicker
+            android:descendantFocusability="blocksDescendants"
+
+            android:id="@+id/secondsPicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center"></NumberPicker>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rowCard"
+    android:layout_height="@dimen/sub_row_height"
+    android:layout_marginTop="@dimen/sub_row_margin_top"
+    android:layout_marginBottom="@dimen/sub_row_margin_bottom"
+    android:layout_marginLeft="@dimen/sub_row_margin_left"
+    android:layout_marginRight="@dimen/sub_row_margin_right"
+    android:background="?android:attr/selectableItemBackground"
+
+    android:layout_width="match_parent"
+    card_view:cardElevation="@dimen/sub_row_elevation"
+    card_view:cardBackgroundColor="?attr/mainCardbg">
+
+    <LinearLayout
+        android:background="?android:attr/selectableItemBackground"
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/subProgressbar"
+                android:progress="0"
+                android:progressDrawable="?attr/progressDrawableBg"
+                android:layout_centerInParent="true"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+
+            <RelativeLayout
+                android:background="?android:attr/selectableItemBackground"
+
+                android:layout_centerVertical="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="13dp"
+                    android:background="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:fontFamily="sans-serif-light"
+
+                        android:textColor="?attr/blackText"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/subTitle"
+                        android:textSize="@dimen/sub_recycler_title_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:layout_marginTop="1dp"
+                        android:textColor="?attr/blackText"
+                        android:fontFamily="sans-serif-thin"
+
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/subTitle"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/attemptedCount"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+                <TextView
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="?attr/progressTextColor"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/progressText"
+
+                    android:textSize="14sp"
+                    style="@style/TextAppearance.AppCompat"
+                    android:background="@android:color/transparent"
+                     />
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+
+        </RelativeLayout>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

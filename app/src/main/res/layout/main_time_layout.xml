@@ -1,0 +1,183 @@
+<android.support.v7.widget.CardView
+    android:id="@+id/mainProgressCard"
+    android:layout_margin="7dp"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    card_view:cardElevation="@dimen/main_progress_layout_elevation"
+
+    card_view:cardBackgroundColor="?attr/secondaryColor"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/main_progress_layout_size"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <LinearLayout
+        android:background="?attr/secondaryColor"
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginBottom="5dp"
+            android:padding="2dp"
+            android:layout_weight=".55"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+
+            <TextView
+                android:layout_marginTop="@dimen/main_layout_title_margin_top"
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/cardTitle"
+                android:textColor="?attr/blackText"
+                android:gravity="center"
+                android:textSize="@dimen/main_layout_title_size"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:background="#EEEEEE"
+            android:layout_height="1dp"></View>
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="3.75"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            >
+
+
+            <TextView
+                android:fontFamily="sans-serif-light"
+                android:id="@+id/timeCardText"
+                android:textColor="?attr/blackText"
+                android:textSize="@dimen/time_progess_size"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_marginBottom="@dimen/main_layout_valueview_margin_top"
+            android:orientation="horizontal"
+            android:layout_weight="1.2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+
+            <RelativeLayout
+
+                android:gravity="center|bottom"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textColor="?attr/blackText"
+                    android:gravity="center"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/time_value_size"
+                    android:id="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/label1"
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_marginTop="1dp"
+                    android:layout_below="@+id/textView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:gravity="center|bottom"
+
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textColor="?attr/blackText"
+
+                    android:gravity="center"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/time_value_size"
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/label2"
+
+                    android:fontFamily="sans-serif-thin"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_below="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:gravity="center|bottom"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:textColor="?attr/blackText"
+
+                    android:gravity="center"
+                    android:text="0"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="@dimen/time_value_size"
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/label3"
+
+                    android:gravity="center"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="Attempted"
+                    android:textSize="@dimen/main_title_size"
+                    android:layout_below="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+</android.support.v7.widget.CardView>

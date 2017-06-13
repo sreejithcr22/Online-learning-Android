@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="@dimen/radio_corner_radius"></corners>
+
+
+
+
+
+    <gradient android:centerColor="#455a64"
+        android:startColor="#455a64"
+        android:endColor="#455a64"></gradient>
+
+
+    <stroke android:color="#00acc1"   android:width="@dimen/radio_border_width"></stroke>
+</shape>

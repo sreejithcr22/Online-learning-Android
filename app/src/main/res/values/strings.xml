@@ -1,0 +1,182 @@
+<resources>
+    <string name="app_name">Aptitude And GK Guide </string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_parent_category">Categories</string>
+    <string name="home_ad_id">ca-app-pub-7040172378865675/9852844346</string>
+    <string name="parent_categ_native">ca-app-pub-7040172378865675/3769284748</string>
+    <string name="apti_banner">ca-app-pub-7040172378865675/9558466349</string>
+    <string name="expNative">ca-app-pub-7040172378865675/1579371149</string>
+    <string name="progressNativeLarge">ca-app-pub-7040172378865675/2063722341</string>
+    <string name="progressNativeLarge1">ca-app-pub-7040172378865675/5758891944</string>
+    <string name="parentToSubInter">ca-app-pub-7040172378865675/9247081949</string>
+    <string name="sub_gk_inter"> ca-app-pub-7040172378865675/2502544346</string>
+    <string name="interviewGeneralBanner">ca-app-pub-7040172378865675/3002071949</string>
+    <string name="favInter">ca-app-pub-7040172378865675/6416209944</string>
+    <string name="formulaInter">ca-app-pub-7040172378865675/1986010341</string>
+    <string name="interviewInter">ca-app-pub-7040172378865675/3462743548</string>
+    <string name="mockInter">ca-app-pub-7040172378865675/4939476743</string>
+    <string name="apti_recycler_1">ca-app-pub-7040172378865675/2749989140</string>
+    <string name="apti_recycler_2">ca-app-pub-7040172378865675/7180188742</string>
+    <string name="apti_recycler_3">ca-app-pub-7040172378865675/1133655142</string>
+    <string name="interview_native_large">ca-app-pub-7040172378865675/5188846343</string>
+    <string name="mock_ad">ca-app-pub-7040172378865675/5958220343</string>
+    <string name="home_large">ca-app-pub-7040172378865675/4099600342</string>
+
+
+
+
+
+
+
+    <string-array name="QuantitativeCategories">
+        <item>Time And Work</item>
+        <item>Profit And Loss</item>
+        <item>Problems On Age</item>
+        <item>Average</item>
+        <item>Permutation And Combination</item>
+        <item>HCF And LCM</item>
+        <item>Time And Distance</item>
+        <item>Interest</item>
+        <item>Problems On Trains</item>
+        <item>Numbers And Decimal Fractions</item>
+        <item>Ratio And Proportion</item>
+        <item>Boats And Streams</item>
+        <item>Alligation or Mixture</item>
+        <item>Pipes and Cistern</item>
+        <item>Percentage</item>
+    </string-array>
+    <string name="title_activity_sub_category">Sub Categories</string>
+
+    <string-array name="LogicalCategories">
+        <item>Calendar And Clock</item>
+        <item>Blood Relation</item>
+        <item>Seating Arrangement</item>
+        <item>Coding and Decoding</item>
+        <item>Direction Sense</item>
+        <item>Analogy</item>
+        <item>Classification</item>
+        <item>Arithmetic Reasoning</item>
+        <item>Series</item>
+        <item>Essential Part</item>
+        <item>Verification of Truth</item>
+        <item>Statements and Conclusions</item>
+        <item>Statements and Arguments</item>
+        <item>Statements and Assumptions</item>
+
+
+    </string-array>
+
+
+    <string-array name="VerbalAbilityCategories">
+        <item>Antonyms</item>
+        <item>Idioms and Phrases</item>
+        <item>Prepositions</item>
+        <item>Synonyms</item>
+        <item>Spelling</item>
+        <item>One Word Substitution</item>
+        <item>Closet Test</item>
+        <item>Paragraph Formation</item>
+        <item>Sentence Arrangement</item>
+        <item>Sentence Completion</item>
+
+
+
+    </string-array>
+
+    <string-array name="GKBasicCategories">
+        <item>Books And Authors</item>
+        <item>Days And Dates</item>
+        <item>Awards And Honors</item>
+        <item>India And World History</item>
+        <item>World Geography</item>
+        <item>Basic General Knowledge</item>
+        <item>Computer Awareness</item>
+        <item>Inventions And Discoveries</item>
+        <item>General Science</item>
+        <item>Sports</item>
+        <item>Famous Personalities</item>
+        <item>Books And Authors</item>
+
+    </string-array>
+    <string name="title_activity_question">QuestionActivity</string>
+    <string name="title_activity_dummy">dummy</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+</resources>

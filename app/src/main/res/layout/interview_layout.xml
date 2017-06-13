@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/interviewBg"
+    android:descendantFocusability="blocksDescendants"
+
+
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_gravity="center"
+        android:id="@+id/titleCard"
+        app:cardElevation="0dp"
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:minHeight="@dimen/tip_title_height"
+        android:fontFamily="sans-serif-light"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:alpha=".8"
+        android:background="@android:color/black"
+        android:textSize="@dimen/tip_title_text_size"
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:id="@+id/title">
+
+    </TextView>
+
+    </android.support.v7.widget.CardView>
+
+
+
+
+    <ScrollView
+
+        android:nestedScrollingEnabled="true"
+        android:padding="10dp"
+        android:background="?attr/mainCardbg"
+        android:layout_weight="10"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_height="0dp">
+
+
+<LinearLayout
+    android:id="@+id/interviewContainer"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+
+        android:textColor="?attr/blackText"
+        android:fontFamily="sans-serif-light"
+        android:id="@+id/tipText"
+        android:layout_width="match_parent"
+        android:textSize="@dimen/tip_text_size"
+        android:textIsSelectable="false"
+        android:typeface="monospace"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>
+
+
+    </ScrollView>
+
+
+
+</LinearLayout>

@@ -1,0 +1,117 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!--sub recycler row!-->
+
+    <dimen name="sub_timer_elevation">0dp</dimen>
+    <dimen name="sub_row_divider_width">1dp</dimen>
+    <dimen name="sub_row_elevation">2dp</dimen>
+    <dimen name="sub_row_margin_top">4dp</dimen>
+    <dimen name="sub_row_margin_bottom">1dp</dimen>
+    <dimen name="sub_row_margin_left">7dp</dimen>
+    <dimen name="sub_row_margin_right">7dp</dimen>
+    <dimen name="sub_row_height">85dp</dimen>
+
+    <!-- que layout!-->
+
+
+    <dimen name="radio_text_size">18sp</dimen>
+    <dimen name="radio_margin_top">10dp</dimen>
+    <dimen name="radio_margin">5dp</dimen>
+    <dimen name="radio_border_width">1dp</dimen>
+    <dimen name="que_card_elevation">2dp</dimen>
+    <dimen name="que_nav_elevation">0dp</dimen>
+    <dimen name="que_nav_ele_height">1dp</dimen>
+    <dimen name="radio_corner_radius">2dp</dimen>
+
+    <dimen name="que_card_margin_top">5dp</dimen>
+    <dimen name="que_text_size">16sp</dimen>
+
+    <!--parent category!-->
+
+
+    <dimen name="main_categ_title_size">24sp</dimen>
+    <dimen name="main_categ_que_size">14sp</dimen>
+    <dimen name="main_categ_progress_text_size">15sp</dimen>
+    <dimen name="main_categ_padding_bottom">8dp</dimen>
+
+    <dimen name="main_category_height">100dp</dimen>
+    <dimen name="main_category_left_right_margin">7dp</dimen>
+    <dimen name="main_category_margin_top">.5dp</dimen>
+    <dimen name="main_category_margin_bottom">.5dp</dimen>
+    <dimen name="main_category_elevation">2dp</dimen>
+
+
+
+    <!--main activity !-->
+
+    <dimen name="progress_stroke_width">22dp</dimen>
+    <dimen name="progress_text_size">35sp</dimen>
+    <dimen name="time_progess_size">50sp</dimen>
+    <dimen name="time_value_size">25sp</dimen>
+    <dimen name="main_value_size">28sp</dimen>
+    <dimen name="main_title_size">14sp</dimen>
+
+    <dimen name="main_progress_layout_size">380dp</dimen>
+    <dimen name="main_progress_layout_elevation">2dp</dimen>
+    <dimen name="main_layout_title_margin_top">6dp</dimen>
+    <dimen name="main_layout_title_size">21sp</dimen>
+    <dimen name="main_progressbar_margin_top">20dp</dimen>
+    <dimen name="main_progressbar_margin_bottom">10dp</dimen>
+    <dimen name="main_layout_valueview_margin_top">10dp</dimen>
+
+<dimen name="main_linear_margin_left_right">6dp</dimen>
+    <dimen name="main_linear_margin_top_bottom">4dp</dimen>
+    <dimen name="main_card_margin_top">2dp</dimen>
+    <dimen name="main_card_margin_bottom">2dp</dimen>
+
+
+
+    <!--progress layout!-->
+
+    <dimen name="progress_card_elevation">2dp</dimen>
+    <dimen name="progress_card_top_bottom_margin">4dp</dimen>
+    <dimen name="progress_card_left_right_margin">6dp</dimen>
+
+    <dimen name="progress_layout_height">500dp</dimen>
+    <dimen name="progress_values_left_right_margin">40dp</dimen>
+    <dimen name="progress_values_top_bottom_margin">10dp</dimen>
+    <dimen name="progress_values_text_size">14sp</dimen>
+    <dimen name="progress_title_text_size">19sp</dimen>
+
+    <dimen name="progress_label_text_size">12sp</dimen>
+    <integer name="progress_time_left_margin">95</integer>
+    <integer name="progress_time_top_margin">60</integer>
+    <integer name="progress_time_right_margin">70</integer>
+    <integer name="progress_time_bottom_margin">0</integer>
+
+
+    <!--submit button mock!-->
+
+    <integer name="submit_right_margin">50</integer>
+    <integer name="submit_left_margin">20</integer>
+
+    <integer name="submit_left_padding">25</integer>
+    <integer name="submit_top_padding">10</integer>
+    <integer name="submit_right_padding">25</integer>
+    <integer name="submit_bottom_padding">10</integer>
+
+
+    <integer name="timer_right_margin">20</integer>
+    <integer name="timer_colon_margin">13</integer>
+    <integer name="timer_padding_extra_left_right">16</integer>
+
+
+
+
+
+
+
+</resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="dynamicbg" format="reference|color"></attr>
+    <attr name="progressbg" format="reference|color"></attr>
+    <attr name="secondaryColor" format="reference|color"></attr>
+    <attr name="mainCardbg" format="reference|color"></attr>
+    <attr name="blackText" format="reference|color"></attr>
+    <attr name="mildWhite" format="reference|color"></attr>
+    <attr name="progressDrBg" format="reference|color"></attr>
+    <attr name="CircleProgressDrBg" format="reference|color"></attr>
+    <attr name="progressTextColor" format="reference|color"></attr>
+    <attr name="progressDrawableBg" format="reference"></attr>
+    <attr name="radioBg" format="reference|color"></attr>
+    <attr name="queBg" format="reference|color"></attr>
+    <attr name="interviewBg" format="reference|color"></attr>
+    <attr name="tabIndColor" format="reference|color"></attr>
+    <attr name="tabSelColor" format="reference|color"></attr>
+    <attr name="subText" format="reference|color"></attr>
+    <attr name="shadow" format="reference|color"></attr>
+
+
+
+
+
+
+
+</resources>

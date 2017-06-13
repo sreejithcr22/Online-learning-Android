@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<EditText
+    android:fontFamily="sans-serif-light"
+    android:padding="5dp"
+    android:id="@+id/noteText"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:inputType="textMultiLine"
+    android:cursorVisible="true"
+    android:gravity="top"
+    android:minLines="15"
+android:background="#ffee58"
+    android:layout_height="wrap_content" />
+
+
+

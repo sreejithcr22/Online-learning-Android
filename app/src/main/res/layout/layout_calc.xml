@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/calcGrandParent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<include layout="@layout/layout_history"
+
+    android:id="@+id/historyLayout"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></include>
+
+<LinearLayout
+    android:id="@+id/calcParent"
+    android:visibility="visible"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/background_dark">
+
+
+
+    <TextView
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+       android:layout_weight=".5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="left"
+        android:textSize="18dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/output"
+        android:minHeight="50dp" />
+
+    <TextView
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="3dp"
+        android:padding="7dp"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:layout_weight="1"
+        android:textSize="25sp"
+        android:inputType="number"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:gravity="bottom|right"
+        android:id="@+id/input"
+
+        android:text="0"
+
+
+
+        />
+
+
+<LinearLayout
+    android:layout_weight="3.5"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+
+    android:layout_height="0dp"
+    android:background="@android:color/background_dark">
+
+    <!--number parent ..has 3 vertical layouts !-->
+
+    <LinearLayout
+
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical"
+        android:id="@+id/numberParent"
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <!--row 1 !-->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:id="@+id/clear"
+                android:text="C"
+
+android:background="@drawable/calc_button_selector"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+               />
+
+            <Button
+                android:text="+/-"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+
+                android:background="@drawable/calc_button_selector"
+                android:id="@+id/negate"
+                android:tint="@android:color/white"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <ImageButton
+                android:id="@+id/backspace"
+                android:background="@drawable/calc_button_selector"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                app:srcCompat="@drawable/ic_backspace"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <!--row 1 end !-->
+
+
+        <!--row 2 !-->
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="7"
+                android:id="@+id/num7"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/calc_button_selector"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="8"
+                android:id="@+id/num8"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/calc_button_selector"
+                android:tint="@android:color/background_light"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="9"
+                android:id="@+id/num9"
+                android:layout_weight="1"
+                android:background="@drawable/calc_button_selector"
+                android:tint="@android:color/background_light"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <!--row 2 end !-->
+
+
+        <!--row 3 !-->
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_weight="1"
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="4"
+                android:id="@+id/num4"
+                android:background="@drawable/calc_button_selector"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="5"
+                android:id="@+id/num5"
+                android:layout_weight="1"
+                android:background="@drawable/calc_button_selector"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:background="@drawable/calc_button_selector"
+
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="6"
+                android:id="@+id/num6"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <!--row 3 end !-->
+
+        <!--row 4 !-->
+
+        <LinearLayout
+
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="1"
+                android:background="@drawable/calc_button_selector"
+
+                android:id="@+id/num1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:background="@drawable/calc_button_selector"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="2"
+                android:id="@+id/num2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:background="@drawable/calc_button_selector"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="3"
+                android:id="@+id/num3"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+        </LinearLayout>
+
+        <!--row 4 end !-->
+
+        <!--row 5 !-->
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <Button
+                android:background="@drawable/calc_button_selector"
+                android:textSize="25sp"
+                android:textColor="@android:color/white"
+                android:text="0"
+                android:id="@+id/num0"
+                android:layout_weight="2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:gravity="center"
+                android:background="@drawable/calc_button_selector"
+                android:textSize="30sp"
+                android:textColor="@android:color/white"
+                android:text="."
+                android:id="@+id/numDot"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+
+
+
+        </LinearLayout>
+
+        <!--row 5 end !-->
+
+    </LinearLayout>
+
+
+    <!--number parent ..has 3 vertical layouts ...end!-->
+
+    <!--operator layout...horizontal view of grand parent!-->
+
+<LinearLayout
+
+    android:orientation="vertical"
+    android:id="@+id/operatorParent"
+    android:layout_weight="1"
+    android:layout_width="0dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginRight="2dp"
+    android:layout_height="match_parent">
+
+
+    <Button
+        android:background="@drawable/calc_button_selector"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:text="÷"
+        android:id="@+id/opDiv"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+    <Button
+        android:background="@drawable/calc_button_selector"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:text="*"
+
+        android:gravity="center"
+        android:id="@+id/opMultiply"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+    <Button
+        android:background="@drawable/calc_button_selector"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:text="-"
+        android:id="@+id/opSub"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+    <Button
+        android:background="@drawable/calc_button_selector"
+        android:textSize="30sp"
+        android:textColor="@android:color/white"
+        android:text="+"
+
+        android:id="@+id/opAdd"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+
+    <Button
+        android:textStyle="bold"
+        android:background="@drawable/calc_button_selector"
+        android:textSize="30sp"
+        android:textColor="?attr/progressTextColor"
+        android:text="="
+        android:id="@+id/opEquals"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+</LinearLayout>
+
+
+
+    <!--operator layout ends!-->
+
+
+</LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

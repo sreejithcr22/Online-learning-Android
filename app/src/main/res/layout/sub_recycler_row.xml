@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rowCard"
+
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/sub_row_height"
+    android:layout_marginBottom="@dimen/sub_row_margin_bottom"
+    android:layout_marginLeft="@dimen/sub_row_margin_left"
+    android:layout_marginRight="@dimen/sub_row_margin_right"
+    android:layout_marginTop="@dimen/sub_row_margin_top"
+
+    android:background="?android:attr/selectableItemBackground"
+    card_view:cardBackgroundColor="?attr/mainCardbg"
+    card_view:cardElevation="@dimen/sub_row_elevation">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+
+        <RelativeLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+            <ProgressBar
+                android:id="@+id/subProgressbar"
+
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+
+                android:background="?android:attr/selectableItemBackground"
+                android:progressDrawable="?attr/progressDrawableBg" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:background="?android:attr/selectableItemBackground">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="13dp">
+
+
+                    <TextView
+                        android:fontFamily="sans-serif-light"
+
+                        android:id="@+id/subQueTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+
+                        android:background="@android:color/transparent"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:scrollHorizontally="true"
+                        android:singleLine="true"
+                        android:text="Permutation and Combination"
+                        android:textColor="?attr/blackText"
+                        android:textSize="@dimen/sub_recycler_title_size" />
+
+                    <TextView
+
+                        android:id="@+id/attemptedCount"
+
+                        style="@style/TextAppearance.AppCompat.Caption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/subQueTitle"
+                        android:layout_marginTop="1dp"
+                        android:background="@android:color/transparent"
+                        android:text="Attempted: "
+                        android:textColor="?attr/blackText"
+                        android:fontFamily="sans-serif-thin"
+
+                        android:textSize="13sp" />
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <View android:layout_width="@dimen/sub_row_divider_width"
+            android:layout_height="match_parent"
+            android:background="@drawable/vertical_shadow"></View>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:layout_weight="1.25"
+            android:background="?attr/mainCardbg"
+            card_view:cardCornerRadius="0dp"
+            card_view:cardElevation="@dimen/sub_timer_elevation"
+            card_view:cardPreventCornerOverlap="false"
+
+            card_view:cardUseCompatPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:background="?attr/mainCardbg"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btnTimer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="2"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_timer"
+                    android:tint="?attr/progressTextColor" />
+
+                <TextView
+
+                    android:id="@+id/timerText"
+                    style="@style/TextAppearance.AppCompat.Caption"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="?attr/progressTextColor"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

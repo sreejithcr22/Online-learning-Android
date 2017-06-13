@@ -1,0 +1,147 @@
+<resources xmlns:android="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="dynamicbg">@drawable/radio_selector</item>
+        <item name="progressbg">#43a047</item>
+        <item name="secondaryColor">#ffffff</item>
+        <item name="mainCardbg">#ffffff</item>
+        <item name="blackText">@android:color/black</item>
+        <item name="mildWhite">#eeeeee</item>
+        <item name="progressDrBg">#a5d6a7</item>CircleProgressDrBg
+        <item name="CircleProgressDrBg">#00c853</item>
+        <item name="progressTextColor">#43a047</item>
+        <item name="progressDrawableBg">@drawable/progress_drawable</item>
+        <item name="radioBg">@drawable/radio_selector</item>
+        <item name="queBg">#eeeeee</item>
+        <item name="interviewBg">#f5f5f5</item>
+        <item name="tabIndicatorColor">#ffffff</item>
+        <item name="tabSelectedTextColor">#ffffff</item>
+        <item name="subText">#757575</item>
+        <item name="alertDialogTheme">@style/DialogThemeDefault</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeDefault</item>
+        <item name="shadow">#E0E0E0</item>
+
+
+
+
+        <!-- enable window content transitions -->
+
+
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+
+    <style name="AppThemeBlack" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryBlack</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkBlack</item>
+        <item name="colorAccent">@color/colorPrimaryBlack</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="progressbg">@color/colorPrimaryBlack</item>
+        <item name="secondaryColor">@color/colorPrimaryBlack</item>
+        <item name="mainCardbg">#455a64</item>
+        <item name="blackText">@android:color/white</item>
+        <item name="mildWhite">@color/colorPrimaryBlack</item>
+        <item name="progressDrBg">#00838f</item>
+        <item name="CircleProgressDrBg">#00838f</item>progressTextColor
+        <item name="progressTextColor">#00acc1</item>
+        <item name="dynamicbg">@drawable/radio_selector_orange</item>
+        <item name="progressDrawableBg">@drawable/progress_drawable_black</item>
+        <item name="radioBg">@drawable/radio_selector_orange</item>
+        <item name="queBg">#546e7a</item>
+        <item name="interviewBg">#455a64</item>
+        <item name="android:titleTextStyle">@style/ToolBar.TitleStyle</item>
+        <item name="android:actionMenuTextAppearance">@style/ToolBar.TitleStyle</item>
+        <item name="tabIndicatorColor">#00acc1</item>
+        <item name="tabSelectedTextColor">#00acc1</item>
+        <item name="subText">@android:color/white</item>
+
+        <item name="alertDialogTheme">@style/DialogThemeBlack</item>
+        <item name="android:alertDialogTheme">@style/DialogThemeBlack</item>
+        <item name="shadow">#37474F</item>
+
+
+
+
+
+    </style>
+
+    <style name="ToolBar" parent="Base.Widget.AppCompat.Toolbar">
+
+        <item name="android:titleTextStyle">@style/ToolBar.TitleStyle</item>
+        <item name="android:actionMenuTextAppearance">@style/ToolBar.TitleStyle</item>
+
+    </style>
+
+    <style name="ToolBar.TitleStyle" parent="TextAppearance.AppCompat.Caption">
+
+        <item name="android:textSize">25sp</item>
+    </style>
+
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_right_calc</item>
+    </style>
+
+    <style name="CalcAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_fade_in</item>
+    </style>
+
+    <style name="DialogThemeDefault" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:buttonBarButtonStyle">@style/DialogButtonStyleDefault</item>
+        <item name="buttonBarButtonStyle">@style/DialogButtonStyleDefault</item>
+    </style>
+
+    <style name="DialogThemeBlack" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">#00acc1</item>
+        <item name="colorPrimaryDark">#00acc1</item>
+        <item name="colorAccent">#00acc1</item>
+        <item name="android:background">#455a64</item>
+        <item name="textColorAlertDialogListItem">#ffffff</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textColorPrimary">#ffffff</item>
+    <item name="android:buttonBarButtonStyle">@style/DialogButtonStyleBlack</item>
+        <item name="buttonBarButtonStyle">@style/DialogButtonStyleBlack</item>
+
+
+    </style>
+
+    <style name="DialogButtonStyleBlack" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">#00acc1</item>
+
+    </style>
+
+    <style name="DialogButtonStyleDefault" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorPrimary</item>
+
+    </style>
+
+
+</resources>

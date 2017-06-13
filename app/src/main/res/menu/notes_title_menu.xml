@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Save"
+        android:id="@+id/buttonNotesSave"
+        android:icon="@drawable/ic_save"
+        app:showAsAction="always"></item>
+
+    <item android:title="Clear"
+        android:id="@+id/buttonNotesClear"
+        android:icon="@drawable/ic_clear_black"
+        app:showAsAction="always"></item>
+
+</menu>

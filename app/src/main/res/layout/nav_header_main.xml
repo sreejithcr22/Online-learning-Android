@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header"
+    android:background="?attr/colorPrimary"
+
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+
+
+
+    <com.dinuscxj.progressbar.CircleProgressBar
+
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+
+        android:layout_weight="5"
+        android:id="@+id/navCircle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        app:style="solid_line"
+
+        app:progress_background_color="?attr/colorPrimaryDark"
+        app:progress_text_color="@android:color/white"
+
+        app:progress_text_size="@dimen/nav_header_progress_text_size"
+        app:draw_progress_text="true"
+        android:progress="0"
+        app:progress_stroke_width="@dimen/nav_header_progress_stroke"
+        app:progress_start_color="?attr/CircleProgressDrBg"
+        app:progress_end_color="?attr/CircleProgressDrBg"
+        app:progress_shader="sweep"
+
+        app:progress_stroke_cap="butt"
+        />
+
+
+    <View
+        android:visibility="gone"
+        android:id="@+id/border"
+        android:layout_height="2dp"
+        android:layout_width="match_parent"
+        android:background="#00838f"></View>
+
+
+
+</LinearLayout>

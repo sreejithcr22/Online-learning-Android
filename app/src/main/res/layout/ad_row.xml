@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/adRowCard"
+
+    android:layout_height="@dimen/sub_row_height"
+    android:layout_marginTop="@dimen/sub_row_margin_top"
+    android:layout_marginBottom="@dimen/sub_row_margin_bottom"
+    android:layout_marginLeft="@dimen/sub_row_margin_left"
+    android:layout_marginRight="@dimen/sub_row_margin_right"
+
+
+    android:layout_width="match_parent"
+    card_view:cardElevation="2dp"
+    android:background="?attr/mainCardbg">
+
+
+
+</android.support.v7.widget.CardView>
