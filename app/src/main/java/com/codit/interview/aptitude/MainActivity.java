@@ -52,6 +52,8 @@ import com.google.android.gms.ads.NativeExpressAdView;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.ArrayList;
@@ -209,6 +211,7 @@ public class MainActivity extends NavActivityBase
 
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
 
 
 
@@ -422,7 +425,7 @@ public class MainActivity extends NavActivityBase
                     AdRequest adRequest = new AdRequest.Builder()
                             .build();
 
-                    if(progressPreference.getInt("visitCount",0)>2)
+                    if(progressPreference.getInt("visitCount",0)>=2)
                     nativeAd.loadAd(adRequest);
 
                     if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)

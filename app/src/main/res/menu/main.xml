@@ -15,7 +15,7 @@
     <item android:id="@+id/mockSubmit"
         android:visible="false"
         android:title="SUBMIT"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
 
         app:showAsAction="always"></item>
 
@@ -23,7 +23,7 @@
         android:visible="false"
         android:title="Progress"
         android:icon="@drawable/ic_pie_chart"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         app:showAsAction="always" />
 
 
@@ -31,6 +31,13 @@
         android:visible="false"
         android:title="Formula"
         android:icon="@drawable/ic_formula"
+        android:orderInCategory="200"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/bug"
+        android:visible="false"
+        android:title="Report Error"
+        android:icon="@drawable/ic_bug"
         android:orderInCategory="100"
         app:showAsAction="always" />
 </menu>

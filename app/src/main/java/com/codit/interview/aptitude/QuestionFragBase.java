@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.os.AsyncTask;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,7 +21,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatSpinner;
 import android.text.Html;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 
@@ -36,6 +35,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,6 +47,10 @@ import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crash.FirebaseCrash;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -149,6 +153,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
     public void setUp()
     {
 
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
 
@@ -483,7 +488,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
                 //display next question
                 currentQno=currentQno+1;
-                //Log.d("question", "next clicked, current qno="+String.valueOf(currentQno));
 
                 if(currentQno>lastQueNo)
                 {
@@ -493,14 +497,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
                 }
 
 
-                Log.d("question", "current qno="+String.valueOf(currentQno));
-
                 if(currentQno<=lastQueNo) {
-                    Log.d("question", "inside if: ");
-
-                        Log.d("question", "listener not null: ");
-                       // setSpinner();
-                        //itemSelectedListener(currentQno);
 
 
                     qnoSpinner.setSelection(currentQno - 1,true);
@@ -577,6 +574,9 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
                 MasterDB masterDB=new MasterDB(getContext());
                 currentQuestion=masterDB.getQuestion(qno,TABLE);
+
+
+
 
 
         }
@@ -711,7 +711,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
                 }
 
-                Log.d("question", "set options option1="+currentQuestion.getOption1());
                 option1.setText(currentQuestion.getOption1());
                 option2.setText(currentQuestion.getOption2());
                 option3.setText(currentQuestion.getOption3());
@@ -1032,7 +1031,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
         }
 
-        Log.d("question", "option onclick-selected="+checkedAnswer);
+
     }
 
 
@@ -1253,8 +1252,6 @@ public void start()
     public void setSpinner()
     {
 
-        Log.d("question", "setSpinner: ");
-
 
         ArrayList<String> arrayList=new ArrayList<>();
         MasterDB masterDB=new MasterDB(getContext());
@@ -1288,7 +1285,7 @@ public void start()
                 option4.setEnabled(true);
 
                 final int queNo= Integer.parseInt(parent.getSelectedItem().toString());
-                Log.d("question", "onItemSelected: qno="+String.valueOf(queNo));
+
 
                 ObjectAnimator rotate;
                 rotate=ObjectAnimator.ofFloat(queParent,"rotationY",0f,90f);
@@ -1317,7 +1314,6 @@ public void start()
                     public void onAnimationEnd(Animator animator) {
 
 
-                        Log.d("question", "rotate onAnimationEnd: ");
 
                         //clear fields
                         questionText.setText("");
@@ -1404,9 +1400,7 @@ public void start()
 
                             @Override
                             public void onAnimationEnd(Animator animator) {
-                                FirebaseCrash.log("90to180 onAnimationEnd: ");
 
-                                Log.d("question", "90to180 onAnimationEnd: ");
 
                                 ObjectAnimator rotateFast=ObjectAnimator.ofFloat(queParent,"rotationY",180f,360f);
 
@@ -1467,7 +1461,6 @@ public void start()
                                 if(queNo<=lastQueNo&&queNo>=1) {
 
 
-                                    Log.d("question", "before display que: ");
                                     displayQuestion(queNo, currentTable);
 
                                 }
@@ -2147,5 +2140,64 @@ public int getCurrentColor(int colorType)
 
 
 
+    public void sendBugReport()
+    {
+        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+        View titleView=getActivity().getLayoutInflater().inflate(R.layout.dialog_title,null);
+        TextView title=(TextView)titleView.findViewById(R.id.dialogTitle);
+        ImageView icon=(ImageView)titleView.findViewById(R.id.dialogIcon);
+        icon.setImageResource(R.drawable.ic_bug);
+        title.setText("Report Error");
+        builder.setCustomTitle(titleView);
+
+
+        View view=getActivity().getLayoutInflater().inflate(R.layout.bug_report_layout,null);
+
+                builder.setNegativeButton("CANCEL",null)
+                .setView(view)
+                .setTitle("Report Error");
+
+
+        TextView bugTopicText= (TextView) view.findViewById(R.id.bug_topic_text);
+        TextView bugQ=(TextView) view.findViewById(R.id.bug_qno);
+        final EditText  answer= (EditText) view.findViewById(R.id.input_corret_ans);
+        final EditText  exp= (EditText) view.findViewById(R.id.input_correct_exp);
+
+        bugTopicText.setText(String.valueOf(APPSTATE.CURRENT_CATEGORY));
+        bugQ.setText(String.valueOf(String.valueOf(currentQno)));
+
+
+        builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            try
+            {
+                if(!answer.getText().toString().equals(""))
+                {
+
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+                    DatabaseReference myRef = database.getReference("error_report");
+
+                    myRef.push().setValue(new BugReport(APPSTATE.CURRENT_CATEGORY,currentQno,answer.getText().toString(),exp.getText().toString()));
+                    Toast.makeText(getContext(),"Sending error report..",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    sendBugReport();
+                }
+            }
+            catch(Exception e)
+            {
+                Toast.makeText(getContext(), "Could not send error report", Toast.LENGTH_SHORT).show();
+                FirebaseCrash.report(e);
+            }
+            }
+        });
+
+        builder.create().show();
+
+    }
 
 }

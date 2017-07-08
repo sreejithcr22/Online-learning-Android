@@ -12,10 +12,10 @@ public  class APPSTATE {
 
 
     public static int EXPL_COUNT=0;
-    public static  final int EXPL_AD_FREQ=3;
+    public static  final int EXPL_AD_FREQ=2;
     public static final int INTERVIEW_AD_FREQ=3;
     public static int RECYCLER_AD_COUNT=0;
-    public static final int INTER_AD_FREQ=4;
+    public static final int INTER_AD_FREQ=3;
 
     public static boolean PARENT_CATEG_QUANTI=false;
     public static boolean PARENT_CATEG_VERBAL=false;

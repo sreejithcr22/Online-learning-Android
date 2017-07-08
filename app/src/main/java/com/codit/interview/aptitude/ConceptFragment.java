@@ -359,7 +359,7 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
 
                         if(interviewCount%APPSTATE.INTERVIEW_AD_FREQ==0) {
 
-                            if(progressPreference.getInt("visitCount",0)>2)
+                            if(progressPreference.getInt("visitCount",0)>=2)
                             adView.loadAd(adRequest);
                         }
 

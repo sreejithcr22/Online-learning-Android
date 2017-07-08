@@ -446,7 +446,7 @@ CardView bottomLayout;
                         if(interviewCount%APPSTATE.INTERVIEW_AD_FREQ==0) {
                             //adView.setVisibility(View.VISIBLE);
 
-                            if(progressPreference.getInt("visitCount",0)>2)
+                            if(progressPreference.getInt("visitCount",0)>=2)
                                 adView.loadAd(adRequest);
                         }
 

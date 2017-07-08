@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent" android:padding="7dp">
+
+        <TextView
+            android:fontFamily="sans-serif-light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:labelFor="@+id/bug_topic_text"
+            android:text="Topic"
+             />
+
+        <TextView
+            android:layout_margin="5dp"
+            android:id="@+id/bug_topic_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:fontFamily="sans-serif-light"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:labelFor="@+id/bug_topic_text"
+            android:text="Question" />
+
+        <TextView
+            android:layout_margin="5dp"
+            android:id="@+id/bug_qno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:labelFor="@+id/input_corret_ans"
+            android:text="Correct answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:textColorHint="#E0E0E0"
+
+            android:hint="mandatory"
+            android:layout_margin="5dp"
+            android:id="@+id/input_corret_ans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="sans-serif-light"
+            android:labelFor="@+id/input_correct_exp"
+            android:text="Correct Explanation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:textColorHint="#E0E0E0"
+            android:hint="optional"
+            android:layout_margin="5dp"
+            android:id="@+id/input_correct_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>

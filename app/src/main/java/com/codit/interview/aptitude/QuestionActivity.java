@@ -668,6 +668,7 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
 
        menu.findItem(R.id.progressChat).setVisible(true);
         menu.findItem(R.id.formula).setVisible(true);
+        menu.findItem(R.id.bug).setVisible(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         }
@@ -692,6 +693,10 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
                 return true;
 
             case R.id.formula:showFormula(APPSTATE.CURRENT_ACTIVITY_TITLE);
+                return true;
+
+            case R.id.bug:object.sendBugReport();
+                return true;
         }
 
 

@@ -3,6 +3,7 @@ package com.codit.interview.aptitude;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -82,15 +84,6 @@ boolean adFlag=false;
         super.onActivityCreated(savedInstanceState);
 
         currentSubCategory=APPSTATE.CURRENT_QUE_SUB_CATEGORY;
-
-        if(currentSubCategory==null)
-        {
-
-        }
-
-
-
-
         timerChangedCtaegory=subCategoryInterface.getTimerChangedCategory();
 
         if(timerChangedCtaegory!=null)
@@ -107,7 +100,18 @@ boolean adFlag=false;
             adFlag=true;
             APPSTATE.SUB_BACK_FLAG=false;
         }
-        setSubAdapterArray(currentSubCategory);
+        if(currentSubCategory!=null) {
+            setSubAdapterArray(currentSubCategory);
+        }
+        else
+        {
+
+            Intent intent=new Intent(getContext(),ParentCategory.class);
+            APPSTATE.BACK_FLAG=true;
+            startActivity(intent);
+            Toast.makeText(getContext(),"Something went wrong!, Please reopen this category or restart the app.",Toast.LENGTH_LONG).show();
+            return;
+        }
 
 
 

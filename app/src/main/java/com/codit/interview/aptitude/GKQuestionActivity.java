@@ -172,8 +172,10 @@ onBackPressed();
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
 
-        if(!onlyInfo)
-        menu.findItem(R.id.progressChat).setVisible(true);
+        if(!onlyInfo) {
+            menu.findItem(R.id.progressChat).setVisible(true);
+            menu.findItem(R.id.bug).setVisible(true);
+        }
 
 
 
@@ -194,6 +196,9 @@ onBackPressed();
 
             case R.id.progressChat:
                 object.showMockReport();
+                return true;
+
+            case R.id.bug:object.sendBugReport();
                 return true;
 
         }

@@ -102,7 +102,7 @@ public class ParentCategoryFragment extends ParentCategoryHelper
                 nativeExpressAdView.setAdUnitId(getString(R.string.parent_categ_native));
                 AdRequest adRequest = new AdRequest.Builder()
                         .build();
-                if(progressPreference.getInt("visitCount",0)>2)
+                if(progressPreference.getInt("visitCount",0)>=2)
                     nativeExpressAdView.loadAd(adRequest);
 
 

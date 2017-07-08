@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="2dp" android:bottom="2dp" android:end="2dp" android:start="2dp">
+        <shape >
+            <solid android:color="#BDBDBD" />
+            <!-- A numeric value is specified in "radius" for demonstrative purposes only,
+                  it should be @dimen/val_name -->
+        </shape>
+    </item>
+
+</layer-list>
