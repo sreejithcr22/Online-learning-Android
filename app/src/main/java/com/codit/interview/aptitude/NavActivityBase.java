@@ -864,7 +864,7 @@ public class NavActivityBase  extends AppCompatActivity
 
                 int ad_freq=APPSTATE.INTER_AD_FREQ;
 
-                if(APPSTATE.adCount%ad_freq==0&&progressPref.getInt("visitCount",0)>=2 )
+                if(progressPref.getInt("visitCount",0)>=2 )
                 {
                     final InterstitialAd interstitialAd;
 

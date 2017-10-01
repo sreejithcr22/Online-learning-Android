@@ -52,6 +52,8 @@ public class GKSubActivity extends NavActivityBase implements GKSubAdapter.GKSub
             case "General Science":APPSTATE.CURRENT_TABLE=APPSTATE.GK_SCIENCE; break;
             case "Sports":APPSTATE.CURRENT_TABLE=APPSTATE.GK_SPORTS; break;
             case "Famous Personalities":APPSTATE.CURRENT_TABLE=APPSTATE.GK_FAMOUS; break;
+            case "Indian Geography":APPSTATE.CURRENT_TABLE=APPSTATE.GK_INDIAN_GEO;break;
+            case "Indian Politics":APPSTATE.CURRENT_TABLE=APPSTATE.GK_POLITICS;break;
 
 
 

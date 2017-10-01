@@ -723,6 +723,7 @@ public void showFormula(String title)
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
         APPSTATE.SUB_BACK_FLAG=true;
+        AdHelper.showVideoAd();
     }
 
     public void setImmersive()

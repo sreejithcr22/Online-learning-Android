@@ -11,15 +11,26 @@ android {
     defaultConfig {
         applicationId "com.codit.interview.aptitude"
         minSdkVersion 14
-        targetSdkVersion 24
-        versionCode 6
-        versionName "1.6"
+        targetSdkVersion 25
+        versionCode 21
+        versionName "2.1"
 
         vectorDrawables.useSupportLibrary = true
     }
+
+    signingConfigs {
+        key {
+            keyAlias 'key'
+            keyPassword 'tombstone'
+            storeFile file('D:\\Android_folders\\keystore.jks')
+            storePassword 'tombstone'
+        }
+    }
+
     buildTypes {
-        release {
-            minifyEnabled false
+        debug {
+            signingConfig signingConfigs.key
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

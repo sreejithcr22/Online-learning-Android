@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -145,7 +146,7 @@ boolean adFlag=false;
 
     {
         APPSTATE.RECYCLER_AD_COUNT++;
-        SharedPreferences progressPreference=getContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
+       // SharedPreferences progressPreference=getContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
 
 
 
@@ -159,6 +160,7 @@ boolean adFlag=false;
                for (int i=0;i<APPSTATE.quanti.length;i++)
                 {
                     final String current=APPSTATE.quanti[i].getCategory();
+                    Log.d("category", current);
 
 
                     if(timerChangedCtaegory!=null)
@@ -201,16 +203,12 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.quanti[i].getTime());
 
-                    if(progressPreference.getInt("visitCount",0)>5 && adFlag==true)
-                    {
-                        if(i==2||i==10)
+
+                        if(i==1||i==8||i==14)
                         {
                             subCategories.put("ad"+String.valueOf(i),"ad");
 
                         }
-                    }
-
-
 
 
                 }
@@ -266,13 +264,11 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.verbal[i].getTime());
 
-                    if(progressPreference.getInt("visitCount",0)>5 && adFlag==true)
-                    {
-                        if(i==2||i==9) {
+
+                        if(i==1||i==8) {
                             subCategories.put("ad" + String.valueOf(i), "ad");
                         }
 
-                    }
 
                 }
 
@@ -327,13 +323,10 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.logical[i].getTime());
 
-                    if(progressPreference.getInt("visitCount",0)>5 && adFlag==true)
-                    {
-                        if(i==2||i==9) {
+                   if(i==1||i==8||i==12) {
                             subCategories.put("ad" + String.valueOf(i), "ad");
                         }
 
-                    }
 
                 }
 

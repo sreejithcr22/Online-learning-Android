@@ -22,7 +22,7 @@ public class UserStateDB extends SQLiteOpenHelper {
 
     public Context context;
 
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION = 2;
     static final String DB_NAME = "userstate.db";
     static final String TABLE_MOCK_STATE = "mockstate";
     static final String MOCK_COL_TITLE = "title";
@@ -76,6 +76,8 @@ public class UserStateDB extends SQLiteOpenHelper {
        }
        catch (Exception e)
        {
+           Toast.makeText(context,"exception",Toast.LENGTH_SHORT).show();
+           Log.d("user", "onCreate: "+e.getMessage());
            FirebaseCrash.log("create mock state table error");
            FirebaseCrash.report(e);
        }
@@ -90,8 +92,19 @@ public class UserStateDB extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
-        onCreate(sqLiteDatabase);
+        Log.d("user", String.valueOf(i)+";"+String.valueOf(i1));
 
+        if(i==1&&i1==2)
+        {
+            Log.d("user", "onUpgrade: inside");
+            ContentValues values = new ContentValues();
+            values.put(COL_APTI_CATEGS_CATEG, "Partnership");
+
+            values.put(COL_APTI_CATEGS_TIME, "02:00");
+            values.put(COL_APTI_CATEGS_PARENT, PARENT_APTI_QUANTI);
+
+            sqLiteDatabase.insert(TABLE_APTI_CATEGS, null, values);
+        }
 
     }
 
@@ -261,6 +274,7 @@ public class UserStateDB extends SQLiteOpenHelper {
            for (String category : quantiArray) {
                ContentValues values = new ContentValues();
                values.put(COL_APTI_CATEGS_CATEG, category);
+               Log.d("user", "initAptiCategs: "+category);
                values.put(COL_APTI_CATEGS_TIME, APPSTATE.DEFAULT_TIME);
                values.put(COL_APTI_CATEGS_PARENT, PARENT_APTI_QUANTI);
 

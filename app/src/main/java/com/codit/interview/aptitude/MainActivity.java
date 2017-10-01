@@ -135,6 +135,7 @@ public class MainActivity extends NavActivityBase
 
         }
 
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
         progressPreference=getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
         int version = 0;
@@ -425,7 +426,6 @@ public class MainActivity extends NavActivityBase
                     AdRequest adRequest = new AdRequest.Builder()
                             .build();
 
-                    if(progressPreference.getInt("visitCount",0)>=2)
                     nativeAd.loadAd(adRequest);
 
                     if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)

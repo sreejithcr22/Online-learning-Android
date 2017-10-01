@@ -114,6 +114,7 @@ public class SubCategoryActivity extends NavActivityBase implements SubCategoryF
             case "Profit And Loss":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_PROFIT;break;
             case "Interest":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_INTEREST;break;
             case "Permutation And Combination":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_PERMUTATION;break;
+            case "Partnership":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_PARTNERSHIP;break;
             case "Numbers And Decimal Fractions":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_APTI_NUMBERS;break;
             case "HCF And LCM":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_HCF_AND_LCM; break;
             case "Ratio And Proportion":APPSTATE.CURRENT_TABLE=APPSTATE.TABLE_RATIO;break;

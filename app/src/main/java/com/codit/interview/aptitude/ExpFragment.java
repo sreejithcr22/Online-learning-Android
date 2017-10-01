@@ -109,7 +109,6 @@ public class ExpFragment extends DialogFragment {
         AdRequest adRequest = new AdRequest.Builder()
                 .build();
 
-        if(APPSTATE.EXPL_COUNT%APPSTATE.EXPL_AD_FREQ==0 && APPSTATE.EXPL_COUNT!=0)
         nativeExpressAdView.loadAd(adRequest);
 
         builder.setView(view);

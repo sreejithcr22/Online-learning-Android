@@ -134,7 +134,6 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 
         if(this.currentFragment.equals(FRAG_APTI))
         {
-            if(progressPreference.getInt("visitCount",0)>=2)
                 aptiBanner.loadAd(adRequest);
         }
         else

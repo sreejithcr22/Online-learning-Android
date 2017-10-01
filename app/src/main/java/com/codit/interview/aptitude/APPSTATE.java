@@ -13,7 +13,7 @@ public  class APPSTATE {
 
     public static int EXPL_COUNT=0;
     public static  final int EXPL_AD_FREQ=2;
-    public static final int INTERVIEW_AD_FREQ=3;
+    public static final int INTERVIEW_AD_FREQ=1;
     public static int RECYCLER_AD_COUNT=0;
     public static final int INTER_AD_FREQ=3;
 
@@ -78,6 +78,8 @@ public  class APPSTATE {
     public static String TABLE_PERCENTAGE="percentage";
     public static String TABLE_TRAINS="train";
     public static String TABLE_PIPES="pipes";
+    public static String TABLE_PARTNERSHIP="partnership";
+
 
 
     public static String TABLE_BLOOD="blood";
@@ -106,6 +108,8 @@ public  class APPSTATE {
     public static String GK_INVENTIONS="inventions";
     public static String GK_SPORTS="sports";
     public static String GK_GEO="world_geo";
+    public static String GK_INDIAN_GEO="indian_geo";
+    public static String GK_POLITICS="politics";
 
     public static String ANTONYMS="antonyms";
     public static String CLOSET="closet";

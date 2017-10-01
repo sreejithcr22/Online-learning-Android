@@ -1234,6 +1234,7 @@ public void start()
     catch(NumberFormatException e)
     {
 
+        e.printStackTrace();
 
         FirebaseCrash.log("table="+currentTable+" exception should have been caught inside master db");
         FirebaseCrash.report(e);

@@ -26,6 +26,8 @@
     <string name="interview_native_large">ca-app-pub-7040172378865675/5188846343</string>
     <string name="mock_ad">ca-app-pub-7040172378865675/5958220343</string>
     <string name="home_large">ca-app-pub-7040172378865675/4099600342</string>
+    <string name="reward_video">ca-app-pub-7040172378865675/6753783991</string>
+    <string name="reward_money">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhoN1/NHMKJ87H601F2Fes5zWnSr/mXXc9u3J5guqe0zN+jqx7Oyyr5ENXWD9F9XzB1IF4CcVkzTWArfX6GnNF3VrdBc8GLvCk+bdWnaVgkT8D5U6nixf0ErX/04BzhosBwty0KENtECtl37vXqqrJF3b5NCIu06IV1JjchN0cjHV4osZuJXeeCEN/+/ledunm5f2lh7WPkjX7p3x20ewkuuBBhYonkYThxOGY9LzH/hrP8bvo/f6LrTmb0rgVlFSTPvCTy4pYJwFZveewdmh0nNX5NhVrEZtm+rR1cXsfsMYdb5mfZYvsug0/mop9y09MeMwsov0ojdP4Zi/bVQ+TwIDAQAB</string>
 
 
 
@@ -39,6 +41,7 @@
         <item>Problems On Age</item>
         <item>Average</item>
         <item>Permutation And Combination</item>
+        <item>Partnership</item>
         <item>HCF And LCM</item>
         <item>Time And Distance</item>
         <item>Interest</item>
@@ -89,6 +92,8 @@
     </string-array>
 
     <string-array name="GKBasicCategories">
+        <item>Indian Politics</item>
+        <item>Indian Geography</item>
         <item>Books And Authors</item>
         <item>Days And Dates</item>
         <item>Awards And Honors</item>

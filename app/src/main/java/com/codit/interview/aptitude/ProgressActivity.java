@@ -155,7 +155,6 @@ public class ProgressActivity extends AppCompatActivity {
                 AdRequest adRequest = new AdRequest.Builder()
                         .build();
 
-                if(progressPreference.getInt("visitCount",0)>=2)
                     nativeExpressAdView.loadAd(adRequest);
 
                 if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
