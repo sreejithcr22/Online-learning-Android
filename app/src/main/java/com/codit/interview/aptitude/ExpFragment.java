@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -13,6 +14,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 
@@ -22,6 +27,7 @@ import com.google.android.gms.ads.NativeExpressAdView;
 public class ExpFragment extends DialogFragment {
 
 
+    NativeAdViewNewsFeed nav_nf;
     String explanation;
 
     ExpFragInterface expFragInterface;
@@ -34,6 +40,13 @@ public class ExpFragment extends DialogFragment {
     {
          String getExp();
          String getOption();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
@@ -62,6 +75,41 @@ public class ExpFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
+        if(!App.isAdRemoved())
+        {
+            Log.d("appodeal", "onCreate: ");
+
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+                    if(nav_nf!=null&&!App.isAdRemoved())
+                    {
+                        nav_nf.setVisibility(View.VISIBLE);
+                        nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                    }
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+                    Log.d("appodeal", "onNativeFailedToLoad: ");
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+                    Log.d("appodeal", "onNativeShown: ");
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
+
+            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,2);
+        }
+
         APPSTATE.EXPL_COUNT++;
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
@@ -71,18 +119,8 @@ public class ExpFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         final View view=inflater.inflate(R.layout.exp_fragment, null);
+        nav_nf = (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
 
-        view.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                int wdth1=view.getWidth();
-
-                float density=getContext().getResources().getDisplayMetrics().density;
-             int  width = (int) (wdth1/ density);
-
-
-            }
-        });
 
 
 
@@ -105,11 +143,7 @@ public class ExpFragment extends DialogFragment {
             }
         });
 
-        NativeExpressAdView nativeExpressAdView= (NativeExpressAdView) view.findViewById(R.id.expNative);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
 
-        nativeExpressAdView.loadAd(adRequest);
 
         builder.setView(view);
          dialog=builder.create();

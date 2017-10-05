@@ -440,17 +440,17 @@ CardView bottomLayout;
 
                     try{
 
-                        AdRequest adRequest = new AdRequest.Builder()
-                                .build();
-
-                        if(interviewCount%APPSTATE.INTERVIEW_AD_FREQ==0) {
-                            //adView.setVisibility(View.VISIBLE);
-
-                                adView.loadAd(adRequest);
+                        if(!App.isAdRemoved())
+                        {
+                            AdRequest adRequest = new AdRequest.Builder()
+                                    .build();
+                            adView.loadAd(adRequest);
                         }
 
                         else
-                            adView.setVisibility(GONE);
+                        {
+                            if(adView!=null)
+                                adView.setVisibility(GONE);}
 
                         currentTip=interviewDB.getTip(tipno,tableName);
                     tipText.setText(currentTip.getTip());

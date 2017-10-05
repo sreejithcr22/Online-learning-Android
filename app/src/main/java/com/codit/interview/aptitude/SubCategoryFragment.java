@@ -203,12 +203,12 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.quanti[i].getTime());
 
-
-                        if(i==1||i==8||i==14)
-                        {
-                            subCategories.put("ad"+String.valueOf(i),"ad");
+                    if(!App.isAdRemoved()) {
+                        if (i == 1 || i == 8 || i == 14) {
+                            subCategories.put("ad" + String.valueOf(i), "ad");
 
                         }
+                    }
 
 
                 }
@@ -264,11 +264,13 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.verbal[i].getTime());
 
+                    if(!App.isAdRemoved())
 
-                        if(i==1||i==8) {
+                    {
+                        if (i == 1 || i == 8) {
                             subCategories.put("ad" + String.valueOf(i), "ad");
                         }
-
+                    }
 
                 }
 
@@ -323,9 +325,13 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.logical[i].getTime());
 
-                   if(i==1||i==8||i==12) {
+                    if(!App.isAdRemoved())
+
+                    {
+                        if (i == 1 || i == 8 || i == 12) {
                             subCategories.put("ad" + String.valueOf(i), "ad");
                         }
+                    }
 
 
                 }

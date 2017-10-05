@@ -44,7 +44,9 @@ public class GKQuestionActivity extends NavActivityBase implements QuestionFragB
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        showInterAd(getString(R.string.sub_gk_inter));
+        if(!App.isAdRemoved()){
+            showInterAd(getString(R.string.sub_gk_inter));}
+
         resumeFlag=false;
 
 
@@ -361,5 +363,10 @@ onBackPressed();
         Intent intent=new Intent(getBaseContext(),GKSubActivity.class);
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
+
+        if(!App.isAdRemoved())
+        {
+            AdHelper.showVideoAd();
+        }
     }
 }

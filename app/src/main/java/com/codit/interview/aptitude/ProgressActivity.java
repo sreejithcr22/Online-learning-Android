@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,12 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
+import com.appodeal.ads.native_ad.views.NativeAdViewContentStream;
+import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -37,6 +44,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProgressActivity extends AppCompatActivity {
@@ -56,6 +64,8 @@ public class ProgressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         isTimeDisplayed = false;
         super.onCreate(savedInstanceState);
+
+
 
         if(APPSTATE.CURRENT_THEME!=0)
         {
@@ -110,62 +120,102 @@ public class ProgressActivity extends AppCompatActivity {
         timeList=intent.getIntegerArrayListExtra("timelist");
         adCard= (CardView) findViewById(R.id.adCard);
 
-          nativeExpressAdView= new NativeExpressAdView(getBaseContext());
-
-        LinearLayout.LayoutParams params1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        params1.setMargins(0,0,0,0);
-        nativeExpressAdView.setLayoutParams(params1);
-
-        adCard.addView(nativeExpressAdView);
-
-        nativeExpressAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adCard.setVisibility(View.VISIBLE);
-            }
-        });
 
 
-        timeCard.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
+        if(!App.isAdRemoved()&&App.preferences.getInt("visitCount",0)>=2)
+        {
+            /*nativeExpressAdView= new NativeExpressAdView(getBaseContext());
+            LinearLayout.LayoutParams params1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            params1.setMargins(0,0,0,0);
+            nativeExpressAdView.setLayoutParams(params1);
+
+            adCard.addView(nativeExpressAdView);
+
+            nativeExpressAdView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    adCard.setVisibility(View.VISIBLE);
+                }
+            });
+
+
+            timeCard.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
 
 
 
-                int width = timeCard.getWidth();
-                int height = timeCard.getHeight();
+                    int width = timeCard.getWidth();
+                    int height = timeCard.getHeight();
 
-                float density=getResources().getDisplayMetrics().density;
-                int actualWidth= (int) (width/ density);
-                int actualHeight= (int) (height/density);
-                int adWidth=actualWidth-10;
-                int adHeight=actualHeight-11;
+                    float density=getResources().getDisplayMetrics().density;
+                    int actualWidth= (int) (width/ density);
+                    int actualHeight= (int) (height/density);
+                    int adWidth=actualWidth-10;
+                    int adHeight=actualHeight-11;
 
-                if(adWidth<280)
-                    adWidth=280;
+                    if(adWidth<280)
+                        adWidth=280;
 
-                if (adHeight<80)
-                    adHeight=80;
+                    if (adHeight<80)
+                        adHeight=80;
 
-                nativeExpressAdView.setAdSize(new AdSize(adWidth,adHeight));
-                nativeExpressAdView.setAdUnitId(getResources().getString(R.string.progressNativeLarge));
+                    nativeExpressAdView.setAdSize(new AdSize(adWidth,adHeight));
+                    nativeExpressAdView.setAdUnitId(getResources().getString(R.string.progressNativeLarge));
 
 
-                AdRequest adRequest = new AdRequest.Builder()
-                        .build();
+                    AdRequest adRequest = new AdRequest.Builder()
+                            .build();
 
                     nativeExpressAdView.loadAd(adRequest);
 
-                if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                    adCard.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                else
-                    adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                    if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
+                        adCard.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    else
+                        adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
 
-            }
-        });
+                }
+            });*/
+
+            String appKey = "a9e3e5ec7a3264b5afa303523979a060cfa9362658273c8b";
+
+            Appodeal.initialize(this, appKey, Appodeal.NATIVE);
+
+            Appodeal.cache(this, Appodeal.NATIVE, 3);
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+                   // NativeAdViewContentStream nav_cs = (NativeAdViewContentStream) findViewById(R.id.native_ad_view_content_stream);
+                   // nav_cs.setNativeAd(Appodeal.getNativeAds(1).get(0));
+
+                    NativeAdViewAppWall nav_aw = (NativeAdViewAppWall)findViewById(R.id.native_ad_view_app_wall);
+                    nav_aw.setNativeAd(Appodeal.getNativeAds(1).get(0));
+
+                    adCard.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
 
 
+
+
+        }
         showProgressChart();
 
         if(showOnlyTime) {
@@ -437,6 +487,8 @@ public class ProgressActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
+
+
         if(APPSTATE.QUESTION_ACTIVITY_FLAG)
         {
             APPSTATE.QUESTION_ACTIVITY_FLAG=false;
@@ -444,6 +496,8 @@ public class ProgressActivity extends AppCompatActivity {
             Intent intent=new Intent(getBaseContext(),SubCategoryActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
+            if(!App.isAdRemoved())
+                AdHelper.showVideoAd();
         }
         else if (APPSTATE.MOCK_QUESTION_ACTIVITY_FLAG)
         {
@@ -452,7 +506,11 @@ public class ProgressActivity extends AppCompatActivity {
             Intent intent=new Intent(getBaseContext(),MockActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
+            if(!App.isAdRemoved())
+                AdHelper.showVideoAd();
         }
+
+
 
 
 

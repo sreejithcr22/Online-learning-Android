@@ -22,6 +22,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 
@@ -42,6 +43,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codit.interview.aptitude.util.IabHelper;
+import com.codit.interview.aptitude.util.IabResult;
+import com.codit.interview.aptitude.util.Inventory;
+import com.codit.interview.aptitude.util.Purchase;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -49,16 +54,18 @@ import com.google.android.gms.ads.InterstitialAd;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Sreejith on 26-Jul-16.
  */
-public class NavActivityBase  extends AppCompatActivity
+public class NavActivityBase  extends AppCompatActivity implements IabHelper.QueryInventoryFinishedListener, IabHelper.OnIabPurchaseFinishedListener
 
 
         {
             CircleProgressBar navProgress;
+            public static String SKU="product_remove_ads";
 
 
             boolean clicked=false;
@@ -81,6 +88,10 @@ public class NavActivityBase  extends AppCompatActivity
 
             public TabLayout tabLayout;
             TabAdapter tabAdapter;
+
+            public static final String TAG="bill";
+            public IabHelper billingHelper;
+
 
 
 
@@ -173,7 +184,9 @@ public class NavActivityBase  extends AppCompatActivity
 
 
 
-               menuView=(ListView)findViewById(R.id.left_nav_view);
+           setupBilling();
+
+           menuView=(ListView)findViewById(R.id.left_nav_view);
 
 
                settingsNav= (ListView) findViewById(R.id.right_nav_view);
@@ -182,12 +195,13 @@ public class NavActivityBase  extends AppCompatActivity
 
 
 
-           NavListRow[] rows=new NavListRow[5];
+           NavListRow[] rows=new NavListRow[6];
            rows[0]=new NavListRow(R.drawable.ic_question,"Questions");
            rows[1]=new NavListRow(R.drawable.ic_interview,"Interview");
            rows[2]=new NavListRow(R.drawable.ic_square_root,"Formulas");
            rows[4]=new NavListRow(R.drawable.ic_heart,"Favourites");
            rows[3]=new NavListRow(R.drawable.ic_exam,"Mock Test");
+           rows[5]=new NavListRow(R.drawable.ic_exam,"Remove Ads");
 
            NavListRow[] settingsRows=new NavListRow[6];
            settingsRows[1]=new NavListRow(R.drawable.ic_settings,"Settings");
@@ -347,6 +361,10 @@ public class NavActivityBase  extends AppCompatActivity
                                        Intent intent4=new Intent(getBaseContext(),MockActivity.class);
                                        startActivity(intent4);
                                        event="Open_Mock";
+                                       break;
+
+                                   case 6:launchPurchase();
+                                       event="click_remove_ads";
                                        break;
 
                                }
@@ -923,5 +941,165 @@ public class NavActivityBase  extends AppCompatActivity
                 overridePendingTransition(R.anim.trans_back_exit, R.anim.trans_bac_enter);
             }
 
+//-------------------------------------------------------------------------------------------bill------------------------------------
+
+            @Override
+            public void onQueryInventoryFinished(IabResult result, Inventory inv) {
+
+                if (result.isFailure()) {
+                    // handle error
+                    Log.e(TAG, "onQueryInventoryFinished: failed"+result.getMessage());
+                    return;
+                }
+
+                try {
+
+
+                    if(inv.getPurchase("android.test.purchased")!=null)
+                        billingHelper.consumeAsync(inv.getPurchase("android.test.purchased"), mConsumeFinishedListener);
+                } catch (IabHelper.IabAsyncInProgressException e) {
+                    Log.d("bill", "consume error");
+                }
+
+
+
+
+                }
+
+
+
+
+            void setupBilling()
+            {
+
+                billingHelper=new IabHelper(this, this.getString(R.string.reward_money));
+                billingHelper.enableDebugLogging(true,"bill");
+
+                final ArrayList sku = new ArrayList();
+                sku.add("product_remove_ads");
+                billingHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                    public void onIabSetupFinished(IabResult result) {
+                        if (result.isSuccess())
+                        {
+
+                            try {
+                                billingHelper.queryInventoryAsync(true, sku,sku,NavActivityBase.this );
+
+                            } catch (IabHelper.IabAsyncInProgressException e) {
+                                e.printStackTrace();
+                                Log.d("billing", "Problem setting up In-app Billing: IabAsyncInProgressException" );
+                            }
+                        }
+                        else Log.d("billing", "Problem setting up In-app Billing: " + result);
+
+                    }
+                });
+            }
+
+
+            @Override
+            protected void onDestroy() {
+                super.onDestroy();
+                if (billingHelper != null) try {
+                    billingHelper.dispose();
+                } catch (IabHelper.IabAsyncInProgressException e) {
+                }
+                billingHelper = null;
+            }
+
+            @Override
+            public void onActivityResult(int requestCode, int resultCode, Intent data) {
+                Log.d("bill", "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+                //if (billingHelper == null) return;
+
+                // Pass on the activity result to the helper for handling
+                if (!billingHelper.handleActivityResult(requestCode, resultCode, data)) {
+                    // not handled, so handle it ourselves (here's where you'd
+                    // perform any handling of activity results not related to in-app
+                    // billing...
+                    Log.d("bill", "onActivityResult(" + requestCode + "," + resultCode + "," + data);
+                    super.onActivityResult(requestCode, resultCode, data);
+                }
+                else {
+                    Log.d("bill", "onActivityResult handled by IABUtil.");
+                }
+            }
+
+            @Override
+            public void onIabPurchaseFinished(IabResult result, Purchase info) {
+
+                Log.d("bill", "onIabPurchaseFinished: "+result.toString());
+                if(result.isFailure())
+                {
+                    Toast.makeText(getBaseContext(),"Purchase could not be completed !",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(result.isSuccess())
+                {
+
+                    Toast.makeText(getBaseContext(),"purchase completed",Toast.LENGTH_SHORT).show();
+                    try {
+                        billingHelper.consumeAsync(info,mConsumeFinishedListener);
+                    } catch (IabHelper.IabAsyncInProgressException e) {
+                        e.printStackTrace();
+                    }
+
+
+                }
+
+            }
+
+
+
+            IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
+                public void onConsumeFinished(Purchase purchase, IabResult result) {
+                    Log.d("bill", "Consumption finished. Purchase: " + purchase + ", result: " + result);
+
+
+                    if (billingHelper == null) return;
+
+                    if(result.isFailure())
+                    {
+                        Log.d("bill", "onConsumeFinished: "+"Error while consuming: " + result);
+                        Toast.makeText(getBaseContext(),"Sorry, something went wrong !",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    if (result.isSuccess()) {
+                        Toast.makeText(getBaseContext(),"consumed !",Toast.LENGTH_SHORT).show();
+                        Log.d("bill", "Consumption successful. Provisioning.");
+
+                        //remove ad code here
+                        App.removeAds();
+
+                    }
+
+                }
+            };
+
+
+            public void launchPurchase() {
+
+                Log.d("billing", "launchPurchase: ");
+                try {
+                    billingHelper.launchPurchaseFlow(this,"android.test.purchased",100,this);
+
+                } catch (IabHelper.IabAsyncInProgressException e) {
+                    e.printStackTrace();
+                    Log.d("bill", "purchase: IabAsyncInProgressException");
+                }
+            }
+
+
+
         }
+            //-----------------------------------------------------------------------------------------------billing
+
+
+
+
+
+
+
 

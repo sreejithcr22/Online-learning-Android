@@ -44,6 +44,8 @@ public class MockQueActivity extends AppCompatActivity implements QuestionFragBa
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         resumeFlag=false;
         Intent intent=getIntent();
         title= intent.getStringExtra("title");

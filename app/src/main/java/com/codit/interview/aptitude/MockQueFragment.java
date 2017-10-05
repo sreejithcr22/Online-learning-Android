@@ -47,23 +47,21 @@ public class MockQueFragment extends QuestionFragBase {
         // Inflate the layout for this fragment
         final View view=inflater.inflate(R.layout.fragment_mock_que, container, false);
 
-        final AdView adView= (AdView) view.findViewById(R.id.mockBanner);
+        if(!App.isAdRemoved())
+        {
+            final AdView adView= (AdView) view.findViewById(R.id.mockBanner);
 
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-
-
-
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
-            }
-        });
-
-        if(progressPreference.getInt("visitCount",0)>2)
+            AdRequest adRequest = new AdRequest.Builder()
+                    .build();
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
             adView.loadAd(adRequest);
+        }
 
 
 

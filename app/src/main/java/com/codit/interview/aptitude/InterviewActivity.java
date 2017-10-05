@@ -37,7 +37,8 @@ public class InterviewActivity extends NavActivityBase implements InterviewGener
         super.onCreate(savedInstanceState);
 
 
-        showInterAd(getString(R.string.interviewInter));
+        if(!App.isAdRemoved()){
+            showInterAd(getString(R.string.interviewInter));}
 
         HashMap<Integer,Fragment> hm=new HashMap<>();
         hm.put(0,new InterviewGeneral(0));

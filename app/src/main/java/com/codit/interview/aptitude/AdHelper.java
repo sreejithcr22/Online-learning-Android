@@ -17,12 +17,11 @@ public class AdHelper {
 
 
 
-    private static final int REWARD_COINS =100 ;
     static RewardedVideoAd videoAd;
     static Context appContext;
     static  final String VIDEO_AD_ID="ca-app-pub-7040172378865675/6753783991";
 
-    static boolean isRewarded=false;
+
 
     public static void initialize(Context context)
     {
@@ -39,13 +38,14 @@ public class AdHelper {
     public static void showVideoAd() {
 
 
-        if (videoAd.isLoaded()) {
-            videoAd.show();
-        }
-        else {
-            loadVideoAd();
-
-
+        if(!App.isAdRemoved())
+        {
+            if (videoAd.isLoaded()) {
+                videoAd.show();
+            }
+            else {
+                loadVideoAd();
+            }
         }
     }
 

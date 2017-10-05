@@ -50,19 +50,19 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content" />
 
-           <com.google.android.gms.ads.NativeExpressAdView
 
 
 
 
-               ads:adUnitId="@string/expNative"
-               ads:adSize="280x85"
-               android:id="@+id/expNative"
-               android:layout_width="match_parent"
-               android:minHeight="80dp"
-               android:layout_height="125dp">
+               <com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed
+                   android:minHeight="80dp"
+                   android:layout_height="125dp"
+                   android:id="@+id/native_ad_view_news_feed"
+                   android:layout_width="wrap_content"
+                   android:visibility="visible"
+                  >
+               </com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed>
 
-           </com.google.android.gms.ads.NativeExpressAdView>
            </LinearLayout>
 
        </ScrollView>

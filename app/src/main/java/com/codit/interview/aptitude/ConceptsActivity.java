@@ -37,7 +37,9 @@ public class ConceptsActivity extends NavActivityBase implements ConceptFragment
         super.onCreate(savedInstanceState);
 
 
-        showInterAd(getString(R.string.formulaInter));
+        if(!App.isAdRemoved()) {
+            showInterAd(getString(R.string.formulaInter));
+        }
 
         HashMap<Integer,Fragment> hm=new HashMap<>();
         hm.put(0,new ConceptFragment(0));

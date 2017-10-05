@@ -37,10 +37,26 @@
         ads:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <com.appodeal.ads.MrecView
+                android:layout_marginTop="@dimen/main_card_margin_top"
+                android:layout_gravity="center"
+                android:id="@+id/appodealMrecView"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+
+
+
+
 
 
             <include
@@ -52,7 +68,7 @@
                 android:layout_marginLeft="@dimen/main_linear_margin_left_right"
                 android:layout_marginRight="@dimen/main_linear_margin_left_right"
 
-                android:layout_marginTop="@dimen/main_linear_margin_top_bottom">
+                android:layout_marginTop="@dimen/main_card_margin_top">
 
             </include>
 
@@ -78,16 +94,7 @@
                 android:layout_marginTop="@dimen/main_card_margin_top" />
 
 
-            <include
-                android:id="@+id/adMainCard"
-                layout="@layout/main_progress_layout"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/main_progress_layout_size"
-                android:layout_marginBottom="@dimen/main_card_margin_bottom"
-                android:layout_marginLeft="@dimen/main_linear_margin_left_right"
-                android:layout_marginRight="@dimen/main_linear_margin_left_right"
-                android:layout_marginTop="@dimen/main_card_margin_top"
-                android:visibility="gone" />
+
 
             <include
                 android:id="@+id/successCard"

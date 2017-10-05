@@ -40,6 +40,7 @@ public  class FavActivity extends NavActivityBase implements InterviewGeneral.in
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if(!App.isAdRemoved())
         showInterAd(getString(R.string.favInter));
 
         HashMap<Integer,Fragment> hm=new HashMap<>();

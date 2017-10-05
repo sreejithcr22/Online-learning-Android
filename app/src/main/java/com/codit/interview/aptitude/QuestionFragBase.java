@@ -1936,7 +1936,7 @@ public void start()
                         public void onClick(DialogInterface dialogInterface, int i) {
 
                             APPSTATE.MOCK_TEST_ON=false;
-
+                            APPSTATE.MOCK_QUESTION_ACTIVITY_FLAG=true;
                             showMockReport();
                         }
                     });
@@ -1951,7 +1951,7 @@ public void start()
                        public void onClick(DialogInterface dialogInterface, int i) {
 
                            APPSTATE.MOCK_TEST_ON=false;
-
+                           APPSTATE.MOCK_QUESTION_ACTIVITY_FLAG=true;
                            showMockReport();
                        }
                    });
@@ -2019,19 +2019,7 @@ public void start()
 
     }
 
-public int getCurrentColor(int colorType)
-{
 
-    TypedValue typedValue = new TypedValue();
-
-    TypedArray a = getContext().obtainStyledAttributes(typedValue.data, new int[] { colorType });
-    int color = a.getColor(0, 0);
-    a.recycle();
-
-    return color;
-
-
-}
 
     @Override
     public void onResume() {

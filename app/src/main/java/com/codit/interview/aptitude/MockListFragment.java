@@ -48,9 +48,7 @@ public class MockListFragment extends Fragment {
 
         objetcs=userStateDB.readMockRows();
 
-       SharedPreferences progressPreference=getContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
-
-        if(progressPreference.getInt("visitCount",0)>2)
+        if(!App.isAdRemoved())
         {
             for (int i = 0; i < objetcs.size(); i++) {
                 if (i == 3 || i == 9) {

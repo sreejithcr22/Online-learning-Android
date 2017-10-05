@@ -133,9 +133,6 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
 
         parent= (FrameLayout) view.findViewById(R.id.container);
 
-        adView= new NativeExpressAdView(getContext());
-        adView.setVisibility(GONE);
-
         View bottomShadow=view.findViewById(R.id.interview_bottom_bar_shadow);
 
         if(APPSTATE.CURRENT_THEME==APPSTATE.THEME_BLACK)
@@ -143,26 +140,34 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
             bottomShadow.setVisibility(GONE);
         }
 
-        LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.topMargin=70;
-        params.bottomMargin=20;
-        adView.setLayoutParams(params);
-        adView.setAdSize(new AdSize(getResources().getConfiguration().smallestScreenWidthDp-30,100));
-        adView.setAdUnitId(getString(R.string.interview_native_large));
-        adView.setVideoOptions(new VideoOptions.Builder()
-                .setStartMuted(true)
-                .build());
+        if(!App.isAdRemoved())
+        {
+            adView= new NativeExpressAdView(getContext());
+            adView.setVisibility(GONE);
 
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
-            }
-        });
 
-        LinearLayout interviewContainer= (LinearLayout) view.findViewById(R.id.interviewContainer);
-        interviewContainer.addView(adView);
+
+            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.topMargin=70;
+            params.bottomMargin=20;
+            adView.setLayoutParams(params);
+            adView.setAdSize(new AdSize(getResources().getConfiguration().smallestScreenWidthDp-30,100));
+            adView.setAdUnitId(getString(R.string.interview_native_large));
+            adView.setVideoOptions(new VideoOptions.Builder()
+                    .setStartMuted(true)
+                    .build());
+
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    adView.setVisibility(View.VISIBLE);
+                }
+            });
+
+            LinearLayout interviewContainer= (LinearLayout) view.findViewById(R.id.interviewContainer);
+            interviewContainer.addView(adView);
+        }
 
         scrollView= (ScrollView) view.findViewById(R.id.scrollView);
 
@@ -354,17 +359,18 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
 
                     try{
 
-                        AdRequest adRequest = new AdRequest.Builder()
-                                .build();
-
-                        if(interviewCount%APPSTATE.INTERVIEW_AD_FREQ==0) {
-
-                            if(progressPreference.getInt("visitCount",0)>=2)
+                        if(!App.isAdRemoved())
+                        {
+                            AdRequest adRequest = new AdRequest.Builder()
+                                    .build();
                             adView.loadAd(adRequest);
                         }
 
                         else
-                            adView.setVisibility(GONE);
+                        {
+                            if(adView!=null)
+                            adView.setVisibility(GONE);}
+
                         currentTip=interviewDB.getTip(tipno,tableName);
                         tipText.setText(currentTip.getTip());
                         titleText.setText(String.valueOf(currentTip.getTipNo())+" . "+currentTip.getTitle());

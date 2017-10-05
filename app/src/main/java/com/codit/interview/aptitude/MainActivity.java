@@ -1,6 +1,6 @@
 package com.codit.interview.aptitude;
 
-
+import com.appodeal.ads.Appodeal;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -27,6 +27,7 @@ import android.support.v7.app.AppCompatDelegate;
 
 import android.support.v7.widget.CardView;
 
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
@@ -43,6 +44,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.appodeal.ads.BannerCallbacks;
+import com.appodeal.ads.InterstitialCallbacks;
+import com.appodeal.ads.MrecCallbacks;
+import com.appodeal.ads.MrecView;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -87,7 +92,7 @@ public class MainActivity extends NavActivityBase
 
 
     CircleProgressBar overallProgressBar,accuracyProgressbar,aptiProgressbar,gkProgressbar,mockProgressbar;
-    CardView overallCard,successCard,timeCard,aptiCard,gkCard,mockCard,adCard;
+    CardView overallCard,successCard,timeCard,aptiCard,gkCard,mockCard;
 
     TextView overallText;
     TextView successText;
@@ -212,6 +217,37 @@ public class MainActivity extends NavActivityBase
 
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+
+        Appodeal.setMrecViewId(R.id.appodealMrecView);
+        String appKey = "a9e3e5ec7a3264b5afa303523979a060cfa9362658273c8b";
+        Appodeal.disableLocationPermissionCheck();
+        Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL | Appodeal.NON_SKIPPABLE_VIDEO | Appodeal.BANNER | Appodeal.NATIVE | Appodeal.MREC);
+
+        Appodeal.setMrecCallbacks(new MrecCallbacks() {
+            @Override
+            public void onMrecLoaded(boolean isPrecache) {
+
+
+                if(!App.isAdRemoved()&&App.preferences.getInt("visitCount",0)>=1) {
+
+                    findViewById(R.id.appodealMrecView).setVisibility(View.VISIBLE);
+                    Appodeal.show(MainActivity.this, Appodeal.MREC);
+                }
+
+
+            }
+            @Override
+            public void onMrecFailedToLoad() {
+
+            }
+            @Override
+            public void onMrecShown() {
+
+            }
+            @Override
+            public void onMrecClicked() {
+            }
+        });
 
 
 
@@ -378,63 +414,67 @@ public class MainActivity extends NavActivityBase
             aptiCard=(CardView)findViewById(R.id.aptiCard);
             gkCard=(CardView)findViewById(R.id.gkCard);
             mockCard=(CardView)findViewById(R.id.mockCard);
-            adCard=(CardView)findViewById(R.id.adMainCard);
-            adCard.removeAllViews();
-
-
-            nativeAd=new NativeExpressAdView(getBaseContext());
-            nativeAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    adCard.setVisibility(View.VISIBLE);
-                }
-            });
-
-            LinearLayout.LayoutParams params1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            params1.setMargins(0,0,0,0);
-            nativeAd.setLayoutParams(params1);
-
-            adCard.addView(nativeAd);
-
-            overallCard.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
 
 
 
-                    int width = overallCard.getWidth();
-                    int height = overallCard.getHeight();
+
+              /*nativeAd=new NativeExpressAdView(getBaseContext());
+              nativeAd.setAdListener(new AdListener() {
+                  @Override
+                  public void onAdLoaded() {
+                      super.onAdLoaded();
+                      adCard.setVisibility(View.VISIBLE);
+                  }
+              });
+
+              LinearLayout.LayoutParams params1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+              params1.setMargins(0,0,0,0);
+              nativeAd.setLayoutParams(params1);
+
+              adCard.addView(nativeAd);
+
+              overallCard.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                  @Override
+                  public void onGlobalLayout() {
 
 
-                    float density=getResources().getDisplayMetrics().density;
-                    int actualWidth= (int) (width/ density);
-                    int actualHeight= (int) (height/density);
-                    int adWidth=actualWidth-10;
-                    int adHeight=actualHeight-11;
 
-                    if(adWidth<280)
-                        adWidth=280;
-
-                    if (adHeight<80)
-                        adHeight=80;
-
-                    nativeAd.setAdSize(new AdSize(adWidth,adHeight));
-                    nativeAd.setAdUnitId(getResources().getString(R.string.home_large));
+                      int width = overallCard.getWidth();
+                      int height = overallCard.getHeight();
 
 
-                    AdRequest adRequest = new AdRequest.Builder()
-                            .build();
+                      float density=getResources().getDisplayMetrics().density;
+                      int actualWidth= (int) (width/ density);
+                      int actualHeight= (int) (height/density);
+                      int adWidth=actualWidth-10;
+                      int adHeight=actualHeight-11;
 
-                    nativeAd.loadAd(adRequest);
+                      if(adWidth<280)
+                          adWidth=280;
 
-                    if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                        adCard.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    else
-                        adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                      if (adHeight<80)
+                          adHeight=80;
 
-                }
-            });
+                      nativeAd.setAdSize(new AdSize(adWidth,adHeight));
+                      nativeAd.setAdUnitId(getResources().getString(R.string.home_large));
+
+
+                      AdRequest adRequest = new AdRequest.Builder()
+                              .build();
+
+                      if(!App.isAdRemoved())
+                          nativeAd.loadAd(adRequest);
+
+                      if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
+                          adCard.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                      else
+                          adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+
+                  }
+              });*/
+
+
+
 
 
 

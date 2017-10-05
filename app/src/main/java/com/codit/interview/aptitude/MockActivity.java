@@ -19,7 +19,7 @@ public class MockActivity extends NavActivityBase implements MockAdapter.mockAda
         APPSTATE.MOCK_TEST_ON=false;
 
         setTitle("Mock Tests");
-        showInterAd(getString(R.string.mockInter));
+
 
         initialize(R.layout.activity_mock);
     }
@@ -30,6 +30,9 @@ public class MockActivity extends NavActivityBase implements MockAdapter.mockAda
         Intent intent=new Intent(getBaseContext(),MockQueActivity.class);
         intent.putExtra("title",obj.getMockTitle());
         startActivity(intent);
+
+        if(!App.isAdRemoved()){
+            showInterAd(getString(R.string.mockInter));}
     }
 
 
