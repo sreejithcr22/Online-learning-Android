@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.appodeal.ads.Appodeal;
+
 
 /**
  * Created by Sreejith on 01-Oct-17.
@@ -30,6 +32,7 @@ public class App extends Application {
 
 
 
+
     }
 
     public static Context getContext() {
@@ -46,6 +49,8 @@ public class App extends Application {
     {
         return preferences.getBoolean("remove_ads",false);
     }
+
+
 
 
 }

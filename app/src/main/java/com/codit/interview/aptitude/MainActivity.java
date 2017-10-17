@@ -216,38 +216,8 @@ public class MainActivity extends NavActivityBase
 
 
 
+
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
-
-        Appodeal.setMrecViewId(R.id.appodealMrecView);
-        String appKey = "a9e3e5ec7a3264b5afa303523979a060cfa9362658273c8b";
-        Appodeal.disableLocationPermissionCheck();
-        Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL | Appodeal.NON_SKIPPABLE_VIDEO | Appodeal.BANNER | Appodeal.NATIVE | Appodeal.MREC);
-
-        Appodeal.setMrecCallbacks(new MrecCallbacks() {
-            @Override
-            public void onMrecLoaded(boolean isPrecache) {
-
-
-                if(!App.isAdRemoved()&&App.preferences.getInt("visitCount",0)>=1) {
-
-                    findViewById(R.id.appodealMrecView).setVisibility(View.VISIBLE);
-                    Appodeal.show(MainActivity.this, Appodeal.MREC);
-                }
-
-
-            }
-            @Override
-            public void onMrecFailedToLoad() {
-
-            }
-            @Override
-            public void onMrecShown() {
-
-            }
-            @Override
-            public void onMrecClicked() {
-            }
-        });
 
 
 
@@ -264,6 +234,52 @@ public class MainActivity extends NavActivityBase
     }
 
 
+    public void showMrec()
+    {
+        if(Appodeal.isLoaded(Appodeal.MREC))
+        {
+            Appodeal.show(MainActivity.this, Appodeal.MREC);
+        }
+
+        Log.d(TAG, "showMrec: ");
+        Appodeal.setMrecViewId(R.id.appodealMrecView);
+        Appodeal.setLogLevel(com.appodeal.ads.utils.Log.LogLevel.debug);
+        Appodeal.disableLocationPermissionCheck();
+        Appodeal.initialize(MainActivity.this, App.APP_KEY, Appodeal.MREC);
+
+
+
+
+        Appodeal.setMrecCallbacks(new MrecCallbacks() {
+            @Override
+            public void onMrecLoaded(boolean isPrecache) {
+
+                Log.d(TAG, "onMrecLoaded: ");
+                if(!App.isAdRemoved()&&App.preferences.getInt("visitCount",0)>=1) {
+
+                    Log.d(TAG, "onMrecLoaded: inside");
+                    Appodeal.show(MainActivity.this, Appodeal.MREC);
+                }
+
+
+            }
+            @Override
+            public void onMrecFailedToLoad() {
+                Log.d(TAG, "onMrecFailedToLoad: ");
+
+            }
+            @Override
+            public void onMrecShown() {
+                Log.d(TAG, "onMrecShown: ");
+                findViewById(R.id.appodealMrecView).setVisibility(View.VISIBLE);
+
+            }
+            @Override
+            public void onMrecClicked() {
+            }
+        });
+
+    }
 
     @Override
     public void onBackPressed() {
@@ -402,6 +418,8 @@ public class MainActivity extends NavActivityBase
             progressPreference=getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
 
             initialize(0);
+
+            showMrec();
 
             scrollView= (ScrollView) findViewById(R.id.mainScrollview);
             loading= (ProgressBar) findViewById(R.id.loading);

@@ -28,11 +28,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 {
 
 
-
-    AdView aptiBanner;
-
-
-
+    BannerView banner;
 
     public QuestionFragment() {
         this.currentFragment=FRAG_APTI;
@@ -87,8 +83,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 
             initialize(view);
 
-
-            aptiBanner = (AdView) view.findViewById(R.id.aptiBanner);
+            banner= (BannerView) view.findViewById(R.id.appodealBannerView);
         }
         catch (Exception e)
         {
@@ -98,6 +93,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
             APPSTATE.BACK_FLAG=true;
             Toast.makeText(getContext(),"Sorry, something went wrong !",Toast.LENGTH_SHORT).show();
         }
+        showBanner();
         return view;
     }
 
@@ -125,39 +121,34 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 
 
 
+
+
+
+    }
+
+    public void showBanner()
+    {
         if(!App.isAdRemoved())
         {
-
-            /*AdRequest adRequest = new AdRequest.Builder()
-                    .build();
-
-            aptiBanner.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    aptiBanner.setVisibility(View.VISIBLE);
-                }
-            });
-
-            if(this.currentFragment.equals(FRAG_APTI))
+            Appodeal.setBannerViewId(R.id.appodealBannerView);
+            if(Appodeal.isLoaded(Appodeal.BANNER_VIEW))
             {
-                aptiBanner.loadAd(adRequest);
+
+                banner.setVisibility(View.VISIBLE);
+                Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
             }
-            else
-            {
-                aptiBanner.setVisibility(View.GONE);
-            }*/
 
 
-            String appKey = "a9e3e5ec7a3264b5afa303523979a060cfa9362658273c8b";
 
-            //Appodeal.initialize(getActivity(), appKey, Appodeal.BANNER);
+
 
             Appodeal.setBannerCallbacks(new BannerCallbacks() {
                 @Override
                 public void onBannerLoaded(int height, boolean isPrecache) {
                     Log.d("Appodeal", "onBannerLoaded");
-                    Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
+                    banner.setVisibility(View.VISIBLE);
+
+                    Appodeal.show(getActivity(), Appodeal.BANNER_VIEW);
 
 
                 }
@@ -174,17 +165,18 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
                     Log.d("Appodeal", "onBannerClicked");
                 }
             });
+
+            Appodeal.initialize(getActivity(), App.APP_KEY, Appodeal.BANNER_VIEW);
         }
         else
         {
-            if(aptiBanner!=null)
-            aptiBanner.setVisibility(View.GONE);
+            if(banner!=null)
+            {
+                banner.setVisibility(View.GONE);
+                 }
         }
 
-
-
     }
-
 
     @Override
     public void onResume() {

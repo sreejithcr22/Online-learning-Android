@@ -21,6 +21,8 @@ import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
 
+import static android.view.View.GONE;
+
 /**
  * Created by Sreejith on 15-Mar-16.
  */
@@ -83,7 +85,7 @@ public class ExpFragment extends DialogFragment {
                 @Override
                 public void onNativeLoaded() {
                     Log.d("appodeal", "onNativeLoaded: ");
-                    if(nav_nf!=null&&!App.isAdRemoved())
+                    if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
                     {
                         nav_nf.setVisibility(View.VISIBLE);
                         nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
@@ -106,8 +108,9 @@ public class ExpFragment extends DialogFragment {
                 }
             });
 
+
             Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
-            Appodeal.cache(getActivity(), Appodeal.NATIVE,2);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
         }
 
         APPSTATE.EXPL_COUNT++;

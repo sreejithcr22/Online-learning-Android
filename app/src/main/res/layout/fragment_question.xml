@@ -12,20 +12,12 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <com.google.android.gms.ads.AdView
 
-        android:visibility="gone"
-        android:layout_marginTop="0dp"
-        android:layout_gravity="center"
+    <com.appodeal.ads.BannerView
+        android:id="@+id/appodealBannerView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:background="@android:color/transparent"
-        android:id="@+id/aptiBanner"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="@string/apti_banner"
-        />
-
-
+        android:visibility="gone" />
 
 
 
@@ -47,7 +39,7 @@
             android:layout_height="0dp"
             android:layout_marginLeft="@dimen/que_card_left_right_margin"
             android:layout_marginRight="@dimen/que_card_left_right_margin"
-            android:layout_marginTop="@dimen/que_card_margin_top"
+            android:layout_marginTop="@dimen/que_ad_top_margin"
             android:layout_weight="1.15"
             card_view:cardCornerRadius="0dp"
             card_view:cardElevation="@dimen/que_card_elevation"
@@ -61,7 +53,6 @@
                 android:layout_height="match_parent"
                 android:background="?attr/mainCardbg"
                 android:orientation="vertical">
-
 
 
                 <android.support.v7.widget.CardView

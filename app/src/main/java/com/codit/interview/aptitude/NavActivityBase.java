@@ -1,6 +1,7 @@
 package com.codit.interview.aptitude;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -43,6 +44,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.InterstitialCallbacks;
+import com.appodeal.ads.NonSkippableVideoCallbacks;
 import com.codit.interview.aptitude.util.IabHelper;
 import com.codit.interview.aptitude.util.IabResult;
 import com.codit.interview.aptitude.util.Inventory;
@@ -89,7 +93,7 @@ public class NavActivityBase  extends AppCompatActivity implements IabHelper.Que
             public TabLayout tabLayout;
             TabAdapter tabAdapter;
 
-            public static final String TAG="bill";
+            public static final String TAG="appodeal";
             public IabHelper billingHelper;
 
 
@@ -872,66 +876,58 @@ public class NavActivityBase  extends AppCompatActivity implements IabHelper.Que
 
             }
 
+            public void showVideo()
+            {final Activity activity=this;
 
-
-            public void showInterAd(final String id)
-            {
-                APPSTATE.adCount++;
-
-                final SharedPreferences progressPref=getBaseContext().getSharedPreferences("progress",MODE_PRIVATE);
-
-                int ad_freq=APPSTATE.INTER_AD_FREQ;
-
-                if(progressPref.getInt("visitCount",0)>=2 )
+                if (Appodeal.isLoaded(Appodeal.NON_SKIPPABLE_VIDEO))
                 {
-                    final InterstitialAd interstitialAd;
-
-                    interstitialAd=new InterstitialAd(getBaseContext());
-                    interstitialAd.setAdUnitId(id);
-
-                    AdRequest interAdRequest = new AdRequest.Builder()
-                            .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                            .addTestDevice("7DB37A8E11E63AFA1EE5F5E6D9632407")
-
-                            .build();
-
-                    interstitialAd.loadAd(interAdRequest);
-                    interstitialAd.setAdListener(new AdListener() {
-                        @Override
-                        public void onAdClosed() {
-                            super.onAdClosed();
-                        }
-
-                        @Override
-                        public void onAdFailedToLoad(int i) {
-                            super.onAdFailedToLoad(i);
-                        }
-
-                        @Override
-                        public void onAdLeftApplication() {
-                            super.onAdLeftApplication();
-                        }
-
-                        @Override
-                        public void onAdOpened() {
-                            super.onAdOpened();
-                        }
-
-                        @Override
-                        public void onAdLoaded() {
-                            super.onAdLoaded();
-
-                            if(interstitialAd.isLoaded())
-                            {
-                                interstitialAd.show();
-                            }
-                        }
-                    });
-
+                    Appodeal.show(activity,Appodeal.NON_SKIPPABLE_VIDEO);
                 }
 
-                //end
 
+
+                Appodeal.setNonSkippableVideoCallbacks(new NonSkippableVideoCallbacks() {
+                    @Override
+                    public void onNonSkippableVideoLoaded() {
+                        Appodeal.show(activity,Appodeal.NON_SKIPPABLE_VIDEO);
+                    }
+
+                    @Override
+                    public void onNonSkippableVideoFailedToLoad() {
+
+                    }
+
+                    @Override
+                    public void onNonSkippableVideoShown() {
+
+                    }
+
+                    @Override
+                    public void onNonSkippableVideoFinished() {
+
+                    }
+
+                    @Override
+                    public void onNonSkippableVideoClosed(boolean b) {
+
+                    }
+                });
+                Appodeal.initialize(activity,App.APP_KEY,Appodeal.NON_SKIPPABLE_VIDEO);
+
+            }
+
+
+            public void showInterAd()
+            {
+                if(!App.isAdRemoved()){
+
+                    if(Appodeal.isLoaded(Appodeal.INTERSTITIAL))
+                    {
+                        Appodeal.show(this,Appodeal.INTERSTITIAL);
+                        return;
+                    }
+                    Appodeal.initialize(this,App.APP_KEY,Appodeal.INTERSTITIAL);
+                }
 
             }
 

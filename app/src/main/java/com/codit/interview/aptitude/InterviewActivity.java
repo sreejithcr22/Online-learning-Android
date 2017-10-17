@@ -18,6 +18,9 @@ import android.view.View;
 import android.view.WindowManager;
 
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.InterstitialCallbacks;
+
 import java.util.HashMap;
 
 import static android.view.View.GONE;
@@ -36,9 +39,7 @@ public class InterviewActivity extends NavActivityBase implements InterviewGener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-        if(!App.isAdRemoved()){
-            showInterAd(getString(R.string.interviewInter));}
+        showInterAd();
 
         HashMap<Integer,Fragment> hm=new HashMap<>();
         hm.put(0,new InterviewGeneral(0));

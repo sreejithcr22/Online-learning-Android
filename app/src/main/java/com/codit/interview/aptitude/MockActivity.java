@@ -31,8 +31,7 @@ public class MockActivity extends NavActivityBase implements MockAdapter.mockAda
         intent.putExtra("title",obj.getMockTitle());
         startActivity(intent);
 
-        if(!App.isAdRemoved()){
-            showInterAd(getString(R.string.mockInter));}
+        showInterAd();
     }
 
 

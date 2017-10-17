@@ -57,9 +57,7 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if(!App.isAdRemoved()) {
-            showInterAd(getString(R.string.parentToSubInter));
-        }
+
 
         resumeFlag=false;
         sharedPref=PreferenceManager.getDefaultSharedPreferences(getBaseContext());
@@ -726,8 +724,7 @@ public void showFormula(String title)
         APPSTATE.BACK_FLAG=true;
         APPSTATE.SUB_BACK_FLAG=true;
 
-        if(!App.isAdRemoved())
-        AdHelper.showVideoAd();
+        showInterAd();
     }
 
     public void setImmersive()

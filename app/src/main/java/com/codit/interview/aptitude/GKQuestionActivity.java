@@ -43,9 +43,7 @@ public class GKQuestionActivity extends NavActivityBase implements QuestionFragB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if(!App.isAdRemoved()){
-            showInterAd(getString(R.string.sub_gk_inter));}
+        showInterAd();
 
         resumeFlag=false;
 
