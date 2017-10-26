@@ -300,38 +300,7 @@
             </intent-filter>
         </receiver>
 
-        <!--optional, remove if not using Ogury-->
-        <meta-data android:name="presage_key" android:value="000000"/>
-        <!--optional, remove if not using Ogury-->
-        <service android:name="io.presage.PresageService" android:enabled="true" android:exported="true" android:process=":remote">
-            <intent-filter>
-                <action android:name="io.presage.PresageService.PIVOT" />
-            </intent-filter>
-        </service>
-        <!--optional, remove if not using Ogury-->
-        <activity android:name="io.presage.activities.PresageActivity" android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:hardwareAccelerated="true" android:theme="@android:style/Theme.Translucent.NoTitleBar">
-            <intent-filter>
-                <action android:name="io.presage.intent.action.LAUNCH_WEBVIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <!--optional, remove if not using Ogury-->
-        <receiver android:name="io.presage.receiver.NetworkChangeReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
-                <action android:name="io.presage.receiver.NetworkChangeReceiver.ONDESTROY" />
-            </intent-filter>
-        </receiver>
-        <!--optional, remove if not using Ogury-->
-        <receiver android:name="io.presage.receiver.AlarmReceiver" />
-        <!--optional, remove if not using Ogury-->
-        <provider
-            android:name="io.presage.provider.PresageProvider"
-            android:authorities="${applicationId}.PresageProvider"
-            android:enabled="true"
-            android:exported="true" />
+
 
 
 

@@ -57,6 +57,14 @@
         card_view:cardPreventCornerOverlap="true">
 
 
+        <com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:id="@+id/native_ad_view_news_feed"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            >
+        </com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed>
     </android.support.v7.widget.CardView>
 
 

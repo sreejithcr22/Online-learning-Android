@@ -43,7 +43,7 @@ public class GKQuestionActivity extends NavActivityBase implements QuestionFragB
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showInterAd();
+
 
         resumeFlag=false;
 
@@ -364,7 +364,7 @@ onBackPressed();
 
         if(!App.isAdRemoved())
         {
-            AdHelper.showVideoAd();
+            showInterAd();
         }
     }
 }

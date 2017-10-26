@@ -920,13 +920,9 @@ public class NavActivityBase  extends AppCompatActivity implements IabHelper.Que
             public void showInterAd()
             {
                 if(!App.isAdRemoved()){
+                    Appodeal.show(this,Appodeal.INTERSTITIAL);
 
-                    if(Appodeal.isLoaded(Appodeal.INTERSTITIAL))
-                    {
-                        Appodeal.show(this,Appodeal.INTERSTITIAL);
-                        return;
-                    }
-                    Appodeal.initialize(this,App.APP_KEY,Appodeal.INTERSTITIAL);
+
                 }
 
             }

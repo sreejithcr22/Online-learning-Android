@@ -62,7 +62,7 @@ initialize(view,getContext());
 
         initializeProgressData();
 
-       if(!App.isAdRemoved())
+      /* if(!App.isAdRemoved())
        {
            adCard.setLayoutParams(card1.getLayoutParams());
            nativeExpressAdView=new NativeExpressAdView(getContext());
@@ -123,15 +123,14 @@ initialize(view,getContext());
                        adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                }
            });
-       }
+       }*/
+
+        try {
+            showAd();
+        }
+        catch (Exception e){}
 
     }
-
-
-
-
-
-
 
 
 }

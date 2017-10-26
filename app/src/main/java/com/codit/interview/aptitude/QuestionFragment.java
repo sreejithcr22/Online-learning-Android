@@ -130,43 +130,9 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
     {
         if(!App.isAdRemoved())
         {
-            Appodeal.setBannerViewId(R.id.appodealBannerView);
-            if(Appodeal.isLoaded(Appodeal.BANNER_VIEW))
-            {
-
-                banner.setVisibility(View.VISIBLE);
-                Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
-            }
-
-
-
-
-
-            Appodeal.setBannerCallbacks(new BannerCallbacks() {
-                @Override
-                public void onBannerLoaded(int height, boolean isPrecache) {
-                    Log.d("Appodeal", "onBannerLoaded");
-                    banner.setVisibility(View.VISIBLE);
-
-                    Appodeal.show(getActivity(), Appodeal.BANNER_VIEW);
-
-
-                }
-                @Override
-                public void onBannerFailedToLoad() {
-                    Log.d("Appodeal", "onBannerFailedToLoad");
-                }
-                @Override
-                public void onBannerShown() {
-                    Log.d("Appodeal", "onBannerShown");
-                }
-                @Override
-                public void onBannerClicked() {
-                    Log.d("Appodeal", "onBannerClicked");
-                }
-            });
-
-            Appodeal.initialize(getActivity(), App.APP_KEY, Appodeal.BANNER_VIEW);
+            banner.setVisibility(View.VISIBLE);
+            Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
+            Appodeal.show(getActivity(), Appodeal.BANNER_VIEW);
         }
         else
         {

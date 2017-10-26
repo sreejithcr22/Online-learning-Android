@@ -77,42 +77,10 @@ public class ExpFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        if(!App.isAdRemoved())
-        {
-            Log.d("appodeal", "onCreate: ");
-
-            Appodeal.setNativeCallbacks(new NativeCallbacks() {
-                @Override
-                public void onNativeLoaded() {
-                    Log.d("appodeal", "onNativeLoaded: ");
-                    if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
-                    {
-                        nav_nf.setVisibility(View.VISIBLE);
-                        nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
-                    }
-                }
-
-                @Override
-                public void onNativeFailedToLoad() {
-                    Log.d("appodeal", "onNativeFailedToLoad: ");
-                }
-
-                @Override
-                public void onNativeShown(NativeAd nativeAd) {
-                    Log.d("appodeal", "onNativeShown: ");
-                }
-
-                @Override
-                public void onNativeClicked(NativeAd nativeAd) {
-
-                }
-            });
-
-
-            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
-            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
+        try {
+            showAd();
         }
-
+        catch (Exception e){}
         APPSTATE.EXPL_COUNT++;
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
@@ -123,6 +91,8 @@ public class ExpFragment extends DialogFragment {
 
         final View view=inflater.inflate(R.layout.exp_fragment, null);
         nav_nf = (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
+
+
 
 
 
@@ -153,7 +123,57 @@ public class ExpFragment extends DialogFragment {
 
         dialog.getWindow().getAttributes().windowAnimations=R.style.CalcAnimation;
 
+
         return dialog;
+
+    }
+
+
+
+    public void showAd()
+    {
+        if(!App.isAdRemoved())
+        {
+
+
+            Log.d("appodeal", "onCreate: ");
+
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+
+                    try {
+                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
+                        {
+                            nav_nf.setVisibility(View.VISIBLE);
+                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                        }
+                        }
+                        catch (Exception e){}
+
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+                    Log.d("appodeal", "onNativeFailedToLoad: ");
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+                    Log.d("appodeal", "onNativeShown: ");
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
+
+            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
+
+        }
 
     }
 

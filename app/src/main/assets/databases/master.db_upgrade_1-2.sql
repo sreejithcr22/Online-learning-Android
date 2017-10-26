@@ -107,7 +107,7 @@ Hence, required ratio :(4x + 16)        =48
 ',NULL,NULL,NULL,NULL);
 INSERT INTO age(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(37,'The total age of A and B is 12 years more than the total age of B and C. C is how many year younger than A?','10','11','12','13','option3','Given that,
  A + B =12+ B + C
-ΓçÆ A - C
+=> A - C
 =12
 Therefore, C is younger than A by 12 years.',NULL,NULL,NULL,NULL);
 INSERT INTO age(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(38,'A father said to his son, "I was as old as you are at the present at the time of your birth". If the father''s age is 38 years now, the son''s age five years back was:','14','19','33','38','option1','et the son''s present age be x years. Then, (38 - x) = x
@@ -129,7 +129,7 @@ UPDATE analogy SET que='Blot:Stain :: Lean: ?' WHERE qno=19;
 UPDATE analogy SET answer='option3' WHERE qno=21;
 UPDATE analogy SET que='Mountain:Valley :: ? : Enemy', option2='Father' WHERE qno=22;
 UPDATE analogy SET que='Architect : Building :: Sculptor : ?', option1='Statue', option2='Stone', option4='Museum', explanation='As ''Architect'' makes ''Building'' similarly ''Sculptor'' makes ''Statue''' WHERE qno=25;
-UPDATE avg SET option4='15 years', explanation='The age of the 4th girl is (4 X 12 ) ΓÇô (8 + 12 + 13) = 48 ΓÇô 33 = 15 years.' WHERE qno=5;
+UPDATE avg SET option4='15 years', explanation='The age of the 4th girl is (4 X 12 ) - (8 + 12 + 13) = 48 - 33 = 15 years.' WHERE qno=5;
 UPDATE avg SET answer='option3' WHERE qno=12;
 UPDATE avg SET que='The captain of a cricket team of 11 members is 26 years old and the wicket keeper is 3 years older. If the ages of these two are excluded, the average age of the remaining players is one year less than the average age of the whole team. What is the average age of the team?', option1='23 years', option2='25 years', option3='15 years', option4='30 years', explanation='Let the average age of the whole team by x years.
 
@@ -147,11 +147,11 @@ INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attem
 
 Total cost of 8 books = Rs. 94
 
-ΓçÆ The cost of 2 books = Rs. 26
+=> The cost of 2 books = Rs. 26
 
 Let the price of each book be x and y.
 
-ΓçÆ x + y = 26 ---------------- (1)
+=> x + y = 26 ---------------- (1)
 
 Given that the price of 1 book is 60% more than the other price
 
@@ -194,19 +194,19 @@ The average of the three numbers is
 
 
 ',NULL,NULL,NULL,NULL);
-INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(33,'The average monthly salary of 12 workers and 3 managers in a factory was Rs. 600. When one of the manager whose salary was Rs. 720, was replaced with a new manager, then the average salary of the team went down to 580. What is the salary of the new manager?','570','420','690','640','option2','The total salary amount = 15├ù600=9000
+INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(33,'The average monthly salary of 12 workers and 3 managers in a factory was Rs. 600. When one of the manager whose salary was Rs. 720, was replaced with a new manager, then the average salary of the team went down to 580. What is the salary of the new manager?','570','420','690','640','option2','The total salary amount = 15*600=9000
 
 The salary of the exiting manager = 720.
 
 Therefore, the salary of 12 workers and the remaining 2 managers:
 
-=9000ΓêÆ720=8280
+=9000-720=8280
 
 When a new manager joins, the new average salary drops to Rs.580 for the total team of 15 of them.
 
-The total salary for the 15 people i.e., 12 workers, 2 old managers and 1 new manager = 580├ù15=8700
+The total salary for the 15 people i.e., 12 workers, 2 old managers and 1 new manager = 580*15=8700
 
-Therefore, the salary of the new manager is 9000ΓêÆ8700=300 less than that of the old manager who left the company, which is equal to 720ΓêÆ300=420
+Therefore, the salary of the new manager is 9000-8700=300 less than that of the old manager who left the company, which is equal to 720-300=420
 
 ',NULL,NULL,NULL,NULL);
 INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(34,'The average of five different positive numbers is 25. xx is the decrease in the average when the smallest number among them is replaced by 0. What can be said about xx?
@@ -227,12 +227,12 @@ For example, the average of 1, 2, and 3 is 2, and the smallest number in the set
 average 2. Hence, we have the inequality
 
 0<e<25
-0>ΓÇôe>ΓÇô25 by multiplying both sides of the inequality by ΓÇô1 and flipping the directions of
+0>-e>-25 by multiplying both sides of the inequality by -1 and flipping the directions of
 the inequalities.
 
 Adding this inequality to equation (1) yields
 
-0+125>(a+b+c+d+e)+(ΓÇôe)>125ΓÇô25
+0+125>(a+b+c+d+e)+(-e)>125-25
 
 125>(a+b+c+d)>100
 
@@ -244,11 +244,11 @@ Adding this inequality to equation (1) yields
 
 Hence, x equals
 
-(Average of the numbers a,b,c,d and e)ΓÇô(Average of the numbers a,b,c and d)
+(Average of the numbers a,b,c,d and e)-(Average of the numbers a,b,c and d)
 
-=25ΓêÆ(A number between 20 and 25)
+=25-(A number between 20 and 25)
 
-ΓçÆ A number less than 5
+=> A number less than 5
 
 Hence, x <5',NULL,NULL,NULL,NULL);
 INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(35,'In 2011, the arithmetic mean of the annual incomes of Ramesh and Suresh was Rs. 3800. The arithmetic mean of the annual incomes of Suresh and Pratap was Rs. 4800, and the arithmetic mean of the annual incomes of Pratap and Ramesh was Rs. 5800. What is the arithmetic mean of the incomes of the three?','4000','4200','4400','4800','option4','Let a,b and c be the annual incomes of Ramesh, Suresh, and Pratap, respectively.
@@ -259,19 +259,19 @@ The  arithmetic  mean  of  the  annual  incomes  of  Ramesh  and  Suresh  was  R
 
 Hence, a+b/ 2=3800
 
-Multiplying by 2 yields a+b=2├ù3800=7600
+Multiplying by 2 yields a+b=2*3800=7600
 
 The  arithmetic  mean  of  the  annual  incomes  of  Suresh  and  Pratap  was  Rs. 4800.
 
 Hence, b+c/2=4800
 
-Multiplying by 2 yields b+c=2├ù4800=9600
+Multiplying by 2 yields b+c=2*4800=9600
 
 The  arithmetic  mean  of  the  annual  incomes  of  Pratap  and  Ramesh  was  Rs. 5800.
 
 Hence, c+a/2=5800
 
-Multiplying by 2 yields c+a=2├ù5800=11,600
+Multiplying by 2 yields c+a=2*5800=11,600
 
 Summing these three equations yields:
 
@@ -312,13 +312,13 @@ After interchanging the digits, the new number becomes ba i.e., (10b+a)
 
 The question states that the average of 10 numbers has become 1.8 less than the original average.
 
-Therefore, the sum of the original 10 numbers will be 10├ù1.8 more than the sum of the 10 numbers with the digits interchanged.
+Therefore, the sum of the original 10 numbers will be 10*1.8 more than the sum of the 10 numbers with the digits interchanged.
 
 i.e., 10a+b=10b+a+18
 
-9aΓêÆ9b=18
+9a-9b=18
 
-aΓêÆb = 2
+a-b = 2
 
 
 
@@ -327,17 +327,17 @@ INSERT INTO avg(qno,que,option1,option2,option3,option4,answer,explanation,attem
 
 ','99','97','83','92','option2','The total wages earned during the 15 days that the worker worked :
 
-=15├ù90=Rs.1350
+=15*90=Rs.1350
 
-The total wages earned during the first 7 days = 7├ù877 = Rs. 609.
+The total wages earned during the first 7 days = 7*877 = Rs. 609.
 
-The total wages earned during the last 7 days = 7├ù927= Rs. 644.
+The total wages earned during the last 7 days = 7*927= Rs. 644.
 
 Total wages earned during the 15 days = wages during first 7 days + wage on 8th day + wages during the last 7 days.
 
 1350=609+ wage on 8th day +644
 
-wage on 8th day = 1350ΓêÆ609ΓêÆ644= Rs. 97',NULL,NULL,NULL,NULL);
+wage on 8th day = 1350-609-644= Rs. 97',NULL,NULL,NULL,NULL);
 UPDATE awards SET option1='Emil Jannings' WHERE qno=1;
 UPDATE awards SET option3='The Fundamental Physics Prize',answer='option3' WHERE qno=3;
 UPDATE basic_gk SET answer='option2' WHERE qno=23;
@@ -709,7 +709,7 @@ So, B joined for 8 months.',NULL,NULL,NULL,NULL);
 INSERT INTO partnership(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(27,' A and B invest in a business in the ratio 3 : 2. If 5% of the total profit goes to charity and A''s share is Rs. 855, the total profit is :','500','1000','1500','2000','option3','Ratio of their shares= 22500 : 35000
 =9 : 14
 
-Devika''s share= Rs.(13800├ù14/23)
+Devika''s share= Rs.(13800*14/23)
 = Rs. 8400',NULL,NULL,NULL,NULL);
 INSERT INTO partnership(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(28,'A starts a business with a capital of 18000. B&C joined 4 months later with a capital of 12000. After8 months all of them withdrew half of their capital .What will be the ratio of their profit after the end of 10 months?    ','1:2:3','27:1:1','1:26:1','2:27:1','option2','Ratio of Profit,
 18000 x 8 + 9000 x 2 : 12000 x 4 + 6000 x 2 : 12000 x 4 + 6000 x 2
@@ -776,16 +776,16 @@ The vowels (OIA) can be arranged among themselves in 3! = 6 ways.
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(31,'How many three digit numbers with distinct digits can be formed such that the product of the digits is the cube of the positive integer?','21','24','36','30','option4','total 30 different 3 digit numbers can be formed',NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(32,'One-half of Heather''s age two years from now plus one-third of her age three years ago is twenty years. How old is she now?','120','24','26','20','option2','Age now:  H
 age two years from now:  H + 2
-age three years ago:  H ΓÇô 3
+age three years ago:  H - 3
 
 Now I need certain fractions of these ages:
 
 one-half of age two years from now:  ( 1/2 )(H + 2) = H/2 + 1
-one-third of age three years ago:  ( 1/3 )(H ΓÇô 3) = H/3 ΓÇô 1
+one-third of age three years ago:  ( 1/3 )(H - 3) = H/3 - 1
 
 The sum of these two numbers is twenty, so I''ll add them and set this equal to 20:
 
-H/2 + 1 + H/3 ΓÇô 1 = 20
+H/2 + 1 + H/3 - 1 = 20
 H/2 + H/3 = 20
 3H + 2H = 120
 5H = 120
@@ -812,7 +812,7 @@ INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanati
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(39,'A bag has 5 balls in it with a number written on it. one ball has number 2 on it and one has number 5 on it, one has no.7 and 2 balls have number 8 on them. The balls are taken out of the bag without repalcement and placed in the order they are drawn from left to right to create a 5 digit number. how many of these numbers are not prime?','21','0','47','60','option4',NULL,NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(40,'In Kerela, the rickshaw license plates are issued with the following ptter: each plate has 3 letter followed by 3 digits (0-9). the letters can be in any combination. however each digit must be eqal or greater than the preceding one. how many different plates can the state issue? ','26^3*9^3','26^3*90','26^3*120','26^3*10','option3',NULL,NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(41,'Think about all the 5 digit numbers that can be formed using digits 1,3,5,7 and 9. If these numbers are arranged in an increasing order, the 500th number is? ','17599','11799','17999','19131','option3',NULL,NULL,NULL,NULL,NULL);
-INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(42,'A person has 6 friends to be invited for dinner through invitation cards, and he has 3 servants. In how many ways can he extend the invitation card?','729','700','900','850','option1','We can see that the 1st friend has 3 options to receive the card, i.e. either from 1st servant or 2nd or 3rd. Similarly 2nd friend also has 3 options to receive the card, i.e. either from 1st servant or 2nd or 3rd. So we can say that each of the 6 friends has 3 options to receive the card. Hence the answer would be 3 ├ù 3 ├ù 3 ├ù 3 ├ù 3 ├ù 3  = 729 ways',NULL,NULL,NULL,NULL);
+INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(42,'A person has 6 friends to be invited for dinner through invitation cards, and he has 3 servants. In how many ways can he extend the invitation card?','729','700','900','850','option1','We can see that the 1st friend has 3 options to receive the card, i.e. either from 1st servant or 2nd or 3rd. Similarly 2nd friend also has 3 options to receive the card, i.e. either from 1st servant or 2nd or 3rd. So we can say that each of the 6 friends has 3 options to receive the card. Hence the answer would be 3 * 3 * 3 * 3 * 3 * 3  = 729 ways',NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(43,'There are 10 questions in an exam. In how many ways can a person attempt at least one question?','1203','1023','1302','1230','option2','A person can attempt 1 question or 2 questions or .....till all 10 questions. One question out of ten questions can be attempted in 10C1 = 10 ways. Similarly two questions out of ten questions can be attempted in 10C2 = 45 ways. Going ahead by the same logic, all ten questions can be attempted in 10C10 = 1 way. Hence the total number of ways = 10 + 45 + 120 +.....10 + 1 = 1023 ways (Using the formula of Combination).
 
 Alternate Method:
@@ -822,27 +822,27 @@ INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanati
 
 (Such as drawing ten numbered marbles from a bag, without replacement)','84','504','720','890','option3','The number of permutations of 3 digits chosen from 10 is 10P3
 = 10!/(10 - 3)!
-= 10 ├ù 9 ├ù 8
+= 10 * 9 * 8
 = 720',NULL,NULL,NULL,NULL);
-INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(45,'How many permutations of 4 different letters are there, chosen from the twenty six letters of the alphabet?','14950','358800','23751','67543','option2','The number of permutations of 4 letters chosen from 26 is 26P4 = 26 ├ù 25 ├ù 24 ├ù 23 = 358,800',NULL,NULL,NULL,NULL);
+INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(45,'How many permutations of 4 different letters are there, chosen from the twenty six letters of the alphabet?','14950','358800','23751','67543','option2','The number of permutations of 4 letters chosen from 26 is 26P4 = 26 * 25 * 24 * 23 = 358,800',NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(46,'how many committes of 5 ppl can be chosen from 10 ppl?','252','30240','2002','100000','option1','In choosing a committee, order does not matter, so we need the number of combinations of 5 people chosen from 10
 = 10C5
 = 10!/(5!)(5!)
-= (10 ├ù 9 ├ù 8 ├ù 7 ├ù 6)/(5 ├ù 4 ├ù 3 ├ù 2 ├ù 1)
+= (10 * 9 * 8 * 7 * 6)/(5 * 4 * 3 * 2 * 1)
 = 30,240/120
 = 252',NULL,NULL,NULL,NULL);
 INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(47,'Jones is the Chairman of a committee. In how many ways can a committee of 5 be chosen from 10 people given that Jones must be one of them?','126','252','495','132','option1','ones is already chosen, so we need to choose another 4 from 9.
 In choosing a committee, order doesn''t matter, so we need the number of combinations of 4 people chosen from 9
 = 9C4
 = 9!/(4!)(5!)
-= (9 ├ù 8 ├ù 7 ├ù 6)/(4 ├ù 3 ├ù 2 ├ù 1)
+= (9 * 8 * 7 * 6)/(4 * 3 * 2 * 1)
 = 3,024/24
 = 126',NULL,NULL,NULL,NULL);
-INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(48,'A special type of password consists of four different letters of the alphabet, where each letter is used only once. How many different possible passwords are there?','4^26','14950','358800','385580','option3','The number of permutations of 4 letters chosen from 26 is 26P4 = 26 ├ù 25 ├ù 24 ├ù 23 = 358,800',NULL,NULL,NULL,NULL);
-INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(49,'A password consists of two letters of the alphabet followed by three digits chosen from 0 to 9. Repeats are allowed. How many different possible passwords are there?','492804','676000','650000','766000','option2','The number of ways of choosing the letters = 26 ├ù 26 = 676
-The number of ways of choosing the digits = 10 ├ù 10 ├ù 10 = 1,000
+INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(48,'A special type of password consists of four different letters of the alphabet, where each letter is used only once. How many different possible passwords are there?','4^26','14950','358800','385580','option3','The number of permutations of 4 letters chosen from 26 is 26P4 = 26 * 25 * 24 * 23 = 358,800',NULL,NULL,NULL,NULL);
+INSERT INTO permutation(qno,que,option1,option2,option3,option4,answer,explanation,attempted,notes,time,fav) VALUES(49,'A password consists of two letters of the alphabet followed by three digits chosen from 0 to 9. Repeats are allowed. How many different possible passwords are there?','492804','676000','650000','766000','option2','The number of ways of choosing the letters = 26 * 26 = 676
+The number of ways of choosing the digits = 10 * 10 * 10 = 1,000
 
-So the number of possible passwords = 676 ├ù 1,000 = 676,000',NULL,NULL,NULL,NULL);
+So the number of possible passwords = 676 * 1,000 = 676,000',NULL,NULL,NULL,NULL);
 UPDATE pipes SET option3='36 min' WHERE qno=18;
 CREATE TABLE "politics" (
         `qno`   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -910,7 +910,7 @@ The MRP of the product is 55% above its manufacturing cost
   The MRP of the product = 100 + 55% of 100 = 155.
 
 The retailer sells the product after offering a discount of 10% on the MRP
-  So, the retailer sells the product at 155 ΓÇô 10% of 155 = 155 ΓÇô 15.5 = 139.5
+  So, the retailer sells the product at 155 - 10% of 155 = 155 - 15.5 = 139.5
 
 The retailer makes a 23% profit on his purchase price
 Let the purchase price for the retailer be x.
@@ -993,13 +993,13 @@ Sum of money with the three of them, x + y + z = 1105.
 It is mentioned that the money that they possess are in the ratio 11:18:24, after removing $10, $20 and $15 respectively.
 Then x - 10 : y - 20 : z -15 will be in the ratio 11 : 18 : 24
 
-So, x ΓÇô 10 = 11k, y ΓÇô 20 = 18k and z ΓÇô 15 = 24k
+So, x - 10 = 11k, y - 20 = 18k and z - 15 = 24k
 Adding the money left with the three of them after removing $10, $20 and $15 respectively, we get
-x ΓÇô 10 + y ΓÇô 20 + z ΓÇô 15 = 11k + 18k + 24k
-Or x + y + z ΓÇô 10 ΓÇô 20 ΓÇô 15 = 53k
-Or x + y + z ΓÇô 45 = 53k
+x - 10 + y - 20 + z - 15 = 11k + 18k + 24k
+Or x + y + z - 10 - 20 - 15 = 53k
+Or x + y + z - 45 = 53k
 We know x + y + z = 1105.
-So, 1105 ΓÇô 45 = 53k
+So, 1105 - 45 = 53k
 1060 = 53k
 or k = 20.
 

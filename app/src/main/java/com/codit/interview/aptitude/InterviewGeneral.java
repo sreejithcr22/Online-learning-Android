@@ -30,6 +30,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -43,6 +47,7 @@ public class InterviewGeneral extends Fragment implements View.OnClickListener {
 
     private ImageButton nextTip, prevTip,buttonFav,buttonShare;
 CardView bottomLayout;
+    NativeAdViewNewsFeed nav_nf;
 
     int interviewCount=0;
     TextView tip,title;
@@ -193,6 +198,8 @@ CardView bottomLayout;
         titleCard = (CardView) view.findViewById(R.id.titleCard);
 
         parent = (FrameLayout) view.findViewById(R.id.container);
+        nav_nf = (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
+
 
         View bottomShadow = view.findViewById(R.id.interview_bottom_bar_shadow);
 
@@ -200,7 +207,7 @@ CardView bottomLayout;
             bottomShadow.setVisibility(GONE);
         }
 
-        adView = new NativeExpressAdView(getContext());
+       /* adView = new NativeExpressAdView(getContext());
         adView.setVisibility(GONE);
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -220,10 +227,11 @@ CardView bottomLayout;
                 adView.setVisibility(View.VISIBLE);
             }
         });
+*/
 
 
         LinearLayout interviewContainer = (LinearLayout) view.findViewById(R.id.interviewContainer);
-        interviewContainer.addView(adView);
+        //interviewContainer.addView(adView);
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
 
         if (APPSTATE.CURRENT_THEME == APPSTATE.THEME_DEFAULT) {
@@ -440,7 +448,7 @@ CardView bottomLayout;
 
                     try{
 
-                        if(!App.isAdRemoved())
+                        /*if(!App.isAdRemoved())
                         {
                             AdRequest adRequest = new AdRequest.Builder()
                                     .build();
@@ -450,7 +458,16 @@ CardView bottomLayout;
                         else
                         {
                             if(adView!=null)
-                                adView.setVisibility(GONE);}
+                                adView.setVisibility(GONE);}*/
+
+                        if(!App.isAdRemoved())
+                        {
+                            nav_nf.setVisibility(GONE);
+
+                            showAd();
+
+                        }
+
 
                         currentTip=interviewDB.getTip(tipno,tableName);
                     tipText.setText(currentTip.getTip());
@@ -495,27 +512,15 @@ CardView bottomLayout;
                         }
 
                         noContent.setBackgroundColor(color);
-
-
-
                         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
-
                         noContent.setGravity(Gravity.CENTER);
                         // params.gravity=Gravity.CENTER_HORIZONTAL;
 
-
                         noContent.setLayoutParams(params);
-
                         parent.removeAllViews();
                         parent.addView(noContent);
 
                     }
-
-
-
-
-
                 }
 
                 @Override
@@ -689,6 +694,53 @@ CardView bottomLayout;
         }
     }
 
+
+    public void showAd()
+    {
+        if(!App.isAdRemoved())
+        {
+
+
+            Log.d("appodeal", "onCreate: ");
+
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+
+                    try {
+                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
+                        {
+                            nav_nf.setVisibility(View.VISIBLE);
+                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                        }
+                    }
+                    catch (Exception e){}
+
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+                    Log.d("appodeal", "onNativeFailedToLoad: ");
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+                    Log.d("appodeal", "onNativeShown: ");
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
+
+            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
+
+        }
+
+    }
 
 
 }

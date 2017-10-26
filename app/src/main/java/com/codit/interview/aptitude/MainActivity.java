@@ -236,48 +236,17 @@ public class MainActivity extends NavActivityBase
 
     public void showMrec()
     {
-        if(Appodeal.isLoaded(Appodeal.MREC))
-        {
-            Appodeal.show(MainActivity.this, Appodeal.MREC);
-        }
-
-        Log.d(TAG, "showMrec: ");
-        Appodeal.setMrecViewId(R.id.appodealMrecView);
         Appodeal.setLogLevel(com.appodeal.ads.utils.Log.LogLevel.debug);
         Appodeal.disableLocationPermissionCheck();
-        Appodeal.initialize(MainActivity.this, App.APP_KEY, Appodeal.MREC);
+        Appodeal.disableWriteExternalStoragePermissionCheck();
 
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
+        Appodeal.setMrecViewId(R.id.appodealMrecView);
 
+        Appodeal.initialize(MainActivity.this, App.APP_KEY, Appodeal.MREC|Appodeal.INTERSTITIAL|Appodeal.BANNER_VIEW);
 
+        Appodeal.show(MainActivity.this, Appodeal.MREC);
 
-        Appodeal.setMrecCallbacks(new MrecCallbacks() {
-            @Override
-            public void onMrecLoaded(boolean isPrecache) {
-
-                Log.d(TAG, "onMrecLoaded: ");
-                if(!App.isAdRemoved()&&App.preferences.getInt("visitCount",0)>=1) {
-
-                    Log.d(TAG, "onMrecLoaded: inside");
-                    Appodeal.show(MainActivity.this, Appodeal.MREC);
-                }
-
-
-            }
-            @Override
-            public void onMrecFailedToLoad() {
-                Log.d(TAG, "onMrecFailedToLoad: ");
-
-            }
-            @Override
-            public void onMrecShown() {
-                Log.d(TAG, "onMrecShown: ");
-                findViewById(R.id.appodealMrecView).setVisibility(View.VISIBLE);
-
-            }
-            @Override
-            public void onMrecClicked() {
-            }
-        });
 
     }
 

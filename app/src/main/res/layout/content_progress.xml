@@ -21,182 +21,157 @@
 
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-        <android.support.v7.widget.CardView
-            android:layout_below="@+id/adCard"
-            android:id="@+id/pieView"
+        <com.appodeal.ads.MrecView
+            android:id="@+id/appodealMrecView"
             android:layout_marginTop="@dimen/progress_card_top_bottom_margin"
-            android:layout_marginBottom="@dimen/progress_card_top_bottom_margin"
-            android:layout_marginRight="@dimen/progress_card_left_right_margin"
-            android:layout_marginLeft="@dimen/progress_card_left_right_margin"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
 
-
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            card_view:cardElevation="@dimen/progress_card_elevation"
-
-            card_view:cardBackgroundColor="?attr/secondaryColor"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/progress_layout_height">
-
-            <LinearLayout
-                android:background="?attr/secondaryColor"
-
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.CardView
-                    card_view:cardBackgroundColor="?attr/secondaryColor"
-
-                    card_view:cardCornerRadius="0dp"
-                    android:padding="5dp"
-                    card_view:cardElevation="0dp"
-                    android:layout_weight=".5"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
-
-
-                    <TextView
-                        android:fontFamily="sans-serif-light"
-
-                        android:textColor="?attr/blackText"
-                        android:gravity="center"
-                        android:text="Progress"
-                        android:textSize="@dimen/progress_title_text_size"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-
-                </android.support.v7.widget.CardView>
-
-                <View android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#EEEEEE"/>
-
-                <LinearLayout
-                    android:padding="2dp"
-                    android:orientation="vertical"
-                    android:id="@+id/chart"
-                    android:layout_weight="3.5"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_marginLeft="@dimen/progress_values_left_right_margin"
-                    android:layout_marginRight="@dimen/progress_values_left_right_margin"
-                    android:layout_marginBottom="@dimen/progress_values_top_bottom_margin"
-                    android:layout_marginTop="@dimen/progress_values_top_bottom_margin"
-                    android:orientation="vertical"
-                    android:layout_weight="2"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp">
-
-                    <TextView
-                        android:fontFamily="sans-serif-light"
-                        android:padding="2dp"
-                        android:gravity="center"
-                        android:id="@+id/totalText"
-                        android:textSize="@dimen/progress_values_text_size"
-                        android:text="Total :"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp" />
-                    <View
-                        android:background="#E0E0E0"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
-                    <TextView
-                        android:fontFamily="sans-serif-light"
-
-                        android:padding="2dp"
-                        android:gravity="center"
-                        android:id="@+id/notText"
-                        android:textSize="@dimen/progress_values_text_size"
-                        android:text="Not Attempted :"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp" />
-
-                    <View
-                        android:background="#E0E0E0"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
-
-                    <TextView
-                        android:fontFamily="sans-serif-light"
-
-                        android:padding="2dp"
-                        android:gravity="center"
-                        android:id="@+id/correctText"
-                        android:textSize="@dimen/progress_values_text_size"
-                        android:text="Correct :"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp" />
-
-                    <View
-                        android:background="#E0E0E0"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"></View>
-                    <TextView
-                        android:fontFamily="sans-serif-light"
-
-                        android:gravity="center"
-                        android:id="@+id/wrongText"
-                        android:textSize="@dimen/progress_values_text_size"
-                        android:text="Wrong :"
-                        android:layout_weight="1"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-
-
-
-        </android.support.v7.widget.CardView>
-
-
-        <android.support.v7.widget.CardView
-
-            xmlns:card_view="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adCard"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/pieView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress_layout_height"
-
+            android:layout_below="@+id/appodealMrecView"
             android:layout_marginBottom="@dimen/progress_card_top_bottom_margin"
+
+
             android:layout_marginLeft="@dimen/progress_card_left_right_margin"
             android:layout_marginRight="@dimen/progress_card_left_right_margin"
-            android:layout_marginTop="@dimen/progress_card_top_bottom_margin"
 
-            android:visibility="gone"
-            card_view:cardBackgroundColor="#ffffff"
+            android:layout_marginTop="@dimen/progress_card_top_bottom_margin"
+            card_view:cardBackgroundColor="?attr/secondaryColor"
             card_view:cardElevation="@dimen/progress_card_elevation">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
 
-                <com.appodeal.ads.native_ad.views.NativeAdViewAppWall
-                    android:layout_gravity="center"
-                    android:id="@+id/native_ad_view_app_wall"
+                android:layout_height="match_parent"
+                android:background="?attr/secondaryColor"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    >
-                </com.appodeal.ads.native_ad.views.NativeAdViewAppWall>
+
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:padding="5dp"
+                    card_view:cardBackgroundColor="?attr/secondaryColor"
+                    card_view:cardCornerRadius="0dp"
+                    card_view:cardElevation="0dp">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_height="match_parent"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:text="Progress"
+                        android:textColor="?attr/blackText"
+                        android:textSize="@dimen/progress_title_text_size" />
+
+
+                </android.support.v7.widget.CardView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#EEEEEE" />
+
+                <LinearLayout
+                    android:id="@+id/chart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3.5"
+                    android:orientation="vertical"
+                    android:padding="2dp">
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="@dimen/progress_values_top_bottom_margin"
+                    android:layout_marginLeft="@dimen/progress_values_left_right_margin"
+                    android:layout_marginRight="@dimen/progress_values_left_right_margin"
+                    android:layout_marginTop="@dimen/progress_values_top_bottom_margin"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/totalText"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="Total :"
+                        android:textSize="@dimen/progress_values_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E0E0E0"></View>
+
+                    <TextView
+                        android:id="@+id/notText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="Not Attempted :"
+                        android:textSize="@dimen/progress_values_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E0E0E0"></View>
+
+                    <TextView
+                        android:id="@+id/correctText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="Correct :"
+                        android:textSize="@dimen/progress_values_text_size" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#E0E0E0"></View>
+
+                    <TextView
+                        android:id="@+id/wrongText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-light"
+                        android:gravity="center"
+                        android:text="Wrong :"
+                        android:textSize="@dimen/progress_values_text_size" />
+
+                </LinearLayout>
             </LinearLayout>
 
 
         </android.support.v7.widget.CardView>
+
+
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/chartCard"

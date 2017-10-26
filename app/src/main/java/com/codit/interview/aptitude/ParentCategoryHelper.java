@@ -14,6 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
+
 import static android.view.View.GONE;
 
 
@@ -23,10 +28,12 @@ import static android.view.View.GONE;
 public class ParentCategoryHelper extends Fragment implements View.OnClickListener{
 
     public String currentFragment;
+    NativeAdViewNewsFeed nav_nf;
 
     CardView cardView1;
     CardView cardView2;
     CardView cardView3;
+    CardView adCard;
 
     SharedPreferences progressPreference;
 
@@ -67,6 +74,55 @@ public void initializeProgressData()
     }
 }
 
+    public void showAd()
+    {
+        if(!App.isAdRemoved())
+        {
+
+
+
+
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+
+                    try {
+                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
+                        {
+                            adCard.setLayoutParams(cardView1.getLayoutParams());
+                            adCard.setVisibility(View.VISIBLE);
+                            nav_nf.setVisibility(View.VISIBLE);
+                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                        }
+                    }
+                    catch (Exception e){}
+
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+                    Log.d("appodeal", "onNativeFailedToLoad: ");
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+                    Log.d("appodeal", "onNativeShown: ");
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
+
+            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,2);
+
+
+        }
+
+    }
 
 
     public void initialize(View view, final Context context)
@@ -79,6 +135,8 @@ public void initializeProgressData()
         cardView1=(CardView)view.findViewById(R.id.card1);
         cardView2=(CardView)view.findViewById(R.id.card2);
         cardView3=(CardView)view.findViewById(R.id.card3);
+        adCard=(CardView)view.findViewById(R.id.ad_parent_card);
+        nav_nf= (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
 
 
 

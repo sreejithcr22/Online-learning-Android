@@ -26,6 +26,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appodeal.ads.Appodeal;
+
 /**
  * Created by Sreejith on 05-Sep-16.
  */
@@ -232,6 +234,8 @@ submit.setPadding(getResources().getInteger(R.integer.submit_left_padding),getRe
                         Intent intent=new Intent(getBaseContext(),MockActivity.class);
                         startActivity(intent);
                         APPSTATE.BACK_FLAG=true;
+                        if(!App.isAdRemoved()){
+                            Appodeal.show(MockQueActivity.this,Appodeal.INTERSTITIAL);}
 
                     }
                 })
