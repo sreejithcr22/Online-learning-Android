@@ -21,22 +21,19 @@
 
         xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <com.appodeal.ads.MrecView
-            android:id="@+id/appodealMrecView"
-            android:layout_marginTop="@dimen/progress_card_top_bottom_margin"
-            android:layout_width="300dp"
-            android:layout_height="250dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:visibility="gone" />
-
+        <com.appodeal.ads.native_ad.views.NativeAdViewContentStream
+            android:visibility="gone"
+            android:id="@+id/native_ad_view_content_stream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+        </com.appodeal.ads.native_ad.views.NativeAdViewContentStream>
 
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pieView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/progress_layout_height"
-            android:layout_below="@+id/appodealMrecView"
+            android:layout_below="@+id/native_ad_view_content_stream"
             android:layout_marginBottom="@dimen/progress_card_top_bottom_margin"
 
 

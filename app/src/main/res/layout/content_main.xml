@@ -44,14 +44,13 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.appodeal.ads.MrecView
-                android:id="@+id/appodealMrecView"
-                android:layout_width="300dp"
-                android:layout_height="250dp"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/main_card_margin_top"
-                android:visibility="gone" />
+            <com.appodeal.ads.native_ad.views.NativeAdViewContentStream
+                android:visibility="gone"
+                android:id="@+id/native_ad_view_content_stream"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            </com.appodeal.ads.native_ad.views.NativeAdViewContentStream>
 
 
 

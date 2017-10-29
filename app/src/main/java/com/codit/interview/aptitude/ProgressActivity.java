@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.Native;
 import com.appodeal.ads.NativeAd;
 import com.appodeal.ads.NativeCallbacks;
 import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
@@ -46,6 +47,8 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 
 public class ProgressActivity extends AppCompatActivity {
     boolean isTimeDisplayed;
@@ -59,6 +62,8 @@ public class ProgressActivity extends AppCompatActivity {
     ArrayList<Integer> timeList;
     private GraphicalView mChart;
     Toolbar toolbar;
+    private NativeAdViewContentStream nav_nf;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         isTimeDisplayed = false;
@@ -76,6 +81,10 @@ public class ProgressActivity extends AppCompatActivity {
 
         setContentView(R.layout.progress_activity_layout);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+        nav_nf= (NativeAdViewContentStream) findViewById(R.id.native_ad_view_content_stream);
+        showAd();
 
         toolbar= (Toolbar) findViewById(R.id.toolbar);
 
@@ -123,7 +132,7 @@ public class ProgressActivity extends AppCompatActivity {
         if(!App.isAdRemoved())
         {
 
-            Appodeal.show(this, Appodeal.MREC);
+
 
         }
         showProgressChart();
@@ -428,5 +437,44 @@ public class ProgressActivity extends AppCompatActivity {
 
 
 
+    }
+
+    public void showAd()
+    {
+        Appodeal.setNativeAdType(Native.NativeAdType.Auto);
+        Appodeal.setNativeCallbacks(new NativeCallbacks() {
+            @Override
+            public void onNativeLoaded() {
+                Log.d("appodeal", "onNativeLoaded: ");
+
+                try {
+                    if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
+                    {
+                        nav_nf.setVisibility(View.VISIBLE);
+                        nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                    }
+                }
+                catch (Exception e){}
+
+            }
+
+            @Override
+            public void onNativeFailedToLoad() {
+                Log.d("appodeal", "onNativeFailedToLoad: ");
+            }
+
+            @Override
+            public void onNativeShown(NativeAd nativeAd) {
+                Log.d("appodeal", "onNativeShown: ");
+            }
+
+            @Override
+            public void onNativeClicked(NativeAd nativeAd) {
+
+            }
+        });
+        Appodeal.setNativeAdType(Native.NativeAdType.Auto);
+        Appodeal.initialize(ProgressActivity.this, App.APP_KEY, Appodeal.NATIVE);
+        Appodeal.cache(ProgressActivity.this, Appodeal.NATIVE,1);
     }
 }

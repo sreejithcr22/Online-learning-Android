@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.NativeAd;
 import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
 import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 
 import static android.view.View.GONE;
@@ -28,7 +29,7 @@ import static android.view.View.GONE;
 public class ParentCategoryHelper extends Fragment implements View.OnClickListener{
 
     public String currentFragment;
-    NativeAdViewNewsFeed nav_nf;
+    NativeAdViewAppWall nav_nf;
 
     CardView cardView1;
     CardView cardView2;
@@ -136,7 +137,7 @@ public void initializeProgressData()
         cardView2=(CardView)view.findViewById(R.id.card2);
         cardView3=(CardView)view.findViewById(R.id.card3);
         adCard=(CardView)view.findViewById(R.id.ad_parent_card);
-        nav_nf= (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
+        nav_nf= (NativeAdViewAppWall) view.findViewById(R.id.native_ad_view_news_feed);
 
 
 

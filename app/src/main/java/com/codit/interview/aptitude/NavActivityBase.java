@@ -994,7 +994,7 @@ public class NavActivityBase  extends AppCompatActivity implements IabHelper.Que
                 super.onDestroy();
                 if (billingHelper != null) try {
                     billingHelper.dispose();
-                } catch (IabHelper.IabAsyncInProgressException e) {
+                } catch (Exception e) {
                 }
                 billingHelper = null;
             }

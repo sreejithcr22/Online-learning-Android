@@ -48,6 +48,10 @@ import com.appodeal.ads.BannerCallbacks;
 import com.appodeal.ads.InterstitialCallbacks;
 import com.appodeal.ads.MrecCallbacks;
 import com.appodeal.ads.MrecView;
+import com.appodeal.ads.Native;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewContentStream;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -63,6 +67,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+
+import static android.view.View.GONE;
 
 
 public class MainActivity extends NavActivityBase
@@ -121,6 +127,7 @@ public class MainActivity extends NavActivityBase
     private TextView mockCompleted;
     private TextView timeCardText;
     private TextView mockAvgScoreText;
+    private NativeAdViewContentStream nav_nf;
 
     public MainActivity()
         {
@@ -241,14 +248,65 @@ public class MainActivity extends NavActivityBase
         Appodeal.disableWriteExternalStoragePermissionCheck();
 
         Appodeal.setBannerViewId(R.id.appodealBannerView);
-        Appodeal.setMrecViewId(R.id.appodealMrecView);
 
-        Appodeal.initialize(MainActivity.this, App.APP_KEY, Appodeal.MREC|Appodeal.INTERSTITIAL|Appodeal.BANNER_VIEW);
+        Appodeal.setNativeAdType(Native.NativeAdType.Auto);
+        Appodeal.setNativeCallbacks(new NativeCallbacks() {
+            @Override
+            public void onNativeLoaded() {
+                Log.d("appodeal", "onNativeLoaded: ");
 
-        Appodeal.show(MainActivity.this, Appodeal.MREC);
+                try {
+                    if(nav_nf!=null&&nav_nf.getVisibility()==GONE&&!App.isAdRemoved()&&progressPreference.getInt("visitCount",0)>=2)
+                    {
+                        nav_nf.setVisibility(View.VISIBLE);
+                        nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                    }
+                }
+                catch (Exception e){}
+
+            }
+
+            @Override
+            public void onNativeFailedToLoad() {
+                Log.d("appodeal", "onNativeFailedToLoad: ");
+            }
+
+            @Override
+            public void onNativeShown(NativeAd nativeAd) {
+                Log.d("appodeal", "onNativeShown: ");
+            }
+
+            @Override
+            public void onNativeClicked(NativeAd nativeAd) {
+
+            }
+        });
+
+        Appodeal.initialize(MainActivity.this, App.APP_KEY, Appodeal.NATIVE|Appodeal.INTERSTITIAL|Appodeal.BANNER_VIEW);
+        Appodeal.cache(MainActivity.this, Appodeal.NATIVE,1);
+
+
 
 
     }
+
+    public void showAd()
+    {
+        if(!App.isAdRemoved())
+        {
+
+
+            Log.d("appodeal", "onCreate: ");
+
+
+
+
+
+        }
+
+    }
+
+
 
     @Override
     public void onBackPressed() {
@@ -388,6 +446,7 @@ public class MainActivity extends NavActivityBase
 
             initialize(0);
 
+            nav_nf= (NativeAdViewContentStream) findViewById(R.id.native_ad_view_content_stream);
             showMrec();
 
             scrollView= (ScrollView) findViewById(R.id.mainScrollview);

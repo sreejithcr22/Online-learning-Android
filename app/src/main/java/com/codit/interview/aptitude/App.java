@@ -29,7 +29,6 @@ public class App extends MultiDexApplication {
         Log.d("debug", "onCreate: ");
         context=getApplicationContext();
 
-        AdHelper.initialize(getContext());
         preferences=context.getSharedPreferences("progress", Context.MODE_PRIVATE);
 
 

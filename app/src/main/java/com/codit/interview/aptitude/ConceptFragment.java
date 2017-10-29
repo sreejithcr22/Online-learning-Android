@@ -28,6 +28,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.NativeAd;
+import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -66,6 +70,7 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
     ConceptInterface interfaceObj;
     FrameLayout parent;
     SharedPreferences progressPreference;
+    private NativeAdViewAppWall nav_nf;
 
     @Override
     public void onAttach(Context context) {
@@ -132,6 +137,7 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
         titleCard=(CardView)view.findViewById(R.id.titleCard);
 
         parent= (FrameLayout) view.findViewById(R.id.container);
+        nav_nf = (NativeAdViewAppWall) view.findViewById(R.id.native_ad_view_news_feed);
 
         View bottomShadow=view.findViewById(R.id.interview_bottom_bar_shadow);
 
@@ -140,34 +146,7 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
             bottomShadow.setVisibility(GONE);
         }
 
-        if(!App.isAdRemoved())
-        {
-            adView= new NativeExpressAdView(getContext());
-            adView.setVisibility(GONE);
 
-
-
-            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.topMargin=70;
-            params.bottomMargin=20;
-            adView.setLayoutParams(params);
-            adView.setAdSize(new AdSize(getResources().getConfiguration().smallestScreenWidthDp-30,100));
-            adView.setAdUnitId(getString(R.string.interview_native_large));
-            adView.setVideoOptions(new VideoOptions.Builder()
-                    .setStartMuted(true)
-                    .build());
-
-            adView.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    adView.setVisibility(View.VISIBLE);
-                }
-            });
-
-            LinearLayout interviewContainer= (LinearLayout) view.findViewById(R.id.interviewContainer);
-            interviewContainer.addView(adView);
-        }
 
         scrollView= (ScrollView) view.findViewById(R.id.scrollView);
 
@@ -361,15 +340,11 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
 
                         if(!App.isAdRemoved())
                         {
-                            AdRequest adRequest = new AdRequest.Builder()
-                                    .build();
-                            adView.loadAd(adRequest);
-                        }
+                            nav_nf.setVisibility(GONE);
 
-                        else
-                        {
-                            if(adView!=null)
-                            adView.setVisibility(GONE);}
+                            showAd();
+
+                        }
 
                         currentTip=interviewDB.getTip(tipno,tableName);
                         tipText.setText(currentTip.getTip());
@@ -600,7 +575,52 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
     }
 
 
+    public void showAd()
+    {
+        if(!App.isAdRemoved())
+        {
 
+
+            Log.d("appodeal", "onCreate: ");
+
+            Appodeal.setNativeCallbacks(new NativeCallbacks() {
+                @Override
+                public void onNativeLoaded() {
+                    Log.d("appodeal", "onNativeLoaded: ");
+
+                    try {
+                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
+                        {
+                            nav_nf.setVisibility(View.VISIBLE);
+                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
+                        }
+                    }
+                    catch (Exception e){}
+
+                }
+
+                @Override
+                public void onNativeFailedToLoad() {
+                    Log.d("appodeal", "onNativeFailedToLoad: ");
+                }
+
+                @Override
+                public void onNativeShown(NativeAd nativeAd) {
+                    Log.d("appodeal", "onNativeShown: ");
+                }
+
+                @Override
+                public void onNativeClicked(NativeAd nativeAd) {
+
+                }
+            });
+
+            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
+            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
+
+        }
+
+    }
 
 
 

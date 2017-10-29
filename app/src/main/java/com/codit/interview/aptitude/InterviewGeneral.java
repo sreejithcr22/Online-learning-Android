@@ -33,6 +33,8 @@ import android.widget.Toast;
 import com.appodeal.ads.Appodeal;
 import com.appodeal.ads.NativeAd;
 import com.appodeal.ads.NativeCallbacks;
+import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
+import com.appodeal.ads.native_ad.views.NativeAdViewContentStream;
 import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -47,7 +49,7 @@ public class InterviewGeneral extends Fragment implements View.OnClickListener {
 
     private ImageButton nextTip, prevTip,buttonFav,buttonShare;
 CardView bottomLayout;
-    NativeAdViewNewsFeed nav_nf;
+    NativeAdViewAppWall nav_nf;
 
     int interviewCount=0;
     TextView tip,title;
@@ -198,7 +200,7 @@ CardView bottomLayout;
         titleCard = (CardView) view.findViewById(R.id.titleCard);
 
         parent = (FrameLayout) view.findViewById(R.id.container);
-        nav_nf = (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
+        nav_nf = (NativeAdViewAppWall) view.findViewById(R.id.native_ad_view_news_feed);
 
 
         View bottomShadow = view.findViewById(R.id.interview_bottom_bar_shadow);
@@ -207,31 +209,7 @@ CardView bottomLayout;
             bottomShadow.setVisibility(GONE);
         }
 
-       /* adView = new NativeExpressAdView(getContext());
-        adView.setVisibility(GONE);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.topMargin = 70;
-        params.bottomMargin = 20;
-        adView.setLayoutParams(params);
-        adView.setAdSize(new AdSize(getResources().getConfiguration().smallestScreenWidthDp - 30, 100));
-        adView.setAdUnitId(getString(R.string.interview_native_large));
-        adView.setVideoOptions(new VideoOptions.Builder()
-                .setStartMuted(true)
-                .build());
-
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
-            }
-        });
-*/
-
-
-        LinearLayout interviewContainer = (LinearLayout) view.findViewById(R.id.interviewContainer);
-        //interviewContainer.addView(adView);
         scrollView = (ScrollView) view.findViewById(R.id.scrollView);
 
         if (APPSTATE.CURRENT_THEME == APPSTATE.THEME_DEFAULT) {
@@ -447,18 +425,6 @@ CardView bottomLayout;
                    //set values
 
                     try{
-
-                        /*if(!App.isAdRemoved())
-                        {
-                            AdRequest adRequest = new AdRequest.Builder()
-                                    .build();
-                            adView.loadAd(adRequest);
-                        }
-
-                        else
-                        {
-                            if(adView!=null)
-                                adView.setVisibility(GONE);}*/
 
                         if(!App.isAdRemoved())
                         {

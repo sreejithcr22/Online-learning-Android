@@ -77,16 +77,15 @@
         android:typeface="monospace"
         android:layout_height="wrap_content" />
 
-    <com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"
-        android:minHeight="80dp"
-        android:layout_height="wrap_content"
+    <com.appodeal.ads.native_ad.views.NativeAdViewAppWall
+        android:visibility="gone"
         android:id="@+id/native_ad_view_news_feed"
         android:layout_width="wrap_content"
-        android:visibility="gone"
-        >
-    </com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+    </com.appodeal.ads.native_ad.views.NativeAdViewAppWall>
+
 
 
 
