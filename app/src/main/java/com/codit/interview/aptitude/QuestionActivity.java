@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -16,10 +15,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
-
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,10 +24,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.crash.FirebaseCrash;
 
@@ -195,7 +192,7 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
                     }
                 })
 
-                .setNegativeButton("BACK", new DialogInterface.OnClickListener() {
+                .setNegativeButton("EXIT", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         goBack();
@@ -723,8 +720,6 @@ public void showFormula(String title)
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
         APPSTATE.SUB_BACK_FLAG=true;
-
-        showInterAd();
     }
 
     public void setImmersive()

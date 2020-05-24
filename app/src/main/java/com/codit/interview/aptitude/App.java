@@ -1,13 +1,11 @@
 package com.codit.interview.aptitude;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
-import com.appodeal.ads.Appodeal;
+import androidx.multidex.MultiDexApplication;
+
 
 
 /**
@@ -46,10 +44,7 @@ public class App extends MultiDexApplication {
 
     }
 
-    public static boolean isAdRemoved()
-    {
-        return preferences.getBoolean("remove_ads",false);
-    }
+
 
 
 

@@ -17,7 +17,7 @@ android:background="?attr/mainCardbg"
     </include>
 
 
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         card_view:cardElevation="0dp"
 
@@ -131,7 +131,7 @@ android:background="?attr/mainCardbg"
 
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 
 

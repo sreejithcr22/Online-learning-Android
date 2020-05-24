@@ -2,19 +2,18 @@ package com.codit.interview.aptitude;
 
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -203,13 +202,6 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.quanti[i].getTime());
 
-                    if(!App.isAdRemoved()) {
-                        if (i == 1 || i == 8 || i == 14) {
-                            subCategories.put("ad" + String.valueOf(i), "ad");
-
-                        }
-                    }
-
 
                 }
 
@@ -264,14 +256,6 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.verbal[i].getTime());
 
-                    if(!App.isAdRemoved())
-
-                    {
-                        if (i == 1 || i == 8) {
-                            subCategories.put("ad" + String.valueOf(i), "ad");
-                        }
-                    }
-
                 }
 
                 break;
@@ -325,13 +309,6 @@ boolean adFlag=false;
 
                     subCategories.put(current,APPSTATE.logical[i].getTime());
 
-                    if(!App.isAdRemoved())
-
-                    {
-                        if (i == 1 || i == 8 || i == 12) {
-                            subCategories.put("ad" + String.valueOf(i), "ad");
-                        }
-                    }
 
 
                 }

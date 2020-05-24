@@ -1,15 +1,13 @@
 package com.codit.interview.aptitude;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 
@@ -48,19 +46,6 @@ public class MockListFragment extends Fragment {
 
         objetcs=userStateDB.readMockRows();
 
-        if(!App.isAdRemoved())
-        {
-            for (int i = 0; i < objetcs.size(); i++) {
-                if (i == 3 || i == 9) {
-                    MockRow adrow = new MockRow();
-                    adrow.setAd(true);
-                    objetcs.add(i, adrow);
-                } else {
-                    objetcs.get(i).setAd(false);
-                }
-
-            }
-        }
 
 
 

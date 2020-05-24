@@ -6,33 +6,17 @@ import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.Toolbar;
-
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.Native;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
-import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
-import com.appodeal.ads.native_ad.views.NativeAdViewContentStream;
-import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
@@ -45,9 +29,6 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.view.View.GONE;
 
 
 public class ProgressActivity extends AppCompatActivity {
@@ -62,7 +43,6 @@ public class ProgressActivity extends AppCompatActivity {
     ArrayList<Integer> timeList;
     private GraphicalView mChart;
     Toolbar toolbar;
-    private NativeAdViewContentStream nav_nf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +63,6 @@ public class ProgressActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        nav_nf= (NativeAdViewContentStream) findViewById(R.id.native_ad_view_content_stream);
-        showAd();
 
         toolbar= (Toolbar) findViewById(R.id.toolbar);
 
@@ -127,14 +105,6 @@ public class ProgressActivity extends AppCompatActivity {
 
         timeList=intent.getIntegerArrayListExtra("timelist");
 
-
-
-        if(!App.isAdRemoved())
-        {
-
-
-
-        }
         showProgressChart();
 
         if(showOnlyTime) {
@@ -415,11 +385,7 @@ public class ProgressActivity extends AppCompatActivity {
             Intent intent=new Intent(getBaseContext(),SubCategoryActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
-            if(!App.isAdRemoved()){
-                Appodeal.show(this,Appodeal.INTERSTITIAL);
 
-
-            }
         }
         else if (APPSTATE.MOCK_QUESTION_ACTIVITY_FLAG)
         {
@@ -428,9 +394,7 @@ public class ProgressActivity extends AppCompatActivity {
             Intent intent=new Intent(getBaseContext(),MockActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
-            if(!App.isAdRemoved()){
-                Appodeal.show(this,Appodeal.INTERSTITIAL);
-            }
+
         }
 
 
@@ -439,42 +403,6 @@ public class ProgressActivity extends AppCompatActivity {
 
     }
 
-    public void showAd()
-    {
-        Appodeal.setNativeAdType(Native.NativeAdType.Auto);
-        Appodeal.setNativeCallbacks(new NativeCallbacks() {
-            @Override
-            public void onNativeLoaded() {
-                Log.d("appodeal", "onNativeLoaded: ");
 
-                try {
-                    if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
-                    {
-                        nav_nf.setVisibility(View.VISIBLE);
-                        nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
-                    }
-                }
-                catch (Exception e){}
 
-            }
-
-            @Override
-            public void onNativeFailedToLoad() {
-                Log.d("appodeal", "onNativeFailedToLoad: ");
-            }
-
-            @Override
-            public void onNativeShown(NativeAd nativeAd) {
-                Log.d("appodeal", "onNativeShown: ");
-            }
-
-            @Override
-            public void onNativeClicked(NativeAd nativeAd) {
-
-            }
-        });
-        Appodeal.setNativeAdType(Native.NativeAdType.Auto);
-        Appodeal.initialize(ProgressActivity.this, App.APP_KEY, Appodeal.NATIVE);
-        Appodeal.cache(ProgressActivity.this, Appodeal.NATIVE,1);
-    }
 }

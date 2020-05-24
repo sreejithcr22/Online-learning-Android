@@ -11,14 +11,8 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -26,7 +20,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appodeal.ads.Appodeal;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 
 /**
  * Created by Sreejith on 05-Sep-16.
@@ -234,8 +232,6 @@ submit.setPadding(getResources().getInteger(R.integer.submit_left_padding),getRe
                         Intent intent=new Intent(getBaseContext(),MockActivity.class);
                         startActivity(intent);
                         APPSTATE.BACK_FLAG=true;
-                        if(!App.isAdRemoved()){
-                            Appodeal.show(MockQueActivity.this,Appodeal.INTERSTITIAL);}
 
                     }
                 })

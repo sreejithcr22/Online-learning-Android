@@ -44,19 +44,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.appodeal.ads.native_ad.views.NativeAdViewContentStream
-                android:visibility="gone"
-                android:id="@+id/native_ad_view_content_stream"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-            </com.appodeal.ads.native_ad.views.NativeAdViewContentStream>
-
-
-
-
-
-
 
             <include
                 android:id="@+id/overallCard"

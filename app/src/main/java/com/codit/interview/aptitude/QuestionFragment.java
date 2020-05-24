@@ -3,23 +3,12 @@ package com.codit.interview.aptitude;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-
 import android.util.Log;
 import android.view.LayoutInflater;
-
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.Toast;
 
-
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.BannerCallbacks;
-import com.appodeal.ads.BannerView;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
 import com.google.firebase.crash.FirebaseCrash;
 
 
@@ -28,7 +17,6 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 {
 
 
-    BannerView banner;
 
     public QuestionFragment() {
         this.currentFragment=FRAG_APTI;
@@ -83,7 +71,6 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 
             initialize(view);
 
-            banner= (BannerView) view.findViewById(R.id.appodealBannerView);
         }
         catch (Exception e)
         {
@@ -93,7 +80,6 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
             APPSTATE.BACK_FLAG=true;
             Toast.makeText(getContext(),"Sorry, something went wrong !",Toast.LENGTH_SHORT).show();
         }
-        showBanner();
         return view;
     }
 
@@ -126,23 +112,8 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
 
     }
 
-    public void showBanner()
-    {
-        if(!App.isAdRemoved())
-        {
-            banner.setVisibility(View.VISIBLE);
-            Appodeal.show(getActivity(), Appodeal.BANNER_BOTTOM);
-            Appodeal.show(getActivity(), Appodeal.BANNER_VIEW);
-        }
-        else
-        {
-            if(banner!=null)
-            {
-                banner.setVisibility(View.GONE);
-                 }
-        }
 
-    }
+
 
     @Override
     public void onResume() {

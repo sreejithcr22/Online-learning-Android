@@ -11,10 +11,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,18 +25,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
-import com.appodeal.ads.native_ad.views.NativeAdViewAppWall;
-import com.appodeal.ads.native_ad.views.NativeAdViewContentStream;
-import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
-import com.google.android.gms.ads.VideoOptions;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import static android.view.View.GONE;
 
@@ -49,7 +36,6 @@ public class InterviewGeneral extends Fragment implements View.OnClickListener {
 
     private ImageButton nextTip, prevTip,buttonFav,buttonShare;
 CardView bottomLayout;
-    NativeAdViewAppWall nav_nf;
 
     int interviewCount=0;
     TextView tip,title;
@@ -62,7 +48,6 @@ CardView bottomLayout;
     LinearLayout interviewLayout;
     ScrollView scrollView;
     CardView titleCard;
-    NativeExpressAdView adView;
     View view;
     public static final String INTERVIEW_GENERAL="general";
     public static final String INTERVIEW_DATA_STRUCTURE="data";
@@ -200,7 +185,6 @@ CardView bottomLayout;
         titleCard = (CardView) view.findViewById(R.id.titleCard);
 
         parent = (FrameLayout) view.findViewById(R.id.container);
-        nav_nf = (NativeAdViewAppWall) view.findViewById(R.id.native_ad_view_news_feed);
 
 
         View bottomShadow = view.findViewById(R.id.interview_bottom_bar_shadow);
@@ -426,13 +410,6 @@ CardView bottomLayout;
 
                     try{
 
-                        if(!App.isAdRemoved())
-                        {
-                            nav_nf.setVisibility(GONE);
-
-                            showAd();
-
-                        }
 
 
                         currentTip=interviewDB.getTip(tipno,tableName);
@@ -661,52 +638,6 @@ CardView bottomLayout;
     }
 
 
-    public void showAd()
-    {
-        if(!App.isAdRemoved())
-        {
-
-
-            Log.d("appodeal", "onCreate: ");
-
-            Appodeal.setNativeCallbacks(new NativeCallbacks() {
-                @Override
-                public void onNativeLoaded() {
-                    Log.d("appodeal", "onNativeLoaded: ");
-
-                    try {
-                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
-                        {
-                            nav_nf.setVisibility(View.VISIBLE);
-                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
-                        }
-                    }
-                    catch (Exception e){}
-
-                }
-
-                @Override
-                public void onNativeFailedToLoad() {
-                    Log.d("appodeal", "onNativeFailedToLoad: ");
-                }
-
-                @Override
-                public void onNativeShown(NativeAd nativeAd) {
-                    Log.d("appodeal", "onNativeShown: ");
-                }
-
-                @Override
-                public void onNativeClicked(NativeAd nativeAd) {
-
-                }
-            });
-
-            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
-            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
-
-        }
-
-    }
 
 
 }

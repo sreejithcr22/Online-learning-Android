@@ -7,14 +7,14 @@
 
 
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
         android:background="@android:color/transparent"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
 
         android:id="@+id/settings_toolbar"
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:background="?attr/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
-    </android.support.v7.widget.Toolbar></android.support.design.widget.AppBarLayout>
+    </androidx.appcompat.widget.Toolbar></com.google.android.material.appbar.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/settings_content"

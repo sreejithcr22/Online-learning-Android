@@ -3,14 +3,15 @@ package com.codit.interview.aptitude;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Intent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.support.v4.app.TaskStackBuilder;
 
-import android.support.v7.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+
 
 
 
@@ -71,7 +72,7 @@ public class RemoteConfigService extends IntentService {
 
         Uri uri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        android.support.v4.app.NotificationCompat.Builder mBuilder =
+        androidx.core.app.NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
 
@@ -88,7 +89,7 @@ public class RemoteConfigService extends IntentService {
 
             mBuilder .setProgress(100,overallProgress,false)
                 .setContentTitle(title)
-                    .addAction(new android.support.v4.app.NotificationCompat.Action(R.mipmap.ic_launcher,"CONTINUE",resultPendingIntent));
+                    .addAction(new androidx.core.app.NotificationCompat.Action(R.mipmap.ic_launcher,"CONTINUE",resultPendingIntent));
 
 
         }
@@ -96,7 +97,7 @@ public class RemoteConfigService extends IntentService {
 
             mBuilder.setContentTitle("1500+ solved questions and 250+ interview tips");
             mBuilder.setContentText(message)
-                    .addAction(new android.support.v4.app.NotificationCompat.Action(R.mipmap.ic_launcher,"OPEN",resultPendingIntent));
+                    .addAction(new androidx.core.app.NotificationCompat.Action(R.mipmap.ic_launcher,"OPEN",resultPendingIntent));
 
         }
 

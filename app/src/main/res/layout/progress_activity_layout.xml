@@ -11,7 +11,7 @@
 
 
 
-      <android.support.v7.widget.Toolbar
+      <androidx.appcompat.widget.Toolbar
           app:contentInsetStartWithNavigation="0dp"
 
           app:titleMarginStart="0dp"
@@ -22,7 +22,7 @@
             app:popupTheme="@style/AppTheme.PopupOverlay" >
 
 
-      </android.support.v7.widget.Toolbar>
+      </androidx.appcompat.widget.Toolbar>
 
 
 

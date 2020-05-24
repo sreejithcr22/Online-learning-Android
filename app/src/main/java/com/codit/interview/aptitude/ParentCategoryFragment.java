@@ -3,26 +3,14 @@ package com.codit.interview.aptitude;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.CardView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.LinearLayout;
 
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
-import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 
-import static android.view.View.GONE;
+
 
 
 public class ParentCategoryFragment extends ParentCategoryHelper
@@ -63,10 +51,6 @@ public class ParentCategoryFragment extends ParentCategoryHelper
 
         initializeProgressData();
         updateProgress();
-        try {
-            showAd();
-        }
-        catch (Exception e){}
 
     }
 

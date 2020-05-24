@@ -4,24 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
-import com.appodeal.ads.Appodeal;
-import com.appodeal.ads.NativeAd;
-import com.appodeal.ads.NativeCallbacks;
-import com.appodeal.ads.native_ad.views.NativeAdViewNewsFeed;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.NativeExpressAdView;
-
-import static android.view.View.GONE;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Created by Sreejith on 15-Mar-16.
@@ -29,7 +19,6 @@ import static android.view.View.GONE;
 public class ExpFragment extends DialogFragment {
 
 
-    NativeAdViewNewsFeed nav_nf;
     String explanation;
 
     ExpFragInterface expFragInterface;
@@ -77,10 +66,6 @@ public class ExpFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        try {
-            showAd();
-        }
-        catch (Exception e){}
         APPSTATE.EXPL_COUNT++;
 
         AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
@@ -90,12 +75,6 @@ public class ExpFragment extends DialogFragment {
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
         final View view=inflater.inflate(R.layout.exp_fragment, null);
-        nav_nf = (NativeAdViewNewsFeed) view.findViewById(R.id.native_ad_view_news_feed);
-
-
-
-
-
 
         expText=(TextView)view.findViewById(R.id.expText);
         title=(TextView)view.findViewById(R.id.expTitle);
@@ -130,52 +109,6 @@ public class ExpFragment extends DialogFragment {
 
 
 
-    public void showAd()
-    {
-        if(!App.isAdRemoved())
-        {
-
-
-            Log.d("appodeal", "onCreate: ");
-
-            Appodeal.setNativeCallbacks(new NativeCallbacks() {
-                @Override
-                public void onNativeLoaded() {
-                    Log.d("appodeal", "onNativeLoaded: ");
-
-                    try {
-                        if(nav_nf!=null&&!App.isAdRemoved()&&nav_nf.getVisibility()==GONE)
-                        {
-                            nav_nf.setVisibility(View.VISIBLE);
-                            nav_nf.setNativeAd(Appodeal.getNativeAds(1).get(0));
-                        }
-                        }
-                        catch (Exception e){}
-
-                }
-
-                @Override
-                public void onNativeFailedToLoad() {
-                    Log.d("appodeal", "onNativeFailedToLoad: ");
-                }
-
-                @Override
-                public void onNativeShown(NativeAd nativeAd) {
-                    Log.d("appodeal", "onNativeShown: ");
-                }
-
-                @Override
-                public void onNativeClicked(NativeAd nativeAd) {
-
-                }
-            });
-
-            Appodeal.initialize(getActivity(),App.APP_KEY,Appodeal.NATIVE);
-            Appodeal.cache(getActivity(), Appodeal.NATIVE,1);
-
-        }
-
-    }
 
 
 

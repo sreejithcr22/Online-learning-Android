@@ -36,7 +36,7 @@
         android:layout_height="0dp">
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/queCard"
             android:layout_width="match_parent"
 
@@ -59,7 +59,7 @@
                 android:orientation="vertical">
 
 
-                <android.support.v7.widget.CardView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -91,7 +91,7 @@
 
                             app:srcCompat="@drawable/ic_previous" />
 
-                        <android.support.v7.widget.AppCompatSpinner
+                        <androidx.appcompat.widget.AppCompatSpinner
                             android:id="@+id/qnoSpinner"
                             android:layout_width="0dp"
 
@@ -105,7 +105,7 @@
 
                             android:spinnerMode="dialog">
 
-                        </android.support.v7.widget.AppCompatSpinner>
+                        </androidx.appcompat.widget.AppCompatSpinner>
 
 
                         <ImageButton
@@ -126,7 +126,7 @@
                     </LinearLayout>
 
 
-                </android.support.v7.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
 
                 <View
@@ -168,9 +168,9 @@
             </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
 
             android:id="@+id/optCard"
             android:layout_weight="1"
@@ -392,7 +392,7 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
 

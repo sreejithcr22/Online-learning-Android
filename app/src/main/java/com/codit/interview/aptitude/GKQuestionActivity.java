@@ -1,24 +1,22 @@
 package com.codit.interview.aptitude;
 
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import java.util.HashMap;
 
@@ -362,9 +360,5 @@ onBackPressed();
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
 
-        if(!App.isAdRemoved())
-        {
-            showInterAd();
-        }
     }
 }

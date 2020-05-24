@@ -5,14 +5,15 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.HashMap;
 
@@ -39,8 +40,6 @@ public  class FavActivity extends NavActivityBase implements InterviewGeneral.in
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        showInterAd();
 
         HashMap<Integer,Fragment> hm=new HashMap<>();
         hm.put(0,new InterviewGeneral());

@@ -1,4 +1,4 @@
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
 
 
 
@@ -209,4 +209,4 @@ android:layout_marginBottom="0dp"
 
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

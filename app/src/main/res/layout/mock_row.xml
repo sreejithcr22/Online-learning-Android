@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rowCard"
     android:layout_marginBottom="@dimen/sub_row_margin_bottom"
@@ -98,7 +98,7 @@ card_view:cardElevation="@dimen/sub_row_elevation"
             android:layout_height="match_parent"
             android:background="@drawable/vertical_shadow"></View>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:foreground="?android:attr/selectableItemBackground"
 
             android:id="@+id/scoreCard"
@@ -158,7 +158,7 @@ card_view:cardElevation="@dimen/sub_row_elevation"
             </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
 
@@ -167,4 +167,4 @@ card_view:cardElevation="@dimen/sub_row_elevation"
     </LinearLayout>
 
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>
