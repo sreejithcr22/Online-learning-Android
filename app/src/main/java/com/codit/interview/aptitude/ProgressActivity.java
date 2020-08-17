@@ -374,7 +374,7 @@ public class ProgressActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+
 
 
 
@@ -391,8 +391,7 @@ public class ProgressActivity extends AppCompatActivity {
         {
             APPSTATE.MOCK_QUESTION_ACTIVITY_FLAG=false;
 
-            Intent intent=new Intent(getBaseContext(),MockActivity.class);
-            startActivity(intent);
+            super.onBackPressed();
             APPSTATE.BACK_FLAG=true;
 
         }

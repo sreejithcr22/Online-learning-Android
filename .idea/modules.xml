@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Aptitude.iml" filepath="$PROJECT_DIR$/Aptitude.iml" />
       <module fileurl="file://$PROJECT_DIR$/adcolony-sdk-3.1.2/adcolony-sdk-3.1.2.iml" filepath="$PROJECT_DIR$/adcolony-sdk-3.1.2/adcolony-sdk-3.1.2.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/aptitude.iml" filepath="$PROJECT_DIR$/aptitude.iml" />
     </modules>
   </component>
 </project>
