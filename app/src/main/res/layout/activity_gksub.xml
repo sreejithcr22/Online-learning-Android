@@ -13,7 +13,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.codit.interview.aptitude.GKSubFragment"
+        android:name="com.codit.interview.aptitude.view.GKSubFragment"
         android:id="@+id/gkSubFragment"
         android:layout_centerHorizontal="true"
         tools:layout="@layout/fragment_sub_category"

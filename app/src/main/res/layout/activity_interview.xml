@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     android:background="?attr/secondaryColor"
-    tools:context="com.codit.interview.aptitude.InterviewActivity">
+    tools:context="com.codit.interview.aptitude.view.InterviewActivity">
 
     <androidx.viewpager.widget.ViewPager
 

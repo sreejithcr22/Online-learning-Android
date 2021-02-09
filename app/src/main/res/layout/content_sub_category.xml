@@ -12,7 +12,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.codit.interview.aptitude.SubCategoryFragment"
+        android:name="com.codit.interview.aptitude.view.SubCategoryFragment"
         android:id="@+id/subCategoryFragment"
         tools:layout="@layout/fragment_sub_category"
 

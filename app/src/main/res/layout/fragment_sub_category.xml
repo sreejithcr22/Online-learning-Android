@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="?attr/mildWhite"
-    tools:context="com.codit.interview.aptitude.SubCategoryFragment">
+    tools:context="com.codit.interview.aptitude.view.SubCategoryFragment">
 
     <androidx.recyclerview.widget.RecyclerView
 

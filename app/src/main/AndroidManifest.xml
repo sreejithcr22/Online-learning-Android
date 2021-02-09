@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -39,58 +39,58 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ParentCategory"
+            android:name=".model.ParentCategory"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ConceptsActivity"
+            android:name=".view.ConceptsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SubCategoryActivity"
+            android:name=".view.SubCategoryActivity"
             android:label="@string/title_activity_sub_category"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".QuestionActivity"
+            android:name=".view.QuestionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".InterviewActivity"
+            android:name=".view.InterviewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FavActivity"
+            android:name=".view.FavActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ProgressActivity"
+            android:name=".view.ProgressActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GKSubActivity"
+            android:name=".view.GKSubActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".GKQuestionActivity"
+            android:name=".view.GKQuestionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MockActivity"
+            android:name=".view.MockActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MockQueActivity"
+            android:name=".view.MockQueActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SettingsActivity" />
+        <activity android:name=".view.SettingsActivity" />
 
         <service
-            android:name=".RemoteConfigService"
+            android:name=".util.RemoteConfigService"
             android:exported="false" />
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".util.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 
@@ -98,7 +98,7 @@
 
 
         <receiver
-            android:name=".RebootReceiver"
+            android:name=".util.RebootReceiver"
             android:enabled="true"
             >
 

@@ -12,7 +12,7 @@
     android:layout_height="match_parent"
     android:background="?attr/mildWhite"
     android:orientation="vertical"
-    tools:context="com.codit.interview.aptitude.ParentCategoryFragment">
+    tools:context="com.codit.interview.aptitude.view.ParentCategoryFragment">
 
 
     <include

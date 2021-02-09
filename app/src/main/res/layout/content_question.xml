@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codit.interview.aptitude.QuestionActivity"
+    tools:context="com.codit.interview.aptitude.view.QuestionActivity"
     tools:showIn="@layout/activity_question">
 
     <fragment
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.codit.interview.aptitude.QuestionFragment"
+        android:name="com.codit.interview.aptitude.view.QuestionFragment"
         android:id="@+id/questionFragment"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />

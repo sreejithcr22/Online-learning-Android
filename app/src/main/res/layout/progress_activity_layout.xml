@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.codit.interview.aptitude.MainActivity">
+    tools:context="com.codit.interview.aptitude.view.MainActivity">
 
 
 

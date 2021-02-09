@@ -15,7 +15,6 @@ import androidx.multidex.MultiDexApplication;
 public class App extends MultiDexApplication {
 
     static SharedPreferences preferences;
-    public static final String APP_KEY="a9e3e5ec7a3264b5afa303523979a060cfa9362658273c8b";
     static Context context;
 
 
