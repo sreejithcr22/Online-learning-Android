@@ -4,6 +4,21 @@ android {
     namespace "com.codit.interview.aptitude"
     compileSdk 36
 
+    def localProps = new Properties()
+    def localPropsFile = rootProject.file('local.properties')
+    if (localPropsFile.exists()) {
+        localPropsFile.withInputStream { localProps.load(it) }
+    }
+
+    signingConfigs {
+        release {
+            storeFile rootProject.file(localProps.getProperty('storeFile', 'signing/keystore.jks'))
+            storePassword localProps.getProperty('storePassword')
+            keyAlias localProps.getProperty('keyAlias')
+            keyPassword localProps.getProperty('keyPassword')
+        }
+    }
+
     defaultConfig {
         applicationId "com.codit.interview.aptitude"
         minSdk 24
@@ -37,6 +52,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 }
