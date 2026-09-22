@@ -27,13 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
 
-        app:style="solid_line"
+        app:progress_style="solid_line"
 
         app:progress_background_color="?attr/colorPrimaryDark"
         app:progress_text_color="@android:color/white"
 
         app:progress_text_size="@dimen/nav_header_progress_text_size"
-        app:draw_progress_text="true"
         android:progress="0"
         app:progress_stroke_width="@dimen/nav_header_progress_stroke"
         app:progress_start_color="?attr/CircleProgressDrBg"

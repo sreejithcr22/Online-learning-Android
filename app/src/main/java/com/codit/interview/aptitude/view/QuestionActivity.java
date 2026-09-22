@@ -33,7 +33,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.util.APPSTATE;
-import com.google.firebase.crash.FirebaseCrash;
+import android.util.Log;
 
 public  class QuestionActivity extends NavActivityBase implements QuestionFragBase.QueFragInterface,CalcFragment.CalcInterface,ExpFragment.ExpFragInterface, NoteFragment.NoteInterface{
 
@@ -49,6 +49,7 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
     public QuestionActivity()
     {
         this.currentActivity=OTHER_ACTIVITY;
+        this.showBottomBar=false;
     }
 
 
@@ -233,8 +234,8 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
 
         catch (Exception e)
         {
-            FirebaseCrash.log("updateNote() failed inside sendNote()");
-            FirebaseCrash.report(e);
+            Log.d("crash", "updateNote() failed inside sendNote()");
+            Log.e("crash", Log.getStackTraceString(e));
         }
 
     }
@@ -260,8 +261,8 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
         catch (Exception e)
         {
             Toast.makeText(getBaseContext(),"Copy failed !",Toast.LENGTH_SHORT).show();
-            FirebaseCrash.log("calc history copy failed inside calcCopy()");
-            FirebaseCrash.report(e);
+            Log.d("crash", "calc history copy failed inside calcCopy()");
+            Log.e("crash", Log.getStackTraceString(e));
         }
 
     }
@@ -667,7 +668,6 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
 
        menu.findItem(R.id.progressChat).setVisible(true);
         menu.findItem(R.id.formula).setVisible(true);
-        menu.findItem(R.id.bug).setVisible(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
         }
@@ -694,8 +694,6 @@ public  class QuestionActivity extends NavActivityBase implements QuestionFragBa
             case R.id.formula:showFormula(APPSTATE.CURRENT_ACTIVITY_TITLE);
                 return true;
 
-            case R.id.bug:object.sendBugReport();
-                return true;
         }
 
 

@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.codit.interview.aptitude.model.Question;
-import com.google.firebase.crash.FirebaseCrash;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 
@@ -213,8 +212,8 @@ public class MasterDB extends SQLiteAssetHelper {
 
                 if (!attempted.equals("null")) {
                     if (time.equals("null")) {
-                        FirebaseCrash.log("time null," + " table=" + TABLE + ", qnp=" + String.valueOf(cursor.getPosition() + 1));
-                        FirebaseCrash.report(new Exception("time null"));
+                        Log.d("crash", "time null," + " table=" + TABLE + ", qnp=" + String.valueOf(cursor.getPosition() + 1));
+                        Log.e("crash", Log.getStackTraceString(new Exception("time null")));
                         times.add("0:36");
                     } else {
                         times.add(time);
@@ -275,7 +274,7 @@ public class MasterDB extends SQLiteAssetHelper {
 
         } catch (Exception e) {
 
-            FirebaseCrash.log("qno=" + String.valueOf(qno) + ",table=" + TABLE);
+            Log.d("crash", "qno=" + String.valueOf(qno) + ",table=" + TABLE);
             throw e;
         }
 
@@ -367,13 +366,13 @@ public class MasterDB extends SQLiteAssetHelper {
             } else
 
             {
-                FirebaseCrash.report(new Exception("que fav not added, qno=" + String.valueOf(currentQno) + " table=" + currentTable));
+                Log.e("crash", "que fav not added, qno=" + String.valueOf(currentQno) + " table=" + currentTable);
                 return false;
             }
 
 
         } catch (Exception e) {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
             return false;
         }
 

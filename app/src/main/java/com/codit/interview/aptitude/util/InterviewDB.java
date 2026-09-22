@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
 import com.codit.interview.aptitude.model.Tip;
-import com.google.firebase.crash.FirebaseCrash;
+import android.util.Log;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 /**
@@ -140,15 +140,15 @@ public class InterviewDB extends SQLiteAssetHelper {
                if(updateInt!=1)
                {
 
-                   FirebaseCrash.report(new Exception("0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo())));
+                   Log.e("crash", Log.getStackTraceString(new Exception("0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo()))));
                }
 
                return true;
            }
            else
            {
-               FirebaseCrash.log("0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo()));
-               FirebaseCrash.report(new Exception("add to fav error,getLastTipNo not equal to prevTotalQue+1"));
+               Log.d("crash", "0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo()));
+               Log.e("crash", Log.getStackTraceString(new Exception("add to fav error,getLastTipNo not equal to prevTotalQue+1")));
                return false;
            }
 
@@ -157,8 +157,8 @@ public class InterviewDB extends SQLiteAssetHelper {
        {
 
            e.printStackTrace();
-           FirebaseCrash.log("0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo()));
-           FirebaseCrash.report(e);
+           Log.d("crash", "0 rows updated, table="+currentTable+"tip no="+String.valueOf(tip.getTipNo()));
+           Log.e("crash", Log.getStackTraceString(e));
 
            return false;
        }

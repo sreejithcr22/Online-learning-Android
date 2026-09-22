@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.view.MockRow;
-import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.ArrayList;
 
@@ -79,8 +78,8 @@ public class UserStateDB extends SQLiteOpenHelper {
        {
            Toast.makeText(context,"exception",Toast.LENGTH_SHORT).show();
            Log.d("user", "onCreate: "+e.getMessage());
-           FirebaseCrash.log("create mock state table error");
-           FirebaseCrash.report(e);
+           Log.d("crash", "create mock state table error");
+           Log.e("crash", Log.getStackTraceString(e));
        }
        finally {
            sqLiteDatabase.endTransaction();
@@ -246,7 +245,7 @@ public class UserStateDB extends SQLiteOpenHelper {
         }
         catch (Exception e)
         {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
         }
 
     }
@@ -311,8 +310,8 @@ public class UserStateDB extends SQLiteOpenHelper {
        }
        catch (Exception e)
        {
-           FirebaseCrash.log("create apti category tables with tim failed");
-           FirebaseCrash.report(e);
+           Log.d("crash", "create apti category tables with tim failed");
+           Log.e("crash", Log.getStackTraceString(e));
        }
        finally {
            db.endTransaction();
@@ -335,7 +334,7 @@ public class UserStateDB extends SQLiteOpenHelper {
 
         if(count!=1)
         {
-            FirebaseCrash.report(new Exception("time update error, "+count+" rows updated for category="+category+" and time ="+time));
+            Log.e("crash", Log.getStackTraceString(new Exception("time update error, "+count+" rows updated for category="+category+" and time ="+time)));
         }
 
 
@@ -391,8 +390,8 @@ public class UserStateDB extends SQLiteOpenHelper {
         catch (Exception e)
         {
             Toast.makeText(context,"Sorry, Something went wrong",Toast.LENGTH_SHORT).show();
-            FirebaseCrash.log("change default time method - time="+newTime);
-            FirebaseCrash.report(e);
+            Log.d("crash", "change default time method - time="+newTime);
+            Log.e("crash", Log.getStackTraceString(e));
         }
         finally {
             db.endTransaction();

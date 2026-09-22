@@ -62,11 +62,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            app:style="solid_line"
+            app:progress_style="solid_line"
             app:progress_text_color="?attr/progressTextColor"
 
             app:progress_text_size="@dimen/progress_text_size"
-            app:draw_progress_text="true"
             app:progress_background_color="#EEEEEE"
 
             app:progress_stroke_width="@dimen/progress_stroke_width"

@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.util.APPSTATE;
-import com.google.firebase.crash.FirebaseCrash;
+import android.util.Log;
 
 /**
  * Created by Sreejith on 13-Aug-16.
@@ -68,7 +68,7 @@ public class GKQueFragment extends QuestionFragBase {
         }
         catch (Exception e)
         {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
 
             Toast.makeText(getContext(),"Sorry, something went wrong !",Toast.LENGTH_SHORT).show();
 

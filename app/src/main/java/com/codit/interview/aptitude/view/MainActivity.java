@@ -33,10 +33,8 @@ import com.codit.interview.aptitude.util.APPSTATE;
 import com.codit.interview.aptitude.util.AlarmReceiver;
 import com.codit.interview.aptitude.util.UserStateDB;
 import com.dinuscxj.progressbar.CircleProgressBar;
-import com.google.android.gms.ads.NativeExpressAdView;
 import com.google.android.material.appbar.AppBarLayout;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,7 +55,6 @@ public class MainActivity extends NavActivityBase
     int maxTime;
     ScrollView scrollView;
 
-    NativeExpressAdView nativeAd;
     int mockAttempted,mockAvgScore;
 
     String avgTimetring,totalTimeString,maxTimeString;
@@ -84,7 +81,6 @@ public class MainActivity extends NavActivityBase
 
     SharedPreferences progressPreference;
 
-    private FirebaseAnalytics mFirebaseAnalytics;
     private TextView overallQueText;
     private TextView overallAttemptedText;
     private TextView aptiTotalText;
@@ -102,6 +98,7 @@ public class MainActivity extends NavActivityBase
     public MainActivity()
         {
            this.currentActivity=MAIN_ACTIVITY;
+        this.showBottomBar=false;
         }
 
 
@@ -118,11 +115,14 @@ public class MainActivity extends NavActivityBase
         }
 
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
         progressPreference=getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
-        int version = 0;
+        long version = 0;
         try {
-            version = getPackageManager().getPackageInfo("com.google.android.gms", 0 ).versionCode;
+            if (android.os.Build.VERSION.SDK_INT >= 33) {
+                version = getPackageManager().getPackageInfo("com.google.android.gms", android.content.pm.PackageManager.PackageInfoFlags.of(0)).versionCode;
+            } else {
+                version = getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
+            }
 
             if(version<10298000) {
                 APPSTATE.GOOGLE_PLAY_REQ_VERSION=false;
@@ -159,10 +159,7 @@ public class MainActivity extends NavActivityBase
                     Configuration config = getResources().getConfiguration();
 
 
-                    mFirebaseAnalytics.setUserProperty("display_density", densityString);
-                    mFirebaseAnalytics.setUserProperty("small_width", String.valueOf(config.smallestScreenWidthDp));
-                    mFirebaseAnalytics.setUserProperty("resolution_width", String.valueOf(metrics.widthPixels));
-                    mFirebaseAnalytics.setUserProperty("resolution_height", String.valueOf(metrics.heightPixels));
+
                 }
 
             }
@@ -325,7 +322,7 @@ public class MainActivity extends NavActivityBase
 
         alarmMgr = (AlarmManager)getBaseContext().getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getBaseContext(), AlarmReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(getBaseContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmIntent = PendingIntent.getBroadcast(getBaseContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
 
 
@@ -340,6 +337,7 @@ public class MainActivity extends NavActivityBase
 
     }
 
+    @SuppressWarnings("deprecation")
     class MainLoader extends AsyncTask<Void,Void,Void>
     {
         @Override
@@ -362,64 +360,6 @@ public class MainActivity extends NavActivityBase
             aptiCard=(CardView)findViewById(R.id.aptiCard);
             gkCard=(CardView)findViewById(R.id.gkCard);
             mockCard=(CardView)findViewById(R.id.mockCard);
-
-
-
-
-              /*nativeAd=new NativeExpressAdView(getBaseContext());
-              nativeAd.setAdListener(new AdListener() {
-                  @Override
-                  public void onAdLoaded() {
-                      super.onAdLoaded();
-                      adCard.setVisibility(View.VISIBLE);
-                  }
-              });
-
-              LinearLayout.LayoutParams params1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-              params1.setMargins(0,0,0,0);
-              nativeAd.setLayoutParams(params1);
-
-              adCard.addView(nativeAd);
-
-              overallCard.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                  @Override
-                  public void onGlobalLayout() {
-
-
-
-                      int width = overallCard.getWidth();
-                      int height = overallCard.getHeight();
-
-
-                      float density=getResources().getDisplayMetrics().density;
-                      int actualWidth= (int) (width/ density);
-                      int actualHeight= (int) (height/density);
-                      int adWidth=actualWidth-10;
-                      int adHeight=actualHeight-11;
-
-                      if(adWidth<280)
-                          adWidth=280;
-
-                      if (adHeight<80)
-                          adHeight=80;
-
-                      nativeAd.setAdSize(new AdSize(adWidth,adHeight));
-                      nativeAd.setAdUnitId(getResources().getString(R.string.home_large));
-
-
-                      AdRequest adRequest = new AdRequest.Builder()
-                              .build();
-
-                      if(!App.isAdRemoved())
-                          nativeAd.loadAd(adRequest);
-
-                      if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                          adCard.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                      else
-                          adCard.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-
-                  }
-              });*/
 
 
 
@@ -627,8 +567,8 @@ public class MainActivity extends NavActivityBase
            }
            catch (Exception e)
            {
-               FirebaseCrash.log("cant open drawer on first open");
-               FirebaseCrash.report(e);
+               Log.d("crash", "cant open drawer on first open");
+               Log.e("crash", Log.getStackTraceString(e));
            }
 
         }
@@ -637,10 +577,6 @@ public class MainActivity extends NavActivityBase
         protected Void doInBackground(Void... voids) {
 
             progressPreference=getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
-
-
-            mFirebaseAnalytics.setAnalyticsCollectionEnabled(true);
-            mFirebaseAnalytics.setMinimumSessionDuration(300);
 
 
             Thread thread=new Thread(new Runnable() {
@@ -681,7 +617,6 @@ public class MainActivity extends NavActivityBase
 
             int visitCount=progressPreference.getInt("visitCount",0);
             if(APPSTATE.GOOGLE_PLAY_REQ_VERSION)
-            mFirebaseAnalytics.setUserProperty("open_count",String.valueOf(visitCount));
 
 
             if(APPSTATE.visitFlag==false)
@@ -706,13 +641,10 @@ public class MainActivity extends NavActivityBase
             {
                 accuracyRate=0;
             }
-            mFirebaseAnalytics.setUserProperty("accuracy",String.valueOf(accuracyRate));
 
 
             totlalTime=progressPreference.getInt("TIME",0);
             maxTime=progressPreference.getInt("max_time",0);
-
-            mFirebaseAnalytics.setUserProperty("total_time",String.valueOf(totlalTime));
 
             if(aptiAttempted!=0) {
                 avgTime = totlalTime / aptiAttempted;
@@ -723,7 +655,6 @@ public class MainActivity extends NavActivityBase
             {
                 avgTime=0;
             }
-            mFirebaseAnalytics.setUserProperty("avg_time",String.valueOf(avgTime));
 
 
             grandTotal=APPSTATE.APTI_QUE_COUNT+APPSTATE.GK_QUE_COUNT;
@@ -733,11 +664,8 @@ public class MainActivity extends NavActivityBase
             aptiProgress=(aptiAttempted*100)/APPSTATE.APTI_QUE_COUNT;
             gkProgress=(gkAttempted*100)/APPSTATE.GK_QUE_COUNT;
 
-            mFirebaseAnalytics.setUserProperty("total_arrempted",String.valueOf(overallProgress));
-            mFirebaseAnalytics.setUserProperty("apti_attempted",String.valueOf(aptiProgress));
 
-            mFirebaseAnalytics.setUserProperty("gk_attempted",String.valueOf(gkProgress));
-            mFirebaseAnalytics.setUserProperty("mock_count",String.valueOf(mockAttempted));
+
 
 
 

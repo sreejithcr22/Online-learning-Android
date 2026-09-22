@@ -18,7 +18,7 @@
     <TextView
 
         android:textColor="?attr/blackText"
-        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:id="@+id/label"
         android:gravity="center_vertical"
         android:layout_weight="6"

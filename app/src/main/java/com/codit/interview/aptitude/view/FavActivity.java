@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.codit.interview.aptitude.R;
+import com.codit.interview.aptitude.model.ParentCategory;
 import com.codit.interview.aptitude.util.APPSTATE;
 import com.google.android.material.tabs.TabLayout;
 
@@ -37,6 +38,7 @@ public  class FavActivity extends NavActivityBase implements InterviewGeneral.in
     public FavActivity()
     {
         this.currentActivity=OTHER_ACTIVITY;
+        this.bottomTabItemId=R.id.nav_favorites;
     }
 
     @Override
@@ -68,7 +70,7 @@ public  class FavActivity extends NavActivityBase implements InterviewGeneral.in
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(getBaseContext(),MainActivity.class);
+        Intent intent=new Intent(getBaseContext(),ParentCategory.class);
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
         APPSTATE.CURRENT_SELECTED_DRAWER_ITEM=-1;

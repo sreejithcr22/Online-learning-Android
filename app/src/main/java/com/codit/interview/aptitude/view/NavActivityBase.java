@@ -35,30 +35,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.codit.interview.aptitude.App;
 import com.codit.interview.aptitude.R;
-import com.codit.interview.aptitude.ad.AdHelper;
 import com.codit.interview.aptitude.model.NavListRow;
 import com.codit.interview.aptitude.model.ParentCategory;
 import com.codit.interview.aptitude.util.APPSTATE;
-import com.codit.interview.aptitude.util.IabHelper;
-import com.codit.interview.aptitude.util.IabResult;
-import com.codit.interview.aptitude.util.Inventory;
-import com.codit.interview.aptitude.util.Purchase;
 import com.dinuscxj.progressbar.CircleProgressBar;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
  * Created by Sreejith on 26-Jul-16.
  */
-public class NavActivityBase extends AppCompatActivity implements IabHelper.QueryInventoryFinishedListener, IabHelper.OnIabPurchaseFinishedListener {
+public class NavActivityBase extends AppCompatActivity {
     CircleProgressBar navProgress;
-    public static String SKU = "product_remove_ads";
+    protected int bottomTabItemId = -1;
+    protected boolean showBottomBar = true;
 
 
     boolean clicked = false;
@@ -82,13 +76,16 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
     public TabLayout tabLayout;
     public TabAdapter tabAdapter;
 
-    public static final String TAG = "appodeal";
-    public IabHelper billingHelper;
+    public static final String TAG = "aptitude";
 
 
     public void initialize(final int contentView) {
 
 
+        if (APPSTATE.CURRENT_THEME == 0) {
+            APPSTATE.CURRENT_THEME = getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE)
+                    .getInt("app_theme", APPSTATE.THEME_DEFAULT);
+        }
         if (APPSTATE.CURRENT_THEME != 0) {
             setTheme(APPSTATE.CURRENT_THEME);
         } else {
@@ -159,6 +156,8 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
         drawer.setDrawerListener(toggle);
         drawer.setBackgroundColor(Color.WHITE);
         toggle.syncState();
+        toggle.setDrawerIndicatorEnabled(false);
+        drawer.setDrawerLockMode(androidx.drawerlayout.widget.DrawerLayout.LOCK_MODE_LOCKED_CLOSED, androidx.core.view.GravityCompat.START);
 
 
         menuView = (ListView) findViewById(R.id.left_nav_view);
@@ -183,11 +182,11 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
         settingsRows[5] = new NavListRow(R.drawable.ic_moon, "Night Mode");
 
 
-        adapter = new NavListAdapter(getBaseContext(), R.layout.settings_nav_row, settingsRows);
+        adapter = new NavListAdapter(this, R.layout.settings_nav_row, settingsRows);
 
 
         {
-            adapter1 = new NavListAdapter(getBaseContext(), R.layout.menu_nav_row, rows);
+            adapter1 = new NavListAdapter(this, R.layout.menu_nav_row, rows);
 
             int width = getResources().getDisplayMetrics().widthPixels;
 
@@ -293,56 +292,38 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
                     public void onDrawerClosed(View drawerView) {
 
                         if (clicked) {
-
-                            FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-
-                            String event = "default_drawer_select_event";
-
                             switch (i) {
 
                                 case 0:
-                                    Intent intent0 = new Intent(getBaseContext(), MainActivity.class);
+                                    Intent intent0 = new Intent(getBaseContext(), ParentCategory.class);
                                     startActivity(intent0);
-                                    event = "Open_Main_Activity";
                                     break;
 
                                 case 1:
                                     Intent intent = new Intent(getBaseContext(), ParentCategory.class);
                                     startActivity(intent);
-                                    event = "Open_Questions";
                                     break;
 
                                 case 2:
                                     Intent intent1 = new Intent(getBaseContext(), InterviewActivity.class);
                                     startActivity(intent1);
-                                    event = "Open_Interview";
                                     break;
 
                                 case 3:
                                     Intent intent2 = new Intent(getBaseContext(), ConceptsActivity.class);
                                     startActivity(intent2);
-                                    event = "Open_Formulas";
                                     break;
                                 case 5:
                                     Intent intent3 = new Intent(getBaseContext(), FavActivity.class);
                                     startActivity(intent3);
-                                    event = "Open_Fav";
                                     break;
                                 case 4:
                                     Intent intent4 = new Intent(getBaseContext(), MockActivity.class);
                                     startActivity(intent4);
-                                    event = "Open_Mock";
                                     break;
 
                             }
                             clicked = false;
-
-                            Bundle bdl = new Bundle();
-                            bdl.putString(FirebaseAnalytics.Param.VALUE, "Main Drawer click");
-                            mFirebaseAnalytics.logEvent(event, bdl);
-
-
                         }
 
 
@@ -368,11 +349,6 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
                         break;
 
                     case 1:
-                        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-                        Bundle bdl = new Bundle();
-                        bdl.putString(FirebaseAnalytics.Param.VALUE, "open settings");
-                        mFirebaseAnalytics.logEvent("Open_Settings", bdl);
                         Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
                         startActivity(intent);
                         break;
@@ -394,6 +370,8 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
 
                         if (APPSTATE.CURRENT_THEME != APPSTATE.THEME_BLACK) {
                             APPSTATE.CURRENT_THEME = APPSTATE.THEME_BLACK;
+                            getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE)
+                                    .edit().putInt("app_theme", APPSTATE.CURRENT_THEME).apply();
                             RestartActivty();
                             APPSTATE.THEME_FLAG = true;
                         } else {
@@ -414,9 +392,69 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
             drawer.removeView(settingsNav);
         }
 
-        AdHelper.getInstance(getApplicationContext()).showAd(this);
+        if (APPSTATE.quanti == null || APPSTATE.logical == null || APPSTATE.verbal == null) {
+            new com.codit.interview.aptitude.util.UserStateDB(this).readAptiCategs();
+        }
 
+        ensureNotificationPermission();
+        SharedPreferences firstRun = getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE);
+        if (firstRun.getInt("visitCount", 0) == 0) {
+            com.codit.interview.aptitude.util.RebootReceiver.scheduleDaily(this);
+            firstRun.edit().putInt("visitCount", 1).apply();
+        }
 
+        BottomNavigationView bottomNav = (BottomNavigationView) findViewById(R.id.bottomNav);
+        bottomNav.setItemIconTintList(null);
+        bottomNav.setLabelVisibilityMode(com.google.android.material.bottomnavigation.LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        if (!showBottomBar) {
+            bottomNav.setVisibility(View.GONE);
+        } else {
+            if (bottomTabItemId != -1) {
+                bottomNav.setSelectedItemId(bottomTabItemId);
+            }
+            bottomNav.setOnItemSelectedListener(new com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(android.view.MenuItem item) {
+                    int id = item.getItemId();
+                    if (id == bottomTabItemId) {
+                        return true;
+                    }
+                    Intent target = null;
+                    if (id == R.id.nav_questions) {
+                        target = new Intent(NavActivityBase.this, ParentCategory.class);
+                    } else if (id == R.id.nav_interview) {
+                        target = new Intent(NavActivityBase.this, InterviewActivity.class);
+                    } else if (id == R.id.nav_formulas) {
+                        target = new Intent(NavActivityBase.this, ConceptsActivity.class);
+                    } else if (id == R.id.nav_mock) {
+                        target = new Intent(NavActivityBase.this, MockActivity.class);
+                    } else if (id == R.id.nav_favorites) {
+                        target = new Intent(NavActivityBase.this, FavActivity.class);
+                    }
+                    if (target != null) {
+                        startActivity(target);
+                    }
+                    return true;
+                }
+            });
+        }
+    }
+
+    private static final int REQ_NOTIFY = 1001;
+
+    public void ensureNotificationPermission() {
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            if (checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)
+                    != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(
+                        new String[]{android.Manifest.permission.POST_NOTIFICATIONS}, REQ_NOTIFY);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     public void onBack() {
@@ -506,12 +544,6 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
     }
 
     public void feedbackListener(int i) {
-
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-        Bundle bdl = new Bundle();
-        bdl.putString(FirebaseAnalytics.Param.VALUE, "Feedback");
-        mFirebaseAnalytics.logEvent("Open_Feedback", bdl);
         if (i == 0) {
             openStore();
         } else if (i == 1) {
@@ -593,14 +625,6 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
 
 
     public void changeTheme() {
-
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-        Bundle bdl = new Bundle();
-        bdl.putString(FirebaseAnalytics.Param.VALUE, "change theme");
-        mFirebaseAnalytics.logEvent("Change_Theme", bdl);
-
-
         final int prevTheme = APPSTATE.CURRENT_THEME;
 
 
@@ -649,12 +673,20 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        getBaseContext().getSharedPreferences("progress", Context.MODE_PRIVATE)
+                                .edit().putInt("app_theme", APPSTATE.CURRENT_THEME).apply();
                         RestartActivty();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        APPSTATE.CURRENT_THEME = prevTheme;
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
                         APPSTATE.CURRENT_THEME = prevTheme;
                     }
                 });
@@ -667,20 +699,14 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
     }
 
     public void RestartActivty() {
-        Intent intent = new Intent(getBaseContext(), getClass());
-        startActivity(intent);
         APPSTATE.THEME_FLAG = true;
+        Intent intent = new Intent(getBaseContext(), ParentCategory.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 
     public void about() {
-
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-        Bundle bdl = new Bundle();
-        bdl.putString(FirebaseAnalytics.Param.VALUE, "Open About");
-        mFirebaseAnalytics.logEvent("Open_About", bdl);
-
         AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(this);
         builder.setCancelable(true);
 
@@ -782,12 +808,6 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
     }
 
     public void openStore() {
-
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        Bundle bdl = new Bundle();
-        bdl.putString(FirebaseAnalytics.Param.VALUE, "Review");
-        mFirebaseAnalytics.logEvent("Store_Review", bdl);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + getPackageName()));
 
 
@@ -795,13 +815,6 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
     }
 
     private void shareApp() {
-
-        FirebaseAnalytics mFirebaseAnalytics = FirebaseAnalytics.getInstance(getBaseContext());
-
-        Bundle bdl = new Bundle();
-        bdl.putString(FirebaseAnalytics.Param.VALUE, "Share app");
-        mFirebaseAnalytics.logEvent("Share_App", bdl);
-
         Intent intent = new Intent(Intent.ACTION_SEND);
 
 
@@ -820,153 +833,4 @@ public class NavActivityBase extends AppCompatActivity implements IabHelper.Quer
         super.onBackPressed();
         overridePendingTransition(R.anim.trans_back_exit, R.anim.trans_bac_enter);
     }
-
-//-------------------------------------------------------------------------------------------bill------------------------------------
-
-    @Override
-    public void onQueryInventoryFinished(IabResult result, Inventory inv) {
-
-        if (result.isFailure()) {
-            // handle error
-            Log.e(TAG, "onQueryInventoryFinished: failed" + result.getMessage());
-            return;
-        }
-
-        try {
-
-
-            if (inv.getPurchase("android.test.purchased") != null)
-                billingHelper.consumeAsync(inv.getPurchase("android.test.purchased"), mConsumeFinishedListener);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            Log.d("bill", "consume error");
-        }
-
-
-    }
-
-
-    void setupBilling() {
-
-        billingHelper = new IabHelper(this, this.getString(R.string.reward_money));
-        billingHelper.enableDebugLogging(true, "bill");
-
-        final ArrayList sku = new ArrayList();
-        sku.add("product_remove_ads");
-        billingHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                if (result.isSuccess()) {
-
-                    try {
-                        billingHelper.queryInventoryAsync(true, sku, sku, NavActivityBase.this);
-
-                    } catch (IabHelper.IabAsyncInProgressException e) {
-                        e.printStackTrace();
-                        Log.d("billing", "Problem setting up In-app Billing: IabAsyncInProgressException");
-                    }
-                } else Log.d("billing", "Problem setting up In-app Billing: " + result);
-
-            }
-        });
-    }
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (billingHelper != null) try {
-            billingHelper.dispose();
-        } catch (Exception e) {
-        }
-        billingHelper = null;
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d("bill", "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-        //if (billingHelper == null) return;
-
-        // Pass on the activity result to the helper for handling
-        if (!billingHelper.handleActivityResult(requestCode, resultCode, data)) {
-            // not handled, so handle it ourselves (here's where you'd
-            // perform any handling of activity results not related to in-app
-            // billing...
-            Log.d("bill", "onActivityResult(" + requestCode + "," + resultCode + "," + data);
-            super.onActivityResult(requestCode, resultCode, data);
-        } else {
-            Log.d("bill", "onActivityResult handled by IABUtil.");
-        }
-    }
-
-    @Override
-    public void onIabPurchaseFinished(IabResult result, Purchase info) {
-
-        Log.d("bill", "onIabPurchaseFinished: " + result.toString());
-        if (result.isFailure()) {
-            Toast.makeText(getBaseContext(), "Purchase could not be completed !", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (result.isSuccess()) {
-
-            Toast.makeText(getBaseContext(), "purchase completed", Toast.LENGTH_SHORT).show();
-            try {
-                billingHelper.consumeAsync(info, mConsumeFinishedListener);
-            } catch (IabHelper.IabAsyncInProgressException e) {
-                e.printStackTrace();
-            }
-
-
-        }
-
-    }
-
-
-    IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
-        public void onConsumeFinished(Purchase purchase, IabResult result) {
-            Log.d("bill", "Consumption finished. Purchase: " + purchase + ", result: " + result);
-
-
-            if (billingHelper == null) return;
-
-            if (result.isFailure()) {
-                Log.d("bill", "onConsumeFinished: " + "Error while consuming: " + result);
-                Toast.makeText(getBaseContext(), "Sorry, something went wrong !", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (result.isSuccess()) {
-                Toast.makeText(getBaseContext(), "consumed !", Toast.LENGTH_SHORT).show();
-                Log.d("bill", "Consumption successful. Provisioning.");
-
-                //remove ad code here
-                App.removeAds();
-
-            }
-
-        }
-    };
-
-
-    public void launchPurchase() {
-
-        Log.d("billing", "launchPurchase: ");
-        try {
-            billingHelper.launchPurchaseFlow(this, "android.test.purchased", 100, this);
-
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            e.printStackTrace();
-            Log.d("bill", "purchase: IabAsyncInProgressException");
-        }
-    }
-
-
 }
-//-----------------------------------------------------------------------------------------------billing
-
-
-
-
-
-
-
-

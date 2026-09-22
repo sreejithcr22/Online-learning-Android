@@ -43,17 +43,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.codit.interview.aptitude.R;
-import com.codit.interview.aptitude.model.BugReport;
+import com.codit.interview.aptitude.model.ParentCategory;
 import com.codit.interview.aptitude.model.Question;
 import com.codit.interview.aptitude.model.Tip;
 import com.codit.interview.aptitude.util.APPSTATE;
 import com.codit.interview.aptitude.util.InterviewDB;
 import com.codit.interview.aptitude.util.MasterDB;
 import com.codit.interview.aptitude.util.UserStateDB;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -66,7 +63,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
 
 
-    FirebaseAnalytics mFirebaseAnalytics;
     boolean updateTime;
     ArrayList<Integer> timeList=new ArrayList<>();
     int previousQno=0;
@@ -156,10 +152,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
     public void setUp()
     {
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getContext());
-
 
         progressPreference=getContext().getSharedPreferences("progress",Context.MODE_PRIVATE);
 
@@ -172,8 +164,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
 
 
-
-        String module=APPSTATE.CURRENT_CATEGORY,parentCategory=APPSTATE.CURRENT_QUE_SUB_CATEGORY;
 
  if(currentFragment.equals(FRAG_GK))
  {
@@ -189,8 +179,6 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
  {
 
      currentMockTitle=interfaceObj.getMockTitle();
-     module=currentMockTitle;
-     parentCategory="Mock Test";
 
      switch (currentMockTitle)
      {
@@ -209,28 +197,11 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
  }
         else if(currentFragment.equals(FRAG_GK_FAV)){
      currentTable=TABLE_GK_FAV;
-     module="GK fav";
-     parentCategory="fav";
  }
         else if(currentFragment.equals(FRAG_APTI_FAV)){
      currentTable=TABLE_APTI_FAV;
-     module="GK fav";
-     parentCategory="fav";
 
  }
-
-
- if(APPSTATE.GOOGLE_PLAY_REQ_VERSION)
- {
-
-     Bundle bundle1=new Bundle();
-     bundle1.putString(FirebaseAnalytics.Param.ITEM_ID,module);
-     bundle1.putString(FirebaseAnalytics.Param.CONTENT_TYPE,parentCategory);
-      mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT,bundle1);
- }
-
-
-
         preferences=getContext().getSharedPreferences("current_qno",Context.MODE_PRIVATE);
         currentQno=preferences.getInt(currentTable,1);
 
@@ -586,8 +557,8 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
          catch (Exception e)
         {
-            FirebaseCrash.log("caught exception on read question");
-            FirebaseCrash.report(e);
+            Log.d("crash", "caught exception on read question");
+            Log.e("crash", Log.getStackTraceString(e));
 
             Intent intent;
             if(currentFragment.equals(FRAG_APTI))
@@ -603,7 +574,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
                 intent=new Intent(getContext(),MockActivity.class);
             }
             else{
-                intent=new Intent(getContext(),MainActivity.class);
+                intent=new Intent(getContext(),ParentCategory.class);
             }
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
@@ -612,8 +583,8 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
 
         if(currentQuestion==null)
         {
-            FirebaseCrash.log("currentQuestion==nul, qno="+currentQno+" , table="+currentTable);
-            FirebaseCrash.report(new Exception("current que null"));
+            Log.d("crash", "currentQuestion==nul, qno="+currentQno+" , table="+currentTable);
+            Log.e("crash", Log.getStackTraceString(new Exception("current que null")));
 
             Intent intent;
             if(currentFragment.equals(FRAG_APTI))
@@ -629,7 +600,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
                 intent=new Intent(getContext(),MockActivity.class);
             }
             else{
-                intent=new Intent(getContext(),MainActivity.class);
+                intent=new Intent(getContext(),ParentCategory.class);
             }
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
@@ -733,7 +704,7 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
         }catch (Exception e)
         {
 
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
 
             Toast.makeText(getContext(),"Sorry, Something went wrong!",Toast.LENGTH_SHORT).show();
             getActivity().onBackPressed();
@@ -892,8 +863,8 @@ public class QuestionFragBase extends Fragment implements View.OnClickListener {
                 if (updatedInt<0)
                 {
 
-                    FirebaseCrash.log("updating attempted column for que - "+currentQno+" and for table - "+currentTable+ " failed");
-                    FirebaseCrash.report(new Exception("updating attempted column failed"));
+                    Log.d("crash", "updating attempted column for que - "+currentQno+" and for table - "+currentTable+ " failed");
+                    Log.e("crash", Log.getStackTraceString(new Exception("updating attempted column failed")));
 
                 }
             }
@@ -1239,8 +1210,8 @@ public void start()
 
         e.printStackTrace();
 
-        FirebaseCrash.log("table="+currentTable+" exception should have been caught inside master db");
-        FirebaseCrash.report(e);
+        Log.d("crash", "table="+currentTable+" exception should have been caught inside master db");
+        Log.e("crash", Log.getStackTraceString(e));
 
       getActivity().onBackPressed();
         Toast.makeText(getContext(),"Sorry something went wrong !",Toast.LENGTH_SHORT).show();
@@ -1695,8 +1666,8 @@ public void start()
 
                 if(updateInt==0)
                 {
-                    FirebaseCrash.log("update note failed -- table="+currentTable+" que="+currentQno);
-                    FirebaseCrash.report(new Exception("update note failed -- table="+currentTable+" que="+currentQno));
+                    Log.d("crash", "update note failed -- table="+currentTable+" que="+currentQno);
+                    Log.e("crash", Log.getStackTraceString(new Exception("update note failed -- table="+currentTable+" que="+currentQno)));
                 }
 
             }
@@ -1790,8 +1761,8 @@ public void start()
                             int update= masterDB.updateTime(currentTable,currentQno,String.valueOf(actualMin)+":"+String.valueOf(actualSec));
                             if(update==0)
                             {
-                                FirebaseCrash.log("time update error");
-                                FirebaseCrash.report(new Exception("time update error table="+currentTable+" que="+currentQno));
+                                Log.d("crash", "time update error");
+                                Log.e("crash", Log.getStackTraceString(new Exception("time update error table="+currentTable+" que="+currentQno)));
                             }
                         }
                     });
@@ -2119,7 +2090,7 @@ public void start()
        }
        catch (Exception e)
        {
-           FirebaseCrash.report(e);
+           Log.e("crash", Log.getStackTraceString(e));
        }
     }
 
@@ -2132,64 +2103,5 @@ public void start()
 
 
 
-    public void sendBugReport()
-    {
-        AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
-        View titleView=getActivity().getLayoutInflater().inflate(R.layout.dialog_title,null);
-        TextView title=(TextView)titleView.findViewById(R.id.dialogTitle);
-        ImageView icon=(ImageView)titleView.findViewById(R.id.dialogIcon);
-        icon.setImageResource(R.drawable.ic_bug);
-        title.setText("Report Error");
-        builder.setCustomTitle(titleView);
-
-
-        View view=getActivity().getLayoutInflater().inflate(R.layout.bug_report_layout,null);
-
-                builder.setNegativeButton("CANCEL",null)
-                .setView(view)
-                .setTitle("Report Error");
-
-
-        TextView bugTopicText= (TextView) view.findViewById(R.id.bug_topic_text);
-        TextView bugQ=(TextView) view.findViewById(R.id.bug_qno);
-        final EditText  answer= (EditText) view.findViewById(R.id.input_corret_ans);
-        final EditText  exp= (EditText) view.findViewById(R.id.input_correct_exp);
-
-        bugTopicText.setText(String.valueOf(APPSTATE.CURRENT_CATEGORY));
-        bugQ.setText(String.valueOf(String.valueOf(currentQno)));
-
-
-        builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-            try
-            {
-                if(!answer.getText().toString().equals(""))
-                {
-
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-                    DatabaseReference myRef = database.getReference("error_report");
-
-                    myRef.push().setValue(new BugReport(APPSTATE.CURRENT_CATEGORY,currentQno,answer.getText().toString(),exp.getText().toString()));
-                    Toast.makeText(getContext(),"Sending error report..",Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    sendBugReport();
-                }
-            }
-            catch(Exception e)
-            {
-                Toast.makeText(getContext(), "Could not send error report", Toast.LENGTH_SHORT).show();
-                FirebaseCrash.report(e);
-            }
-            }
-        });
-
-        builder.create().show();
-
-    }
 
 }

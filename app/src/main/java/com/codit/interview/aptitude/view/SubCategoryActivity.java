@@ -28,6 +28,7 @@ public class SubCategoryActivity extends NavActivityBase implements SubCategoryF
     public  SubCategoryActivity()
     {
         this.currentActivity=this.OTHER_ACTIVITY;
+        this.showBottomBar=false;
     }
 
     @Override

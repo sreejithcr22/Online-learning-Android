@@ -7,15 +7,6 @@ public class MockRow
     int score;
     boolean isFinished;
 
-    public boolean isAd() {
-        return isAd;
-    }
-
-    public void setAd(boolean ad) {
-        isAd = ad;
-    }
-
-    boolean isAd;
 
     public void setLocked(boolean locked) {
         isLocked = locked;

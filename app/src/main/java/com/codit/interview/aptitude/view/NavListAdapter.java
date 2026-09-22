@@ -39,8 +39,7 @@ public class NavListAdapter extends ArrayAdapter<NavListRow> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater = (LayoutInflater)
-               context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = LayoutInflater.from(getContext());
         View listItem = inflater.inflate(layoutResourceId, parent, false);
 
 

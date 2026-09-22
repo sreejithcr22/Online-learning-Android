@@ -31,7 +31,6 @@ import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.model.Tip;
 import com.codit.interview.aptitude.util.APPSTATE;
 import com.codit.interview.aptitude.util.InterviewDB;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 import static android.view.View.GONE;
 
@@ -61,7 +60,6 @@ public class ConceptFragment extends Fragment implements View.OnClickListener{
     CardView titleCard;
 
     View view;
-    NativeExpressAdView adView;
     ConceptInterface interfaceObj;
     FrameLayout parent;
     SharedPreferences progressPreference;

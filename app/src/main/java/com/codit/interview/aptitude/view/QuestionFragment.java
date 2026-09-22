@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.util.APPSTATE;
-import com.google.firebase.crash.FirebaseCrash;
 
 
 
@@ -48,7 +47,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
         }
         catch(Exception e)
         {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
             Intent intent=new Intent(getContext(),SubCategoryActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
@@ -76,7 +75,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
         }
         catch (Exception e)
         {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
             Intent intent=new Intent(getContext(),SubCategoryActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;
@@ -100,7 +99,7 @@ public class QuestionFragment extends QuestionFragBase implements View.OnClickLi
         }
         catch (Exception e)
         {
-            FirebaseCrash.report(e);
+            Log.e("crash", Log.getStackTraceString(e));
             Intent intent=new Intent(getContext(),SubCategoryActivity.class);
             startActivity(intent);
             APPSTATE.BACK_FLAG=true;

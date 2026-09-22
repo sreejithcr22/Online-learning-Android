@@ -37,6 +37,7 @@ public class GKQuestionActivity extends NavActivityBase implements QuestionFragB
     public GKQuestionActivity()
     {
         this.currentActivity=OTHER_ACTIVITY;
+        this.showBottomBar=false;
     }
     boolean resumeFlag;
     boolean stickyFlag;
@@ -175,7 +176,6 @@ onBackPressed();
 
         if(!onlyInfo) {
             menu.findItem(R.id.progressChat).setVisible(true);
-            menu.findItem(R.id.bug).setVisible(true);
         }
 
 
@@ -199,8 +199,6 @@ onBackPressed();
                 object.showMockReport();
                 return true;
 
-            case R.id.bug:object.sendBugReport();
-                return true;
 
         }
 

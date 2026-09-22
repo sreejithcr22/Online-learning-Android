@@ -37,11 +37,7 @@ public class App extends MultiDexApplication {
         return context;
     }
 
-    public static void removeAds()
-    {
-        preferences.edit().putBoolean("remove_ads",true).apply();
 
-    }
 
 
 

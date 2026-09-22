@@ -22,6 +22,7 @@ public class GKSubActivity extends NavActivityBase implements GKSubAdapter.GKSub
     public GKSubActivity()
     {
         this.currentActivity=this.OTHER_ACTIVITY;
+        this.showBottomBar=false;
 
     }
 

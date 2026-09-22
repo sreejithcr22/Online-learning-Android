@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import com.codit.interview.aptitude.util.APPSTATE;
 import com.codit.interview.aptitude.view.GKFragment;
-import com.codit.interview.aptitude.view.MainActivity;
 import com.codit.interview.aptitude.view.NavActivityBase;
 import com.codit.interview.aptitude.view.ParentCategoryFragment;
 import com.codit.interview.aptitude.R;
@@ -24,6 +23,7 @@ public class ParentCategory extends NavActivityBase {
     public ParentCategory()
     {
         this.currentActivity=GK_FRAGMENT;
+        this.bottomTabItemId=R.id.nav_questions;
     }
     boolean updatedProgress=false;
 
@@ -113,10 +113,6 @@ public class ParentCategory extends NavActivityBase {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent=new Intent(getBaseContext(), MainActivity.class);
-        startActivity(intent);
-        APPSTATE.BACK_FLAG=true;
-        APPSTATE.CURRENT_SELECTED_DRAWER_ITEM=-1;
+        onBack();
     }
 }

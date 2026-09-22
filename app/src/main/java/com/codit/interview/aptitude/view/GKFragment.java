@@ -10,12 +10,10 @@ import androidx.cardview.widget.CardView;
 
 import com.codit.interview.aptitude.util.ParentCategoryHelper;
 import com.codit.interview.aptitude.R;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 
 public class GKFragment extends ParentCategoryHelper {
 
-    NativeExpressAdView nativeExpressAdView;
     CardView adCard,card1;
 
     public GKFragment() {

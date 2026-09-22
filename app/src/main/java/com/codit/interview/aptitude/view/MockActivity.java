@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.codit.interview.aptitude.R;
+import com.codit.interview.aptitude.model.ParentCategory;
 import com.codit.interview.aptitude.util.APPSTATE;
 
 public class MockActivity extends NavActivityBase implements MockAdapter.mockAdapterInterface{
@@ -13,6 +14,7 @@ public class MockActivity extends NavActivityBase implements MockAdapter.mockAda
     public MockActivity()
     {
         this.currentActivity=OTHER_ACTIVITY;
+        this.bottomTabItemId=R.id.nav_mock;
     }
 
     @Override
@@ -66,7 +68,7 @@ public class MockActivity extends NavActivityBase implements MockAdapter.mockAda
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent=new Intent(getBaseContext(),MainActivity.class);
+        Intent intent=new Intent(getBaseContext(),ParentCategory.class);
         startActivity(intent);
         APPSTATE.BACK_FLAG=true;
         APPSTATE.CURRENT_SELECTED_DRAWER_ITEM=-1;

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_questions"
+        android:icon="@drawable/ic_question"
+        android:title="Questions" />
+    <item
+        android:id="@+id/nav_interview"
+        android:icon="@drawable/ic_interview"
+        android:title="Interview" />
+    <item
+        android:id="@+id/nav_formulas"
+        android:icon="@drawable/ic_square_root"
+        android:title="Formulas" />
+    <item
+        android:id="@+id/nav_mock"
+        android:icon="@drawable/ic_exam"
+        android:title="Mock Test" />
+    <item
+        android:id="@+id/nav_favorites"
+        android:icon="@drawable/ic_heart"
+        android:title="Favorites" />
+</menu>

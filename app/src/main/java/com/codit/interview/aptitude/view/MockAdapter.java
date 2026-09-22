@@ -20,11 +20,7 @@ import androidx.cardview.widget.CardView;
 
 import com.codit.interview.aptitude.R;
 import com.codit.interview.aptitude.util.APPSTATE;
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.NativeExpressAdView;
-import com.google.firebase.crash.FirebaseCrash;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -44,9 +40,6 @@ public class MockAdapter extends ArrayAdapter<MockRow> {
     static ArrayList<MockRow> objects;
     Context context;
     int layoutResourceId;
-    final int[] actualWidth = new int[1];
-    final int[] actualHeight = new int[1];
-    boolean adFlag=false;
 
 
     public MockAdapter(Context context, int resource, ArrayList objects) {
@@ -85,151 +78,6 @@ public class MockAdapter extends ArrayAdapter<MockRow> {
 
         final MockRow currentRow=objects.get(position);
 
-        if(currentRow.isAd)
-        {
-            final CardView card = (CardView) inflater.inflate(R.layout.mock_ad_row, parent, false);
-
-              final NativeExpressAdView adView=new NativeExpressAdView(getContext());
-            card.addView(adView,card.getLayoutParams());
-            adView.setVisibility(View.GONE);
-
-           if (  progressPreference.getInt("mock_ad_width",0)== 0) {
-
-                card.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @SuppressLint("NewApi")
-                    @SuppressWarnings("deprecation")
-                    @Override
-                    public void onGlobalLayout() {
-
-                        int width = card.getWidth();
-                        int height = card.getHeight();
-
-
-                        float density = context.getResources().getDisplayMetrics().density;
-                        actualWidth[0] = (int) (width / density);
-                        actualHeight[0] = (int) (height / density);
-
-                        progressPreference.edit().putInt("mock_ad_width",actualWidth[0] - 3).apply();
-                        progressPreference.edit().putInt("mock_ad_height",actualHeight[0] - 3).apply();
-
-
-                        card.setRadius(0);
-                        card.setPreventCornerOverlap(false);
-                        card.setUseCompatPadding(true);
-
-                        card.setContentPadding(-card.getPaddingLeft() - 1, -card.getPaddingRight() - 1, -card.getPaddingTop() - 1, -card.getPaddingTop() - 1);
-
-
-                        adView.setAdSize(new AdSize(progressPreference.getInt("mock_ad_width",0), progressPreference.getInt("mock_ad_height",0)));
-
-                        adView.setAdUnitId(context.getString(R.string.apti_recycler_1));
-
-                        adView.setAdListener(new AdListener() {
-                            @Override
-                            public void onAdLoaded() {
-                                super.onAdLoaded();
-                                card.findViewById(R.id.ad_loading_text).setVisibility(View.GONE);
-                                adView.setVisibility(View.VISIBLE);
-
-                            }
-
-                            @Override
-                            public void onAdFailedToLoad(int i) {
-                                super.onAdFailedToLoad(i);
-
-                                try
-                                {
-                                    if(adFlag==false) {
-                                        adFlag=true;
-                                        remove(objects.get(5));
-                                        remove(objects.get(9));
-                                    }
-
-                                }
-                                catch (IndexOutOfBoundsException e)
-                                {
-                                    FirebaseCrash.log("remove ad row pos="+position+" , array out of bound");
-                                    FirebaseCrash.report(e);
-                                }
-                            }
-                        });
-                        AdRequest adRequest = new AdRequest.Builder()
-                                .build();
-
-                            adView.loadAd(adRequest);
-
-
-                        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN)
-                            card.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                        else
-                            card.getViewTreeObserver().removeGlobalOnLayoutListener(this);
-                    }
-                });
-
-
-            }
-
-
-
-            else
-            {
-                card.setRadius(0);
-                card.setPreventCornerOverlap(false);
-                card.setUseCompatPadding(true);
-
-                card.setContentPadding(-card.getPaddingLeft() - 1, -card.getPaddingRight() - 1, -card.getPaddingTop() - 1, -card.getPaddingTop() - 1);
-
-
-                adView.setAdSize(new AdSize(progressPreference.getInt("mock_ad_width",0), progressPreference.getInt("mock_ad_height",0)));
-
-                adView.setAdUnitId(context.getString(R.string.apti_recycler_1));
-
-               adView.setAdListener(new AdListener() {
-                   @Override
-                   public void onAdLoaded() {
-                       super.onAdLoaded();
-                       card.findViewById(R.id.ad_loading_text).setVisibility(View.GONE);
-                       adView.setVisibility(View.VISIBLE);
-
-                   }
-
-                   @Override
-                   public void onAdFailedToLoad(int i) {
-                       super.onAdFailedToLoad(i);
-
-                       try
-                           {
-                               if(adFlag==false) {
-                                   adFlag=true;
-                                   remove(objects.get(3));
-                                   remove(objects.get(8));
-                               }
-
-                           }
-                       catch (IndexOutOfBoundsException e)
-                       {
-                           FirebaseCrash.log("remove ad row pos="+position+" , array out of bound");
-                           FirebaseCrash.report(e);
-                       }
-                   }
-               });
-                AdRequest adRequest = new AdRequest.Builder()
-                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                        .addTestDevice("7DB37A8E11E63AFA1EE5F5E6D9632407")
-                        .build();
-
-                adView.loadAd(adRequest);
-
-
-
-            }
-
-
-
-
-
-            return card;
-        }
 
         convertView = inflater.inflate(layoutResourceId, parent, false);
         CardView row=(CardView)convertView.findViewById(R.id.rowCard);

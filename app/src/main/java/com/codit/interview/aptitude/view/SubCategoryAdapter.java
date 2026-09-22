@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.codit.interview.aptitude.R;
-import com.google.android.gms.ads.NativeExpressAdView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -57,8 +56,7 @@ boolean adsRemoved=false;
         public TextView timerText;
         ProgressBar subProgressBar;
         TextView attemptedCount;
-        NativeExpressAdView adView;
-
+    
 
 
         public ViewHolder(View itemView) {

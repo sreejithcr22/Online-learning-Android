@@ -34,10 +34,4 @@
         android:orderInCategory="200"
         app:showAsAction="always" />
 
-    <item android:id="@+id/bug"
-        android:visible="false"
-        android:title="Report Error"
-        android:icon="@drawable/ic_bug"
-        android:orderInCategory="100"
-        app:showAsAction="always" />
 </menu>
