@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+
+# signing keys + credential docs (never commit)
+/signing/
