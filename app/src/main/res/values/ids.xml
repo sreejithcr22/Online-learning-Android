@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="secText" type="id" />
-    <item name="minuteText" type="id" />
-    <item name="colonText" type="id" />
-    <item name="loading_text" type="id" />
-
-</resources>
