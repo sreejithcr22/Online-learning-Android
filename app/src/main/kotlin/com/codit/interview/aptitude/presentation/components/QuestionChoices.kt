@@ -51,9 +51,10 @@ private fun onColor(background: Color): Color =
 /**
  * One answer option.
  *
- * Selection has to be unmissable: before submitting, the chosen row is filled with the
- * primary colour, its letter badge inverts, and a check mark appears. A pale tint on a
- * white card was not enough to tell the user their tap had registered.
+ * Before submitting, a selected option is marked by a thick accent-coloured border and
+ * nothing else. Filling the row with the primary (green) colour made a mere tap look like
+ * a correct, submitted answer, so the green fill and the check mark are reserved for the
+ * revealed, correct state.
  */
 @Composable
 fun QuestionOptionRow(
@@ -69,30 +70,28 @@ fun QuestionOptionRow(
     val status = MaterialTheme.statusColors
     val shape = MaterialTheme.shapes.small
 
+    // Accent (blue) is reserved for "you picked this, not graded yet"; green and red are
+    // only used once the answer has actually been revealed.
+    val selectionColor = MaterialTheme.colorScheme.secondary
+
     val background = when {
         revealed && isCorrectOption -> status.correct.copy(alpha = 0.18f)
         revealed && isSelected -> status.wrong.copy(alpha = 0.18f)
         revealed -> MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)
-        isSelected -> MaterialTheme.colorScheme.primary
         else -> MaterialTheme.colorScheme.surface
     }
 
     val borderColor = when {
         revealed && isCorrectOption -> status.correct
         revealed && isSelected -> status.wrong
-        isSelected -> MaterialTheme.colorScheme.primary
+        isSelected -> selectionColor
         else -> MaterialTheme.colorScheme.outline
     }
 
-    // Thicker outline while selected, so the state reads even in bright sunlight.
-    val borderWidth = if (isSelected) 2.dp else 1.dp
-    val contentColor = if (revealed) {
-        MaterialTheme.colorScheme.onSurface
-    } else if (isSelected) {
-        MaterialTheme.colorScheme.onPrimary
-    } else {
-        MaterialTheme.colorScheme.onSurface
-    }
+    // A thick accent border is the whole selection affordance, so it has to read at a
+    // glance in bright sunlight.
+    val isPendingSelection = isSelected && !revealed
+    val borderWidth = if (isPendingSelection) 3.dp else 1.dp
 
     Row(
         modifier = modifier
@@ -104,7 +103,12 @@ fun QuestionOptionRow(
             .padding(Spacing.medium)
             .semantics {
                 contentDescription = "Option ${'A' + index}: $text" +
-                    if (isSelected) ", selected" else ""
+                    when {
+                        revealed && isCorrectOption -> ", correct answer"
+                        revealed && isSelected -> ", your answer, incorrect"
+                        isPendingSelection -> ", selected"
+                        else -> ""
+                    }
             },
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -112,37 +116,22 @@ fun QuestionOptionRow(
             modifier = Modifier
                 .size(28.dp)
                 .clip(CircleShape)
-                .background(
-                    if (isSelected && !revealed) {
-                        MaterialTheme.colorScheme.onPrimary
-                    } else {
-                        Color.Transparent
-                    }
-                )
-                .border(
-                    width = if (isSelected && !revealed) 0.dp else 1.dp,
-                    color = if (isSelected && !revealed) Color.Transparent else borderColor,
-                    shape = CircleShape,
-                ),
+                .border(width = 1.dp, color = borderColor, shape = CircleShape),
             contentAlignment = Alignment.Center,
         ) {
             Text(
                 text = ('A' + index).toString(),
                 style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold,
-                color = if (isSelected && !revealed) {
-                    MaterialTheme.colorScheme.primary
-                } else {
-                    borderColor
-                },
+                fontWeight = if (isPendingSelection) FontWeight.Bold else FontWeight.Medium,
+                color = borderColor,
             )
         }
 
         Text(
             text = text,
             style = MaterialTheme.typography.bodyLarge,
-            color = contentColor,
-            fontWeight = if (isSelected && !revealed) FontWeight.Medium else FontWeight.Normal,
+            color = MaterialTheme.colorScheme.onSurface,
+            fontWeight = if (isPendingSelection) FontWeight.Medium else FontWeight.Normal,
             modifier = Modifier
                 .weight(1f)
                 .padding(start = Spacing.medium),
@@ -160,13 +149,6 @@ fun QuestionOptionRow(
                 imageVector = Icons.Rounded.Close,
                 contentDescription = "Your answer was wrong",
                 tint = status.wrong,
-                modifier = Modifier.size(22.dp),
-            )
-
-            isSelected -> Icon(
-                imageVector = Icons.Rounded.Check,
-                contentDescription = "Selected",
-                tint = MaterialTheme.colorScheme.onPrimary,
                 modifier = Modifier.size(22.dp),
             )
         }
