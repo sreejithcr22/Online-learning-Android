@@ -91,13 +91,15 @@ data class PracticeUiState(
     val isAnswerRevealed: Boolean get() = hasAnswered || isSubmitted
 
     /**
-     * The option to highlight.
+     * The option to highlight: the user's current pick, or — once the app is showing a
+     * question answered in a previous run — the answer stored in the database.
      *
-     * Falls back to the answer stored in the database so a resumed question marks the
-     * user's previous choice, not just the correct one.
+     * Falling back to the stored answer is what stops a resumed question from looking
+     * unanswered, while `selectedOptionIndex` alone would leave the row unpainted when
+     * the user taps an option before submitting.
      */
     val highlightedOptionIndex: Int?
-        get() = if (isSubmitted) selectedOptionIndex else question?.answeredOptionIndex
+        get() = selectedOptionIndex ?: question?.answeredOptionIndex
 }
 
 /**

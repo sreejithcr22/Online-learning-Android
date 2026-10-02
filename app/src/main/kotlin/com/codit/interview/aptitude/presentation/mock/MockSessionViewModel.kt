@@ -53,13 +53,10 @@ data class MockSessionUiState(
     val isRevealed: Boolean get() = isSubmitted || question?.isAnswered == true
 
     /**
-     * The option to highlight.
-     *
-     * Falls back to the answer stored in the database so a resumed question marks the
-     * user's previous choice, not just the correct one.
+     * The option to highlight: the current pick, else the answer stored by a previous run.
      */
     val highlightedOptionIndex: Int?
-        get() = if (isSubmitted) selectedOptionIndex else question?.answeredOptionIndex
+        get() = selectedOptionIndex ?: question?.answeredOptionIndex
 
     val isAnswerCorrect: Boolean
         get() = if (isSubmitted) isCorrect else question?.attemptStatus == AttemptStatus.CORRECT

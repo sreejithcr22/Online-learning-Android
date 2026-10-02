@@ -43,9 +43,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.mutableStateOf
@@ -65,6 +62,9 @@ import com.codit.interview.aptitude.domain.model.Question
 import com.codit.interview.aptitude.presentation.calculator.CalculatorDialog
 import com.codit.interview.aptitude.presentation.navigation.ReportArgs
 import com.codit.interview.aptitude.presentation.components.LoadingState
+import com.codit.interview.aptitude.presentation.components.NavigatorLegend
+import com.codit.interview.aptitude.presentation.components.OptionList
+import com.codit.interview.aptitude.presentation.components.QuestionNavigatorGrid
 import com.codit.interview.aptitude.presentation.components.NotesDialog
 import com.codit.interview.aptitude.presentation.notes.NoteFormatter
 import com.codit.interview.aptitude.presentation.theme.Spacing
@@ -254,21 +254,15 @@ fun PracticeScreen(
                 .heightIn(min = 96.dp),
         )
 
-        Column(
+        OptionList(
+            options = question?.options.orEmpty(),
+            selectedIndex = state.highlightedOptionIndex,
+            revealed = state.hasAnswered || state.isSubmitted,
+            correctOptionIndex = question?.correctOptionIndex ?: 0,
+            enabled = true,
+            onSelect = onSelectOption,
             modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(Spacing.small),
-        ) {
-            question?.options?.forEachIndexed { index, option ->
-                OptionRow(
-                    index = index,
-                    text = option,
-                    isSelected = state.highlightedOptionIndex == index,
-                    revealed = state.hasAnswered || state.isSubmitted,
-                    isCorrectOption = index == question.correctOptionIndex,
-                    onClick = { onSelectOption(index) },
-                )
-            }
-        }
+        )
 
         AnimatedVisibility(visible = state.canShowExplanation) {
             TextButton(onClick = onOpenExplanation) {
@@ -393,62 +387,6 @@ private fun TimerBadge(timer: TimerUiState) {
 }
 
 @Composable
-private fun OptionRow(
-    index: Int,
-    text: String,
-    isSelected: Boolean,
-    revealed: Boolean,
-    isCorrectOption: Boolean,
-    onClick: () -> Unit,
-) {
-    val status = MaterialTheme.statusColors
-    val background = when {
-        revealed && isCorrectOption -> status.correct.copy(alpha = 0.16f)
-        revealed && isSelected -> status.wrong.copy(alpha = 0.16f)
-        isSelected -> MaterialTheme.colorScheme.primaryContainer
-        else -> MaterialTheme.colorScheme.surface
-    }
-    val borderColor = when {
-        revealed && isCorrectOption -> status.correct
-        revealed && isSelected -> status.wrong
-        isSelected -> MaterialTheme.colorScheme.primary
-        else -> MaterialTheme.colorScheme.outline
-    }
-
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clip(MaterialTheme.shapes.small)
-            .background(background)
-            .border(1.dp, borderColor, MaterialTheme.shapes.small)
-            .clickable(enabled = !revealed, onClick = onClick)
-            .padding(Spacing.medium),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        Text(
-            text = ('A' + index).toString(),
-            style = MaterialTheme.typography.titleMedium,
-            color = borderColor,
-            modifier = Modifier.width(28.dp),
-        )
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.weight(1f),
-        )
-        if (revealed && (isCorrectOption || isSelected)) {
-            Icon(
-                imageVector = if (isCorrectOption) Icons.Rounded.Check else Icons.Rounded.Close,
-                contentDescription = null,
-                tint = borderColor,
-                modifier = Modifier.size(20.dp),
-            )
-        }
-    }
-}
-
-@Composable
 private fun SubmitButton(enabled: Boolean, onClick: () -> Unit) {
     Button(
         onClick = onClick,
@@ -535,46 +473,14 @@ private fun QuestionNavigatorDialog(
             )
         },
         text = {
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(5),
-                modifier = Modifier.height(320.dp),
-                horizontalArrangement = Arrangement.spacedBy(Spacing.small),
-                verticalArrangement = Arrangement.spacedBy(Spacing.small),
-            ) {
-                items(navigator.total.coerceAtLeast(0)) { index ->
-                    val number = index + 1
-                    val attemptStatus = navigator.statuses.getOrNull(index)
-                        ?: AttemptStatus.NOT_ATTEMPTED
-                    val tint = when (attemptStatus) {
-                        AttemptStatus.CORRECT -> status.correct
-                        AttemptStatus.WRONG -> status.wrong
-                        AttemptStatus.NOT_ATTEMPTED -> status.notAttempted
-                    }
-                    Box(
-                        modifier = Modifier
-                            .size(44.dp)
-                            .clip(CircleShape)
-                            .background(
-                                if (number == currentNumber) {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    tint.copy(alpha = 0.25f)
-                                }
-                            )
-                            .clickable { onSelect(number) },
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = "$number",
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = if (number == currentNumber) {
-                                MaterialTheme.colorScheme.onPrimary
-                            } else {
-                                MaterialTheme.colorScheme.onSurface
-                            },
-                        )
-                    }
-                }
+            Column(verticalArrangement = Arrangement.spacedBy(Spacing.medium)) {
+                NavigatorLegend()
+                QuestionNavigatorGrid(
+                    navigator = navigator,
+                    currentNumber = currentNumber,
+                    onSelect = onSelect,
+                    modifier = Modifier.height(320.dp),
+                )
             }
         },
         confirmButton = { TextButton(onClick = onDismiss) { Text("CLOSE") } },
