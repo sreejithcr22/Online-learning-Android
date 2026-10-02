@@ -55,13 +55,6 @@ class ResolveTopicTimersUseCase @Inject constructor(
     }
 }
 
-/** Updates the timer of a single topic. */
-class SetTopicTimerUseCase @Inject constructor(
-    private val topicTimers: TopicTimerRepository,
-) {
-    suspend operator fun invoke(topic: Topic, seconds: Int) = topicTimers.setTimer(topic, seconds)
-}
-
 /**
  * Changes the global default timer.
  *

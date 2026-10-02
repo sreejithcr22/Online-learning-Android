@@ -1,6 +1,5 @@
 package com.codit.interview.aptitude.presentation.questions
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,7 +11,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.Timer
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -30,7 +28,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.codit.interview.aptitude.domain.model.Topic
 import com.codit.interview.aptitude.presentation.components.AptitudeCard
 import com.codit.interview.aptitude.presentation.components.LoadingState
-import com.codit.interview.aptitude.presentation.components.TimePickerDialog
 import com.codit.interview.aptitude.presentation.theme.Spacing
 import com.codit.interview.aptitude.presentation.theme.statusColors
 
@@ -52,26 +49,14 @@ fun TopicListRoute(
         onTopicSelected = { row ->
             onTopicSelected(row.topic, row.timerSeconds, row.isInfoOnly)
         },
-        onEditTimer = viewModel::openTimerDialog,
     )
 
-    state.topicBeingTimed?.let { topic ->
-        val current = state.rows.firstOrNull { it.topic == topic }
-        TimePickerDialog(
-            title = "Timer for ${topic.displayName}",
-            initialSeconds = current?.timerSeconds ?: 0,
-            maxMinutes = MAX_TOPIC_MINUTES,
-            onDismiss = viewModel::dismissTimerDialog,
-            onConfirm = { viewModel.saveTimer(topic, it) },
-        )
-    }
 }
 
 @Composable
 fun TopicListScreen(
     state: TopicListUiState,
     onTopicSelected: (TopicRow) -> Unit,
-    onEditTimer: (Topic) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -116,26 +101,6 @@ fun TopicListScreen(
                         )
                     }
 
-                    if (!row.isInfoOnly) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .padding(start = Spacing.small)
-                                .clickable { onEditTimer(row.topic) },
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Timer,
-                                contentDescription = "Set timer",
-                                tint = MaterialTheme.statusColors.accent,
-                            )
-                            Text(
-                                text = row.timerText,
-                                style = MaterialTheme.typography.labelLarge,
-                                color = MaterialTheme.statusColors.accent,
-                                modifier = Modifier.padding(start = Spacing.tiny),
-                            )
-                        }
-                    }
                 }
             }
         }

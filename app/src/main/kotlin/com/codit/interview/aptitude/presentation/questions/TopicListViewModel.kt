@@ -8,7 +8,6 @@ import com.codit.interview.aptitude.domain.model.ContentSection
 import com.codit.interview.aptitude.domain.model.Topic
 import com.codit.interview.aptitude.domain.usecase.ObserveTopicProgressUseCase
 import com.codit.interview.aptitude.domain.usecase.ResolveTopicTimersUseCase
-import com.codit.interview.aptitude.domain.usecase.SetTopicTimerUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +18,6 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 /** A topic row in the sub-category list. */
 data class TopicRow(
@@ -35,7 +33,6 @@ data class TopicListUiState(
     val isLoading: Boolean = true,
     val section: ContentSection,
     val rows: List<TopicRow> = emptyList(),
-    val topicBeingTimed: Topic? = null,
 )
 
 /**
@@ -50,14 +47,11 @@ data class TopicListUiState(
 class TopicListViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     resolveTimers: ResolveTopicTimersUseCase,
-    private val setTopicTimer: SetTopicTimerUseCase,
     private val observeTopicProgress: ObserveTopicProgressUseCase,
 ) : ViewModel() {
 
     val section: ContentSection =
         ContentSection.valueOf(checkNotNull(savedStateHandle.get<String>(ARG_SECTION)))
-
-    private val topicBeingTimed = MutableStateFlow<Topic?>(null)
 
     private val timers = resolveTimers(section)
 
@@ -76,8 +70,7 @@ class TopicListViewModel @Inject constructor(
     val uiState: StateFlow<TopicListUiState> = combine(
         timers,
         progressByTopic,
-        topicBeingTimed,
-    ) { resolved, progress, timingTopic ->
+    ) { resolved, progress ->
         TopicListUiState(
             isLoading = false,
             section = section,
@@ -88,7 +81,6 @@ class TopicListViewModel @Inject constructor(
                     timerSeconds = item.seconds,
                 )
             },
-            topicBeingTimed = timingTopic,
         )
     }.stateIn(
         scope = viewModelScope,
@@ -96,18 +88,6 @@ class TopicListViewModel @Inject constructor(
         initialValue = TopicListUiState(section = section),
     )
 
-    fun openTimerDialog(topic: Topic) {
-        topicBeingTimed.value = topic
-    }
-
-    fun dismissTimerDialog() {
-        topicBeingTimed.value = null
-    }
-
-    fun saveTimer(topic: Topic, seconds: Int) {
-        topicBeingTimed.value = null
-        viewModelScope.launch { setTopicTimer(topic, seconds) }
-    }
 
     companion object {
         const val ARG_SECTION = "section"
