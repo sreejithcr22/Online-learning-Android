@@ -1,0 +1,23 @@
+default_platform(:android)
+
+platform :android do
+  desc "Upload the signed release AAB to Google Play"
+  lane :release do
+    # Credentials come from the environment via SUPPLY_JSON_KEY - never committed.
+    aab = ENV["AAB_PATH"] || "app/build/outputs/bundle/release/app-release.aab"
+
+    supply(
+      aab: aab,
+      package_name: "com.codit.interview.aptitude",
+      track: ENV["PLAY_TRACK"] || "internal",
+      # Land it as a draft so a human reviews it in the Play Console before
+      # anything reaches testers or production.
+      release_status: ENV["PLAY_STATUS"] || "draft",
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true,
+      validate_only: false,
+      timeout: 1800
+    )
+  end
+end
