@@ -314,18 +314,13 @@ private fun PracticeHeader(
             .padding(top = Spacing.small),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                text = state.title,
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.primary,
-            )
-            Text(
-                text = "Q. ${state.currentNumber} of ${state.totalQuestions}",
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-            )
-        }
+        // The topic name is already in the top app bar; only the position is repeated here.
+        Text(
+            text = "Question ${state.currentNumber} of ${state.totalQuestions}",
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.weight(1f),
+        )
         TimerBadge(state.timer)
         IconButton(onClick = onOpenNavigator) {
             Icon(Icons.AutoMirrored.Rounded.ShowChart, contentDescription = "Jump to question")

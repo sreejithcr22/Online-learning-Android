@@ -106,18 +106,13 @@ fun MockSessionHost(
                 .padding(top = Spacing.small),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = state.title,
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.primary,
-                )
-                Text(
-                    text = "Q. ${state.currentNumber} of ${state.totalQuestions}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
+            // The test name is already in the top app bar.
+            Text(
+                text = "Question ${state.currentNumber} of ${state.totalQuestions}",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.weight(1f),
+            )
             Surface(
                 color = if (state.isTimeUp) {
                     MaterialTheme.statusColors.wrong.copy(alpha = 0.16f)
