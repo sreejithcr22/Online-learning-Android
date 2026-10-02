@@ -24,6 +24,14 @@ class ProgressPreferences @Inject constructor(
     private val preferences: SharedPreferences,
 ) {
 
+    /**
+     * Emits once on subscription and again on every preference write.
+     *
+     * Deliberately *not* wrapped in `distinctUntilChanged()`: this flow carries a `Unit`
+     * signal, and `Unit == Unit`, so deduplicating would suppress every emission after
+     * the first and freeze all progress counters at their initial value. Deduplication,
+     * where it is actually wanted, is applied to the mapped values instead.
+     */
     private val changes: Flow<Unit> = callbackFlow {
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, _ ->
             trySend(Unit)
@@ -31,7 +39,7 @@ class ProgressPreferences @Inject constructor(
         preferences.registerOnSharedPreferenceChangeListener(listener)
         trySend(Unit)
         awaitClose { preferences.unregisterOnSharedPreferenceChangeListener(listener) }
-    }.distinctUntilChanged()
+    }
 
     fun observe(): Flow<Unit> = changes
 
@@ -51,7 +59,9 @@ class ProgressPreferences @Inject constructor(
     fun topicProgress(topic: Topic): Int =
         preferences.getFloat(keyForTopic(topic), 0f).toInt()
 
-    fun observeTopicProgress(topic: Topic): Flow<Int> = changes.map { topicProgress(topic) }
+    /** Completion percentage for one topic; re-emits whenever it actually changes. */
+    fun observeTopicProgress(topic: Topic): Flow<Int> =
+        changes.map { topicProgress(topic) }.distinctUntilChanged()
 
     /** Increments the section's attempted counter; only called on a first attempt. */
     fun incrementSectionAttempted(section: ContentSection) {

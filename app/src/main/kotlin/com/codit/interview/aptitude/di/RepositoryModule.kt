@@ -1,5 +1,6 @@
 package com.codit.interview.aptitude.di
 
+import com.codit.interview.aptitude.core.coroutines.ApplicationScope
 import com.codit.interview.aptitude.core.coroutines.DefaultDispatcherProvider
 import com.codit.interview.aptitude.core.coroutines.DispatcherProvider
 import com.codit.interview.aptitude.data.repository.AppStateRepositoryImpl
@@ -18,9 +19,28 @@ import com.codit.interview.aptitude.domain.repository.TipRepository
 import com.codit.interview.aptitude.domain.repository.TopicTimerRepository
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+
+/**
+ * Process-lifetime scope for writes that must outlive the `ViewModel` that started
+ * them, such as persisting session progress when the user leaves a practice session.
+ */
+@Module
+@InstallIn(SingletonComponent::class)
+object ApplicationScopeModule {
+
+    @Provides
+    @Singleton
+    @ApplicationScope
+    fun provideApplicationScope(): CoroutineScope =
+        CoroutineScope(SupervisorJob() + Dispatchers.IO)
+}
 
 /**
  * Binds every domain-layer interface to its data-layer implementation.

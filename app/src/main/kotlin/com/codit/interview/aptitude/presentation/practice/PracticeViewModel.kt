@@ -4,6 +4,7 @@ import androidx.compose.runtime.Immutable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.codit.interview.aptitude.core.coroutines.ApplicationScope
 import com.codit.interview.aptitude.core.coroutines.tickerFlow
 import com.codit.interview.aptitude.domain.model.Question
 import com.codit.interview.aptitude.domain.model.AttemptStatus
@@ -25,7 +26,9 @@ import com.codit.interview.aptitude.domain.usecase.UpdateTopicProgressUseCase
 import com.codit.interview.aptitude.presentation.navigation.PracticeMode
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -37,7 +40,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
 
 /** One-shot UI events: toasts plus the vibrate/dialog cues when the clock runs down. */
 sealed interface PracticeEvent {
@@ -118,6 +120,7 @@ class PracticeViewModel @Inject constructor(
     private val updateTopicProgress: UpdateTopicProgressUseCase,
     private val getFormula: GetFormulaForTopicUseCase,
     private val observeSettings: ObserveSettingsUseCase,
+    @ApplicationScope private val applicationScope: CoroutineScope,
     settingsRepository: SettingsRepository,
 ) : ViewModel() {
 
@@ -299,8 +302,10 @@ class PracticeViewModel @Inject constructor(
     }
 
     /**
-     * Called when the user leaves the screen: records the topic's completion
-     * percentage so the sub-category list stays up to date.
+     * Records the topic's completion percentage so the sub-category list stays current.
+     *
+     * Also runs from [onCleared], because a session can end without ever calling this:
+     * the system back gesture and the app-bar arrow both pop the destination directly.
      */
     fun persistSessionProgress() {
         val state = uiState.value
@@ -308,6 +313,20 @@ class PracticeViewModel @Inject constructor(
         if (state.navigator.total == 0) return
         val attempted = state.navigator.correctCount + state.navigator.wrongCount
         viewModelScope.launch {
+            updateTopicProgress(topic, attempted * 100 / state.navigator.total)
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        // `viewModelScope` is already cancelled here, so the write runs on the
+        // application scope and still lands when the user swipes back or taps the
+        // app-bar arrow rather than the in-app close button.
+        val topic = (source as? QuestionSource.OfTopic)?.topic ?: return
+        val state = uiState.value
+        if (state.navigator.total == 0) return
+        val attempted = state.navigator.correctCount + state.navigator.wrongCount
+        applicationScope.launch {
             updateTopicProgress(topic, attempted * 100 / state.navigator.total)
         }
     }
