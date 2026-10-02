@@ -9,3 +9,8 @@
 
 # signing keys + credential docs (never commit)
 /signing/
+
+# fastlane generated output
+/fastlane/report.xml
+/fastlane/README.md
+/fastlane/screenshots
