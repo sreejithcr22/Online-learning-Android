@@ -1,0 +1,363 @@
+{
+ "topics": [
+  {
+   "table": "time_and_work",
+   "name": "Time And Work",
+   "section": "Quantitative Aptitude",
+   "count": 50
+  },
+  {
+   "table": "profit",
+   "name": "Profit And Loss",
+   "section": "Quantitative Aptitude",
+   "count": 49
+  },
+  {
+   "table": "age",
+   "name": "Problems On Age",
+   "section": "Quantitative Aptitude",
+   "count": 39
+  },
+  {
+   "table": "avg",
+   "name": "Average",
+   "section": "Quantitative Aptitude",
+   "count": 38
+  },
+  {
+   "table": "permutation",
+   "name": "Permutation And Combination",
+   "section": "Quantitative Aptitude",
+   "count": 49
+  },
+  {
+   "table": "partnership",
+   "name": "Partnership",
+   "section": "Quantitative Aptitude",
+   "count": 29
+  },
+  {
+   "table": "hcf_and_lcm",
+   "name": "HCF And LCM",
+   "section": "Quantitative Aptitude",
+   "count": 30
+  },
+  {
+   "table": "time_and_distance",
+   "name": "Time And Distance",
+   "section": "Quantitative Aptitude",
+   "count": 30
+  },
+  {
+   "table": "interest",
+   "name": "Interest",
+   "section": "Quantitative Aptitude",
+   "count": 20
+  },
+  {
+   "table": "train",
+   "name": "Problems On Trains",
+   "section": "Quantitative Aptitude",
+   "count": 19
+  },
+  {
+   "table": "numbers",
+   "name": "Numbers And Decimal Fractions",
+   "section": "Quantitative Aptitude",
+   "count": 29
+  },
+  {
+   "table": "ratio",
+   "name": "Ratio And Proportion",
+   "section": "Quantitative Aptitude",
+   "count": 25
+  },
+  {
+   "table": "boats",
+   "name": "Boats And Streams",
+   "section": "Quantitative Aptitude",
+   "count": 20
+  },
+  {
+   "table": "alligation",
+   "name": "Alligation or Mixture",
+   "section": "Quantitative Aptitude",
+   "count": 10
+  },
+  {
+   "table": "pipes",
+   "name": "Pipes and Cistern",
+   "section": "Quantitative Aptitude",
+   "count": 20
+  },
+  {
+   "table": "percentage",
+   "name": "Percentage",
+   "section": "Quantitative Aptitude",
+   "count": 10
+  },
+  {
+   "table": "calendar",
+   "name": "Calendar And Clock",
+   "section": "Logical Reasoning",
+   "count": 27
+  },
+  {
+   "table": "blood",
+   "name": "Blood Relation",
+   "section": "Logical Reasoning",
+   "count": 50
+  },
+  {
+   "table": "seat",
+   "name": "Seating Arrangement",
+   "section": "Logical Reasoning",
+   "count": 20
+  },
+  {
+   "table": "decode",
+   "name": "Coding and Decoding",
+   "section": "Logical Reasoning",
+   "count": 20
+  },
+  {
+   "table": "direction",
+   "name": "Direction Sense",
+   "section": "Logical Reasoning",
+   "count": 10
+  },
+  {
+   "table": "analogy",
+   "name": "Analogy",
+   "section": "Logical Reasoning",
+   "count": 25
+  },
+  {
+   "table": "classification",
+   "name": "Classification",
+   "section": "Logical Reasoning",
+   "count": 25
+  },
+  {
+   "table": "arithmetic",
+   "name": "Arithmetic Reasoning",
+   "section": "Logical Reasoning",
+   "count": 30
+  },
+  {
+   "table": "series",
+   "name": "Series",
+   "section": "Logical Reasoning",
+   "count": 30
+  },
+  {
+   "table": "essential",
+   "name": "Essential Part",
+   "section": "Logical Reasoning",
+   "count": 26
+  },
+  {
+   "table": "verification",
+   "name": "Verification of Truth",
+   "section": "Logical Reasoning",
+   "count": 10
+  },
+  {
+   "table": "statement_conclusion",
+   "name": "Statements and Conclusions",
+   "section": "Logical Reasoning",
+   "count": 10
+  },
+  {
+   "table": "statement_arguement",
+   "name": "Statements and Arguments",
+   "section": "Logical Reasoning",
+   "count": 10
+  },
+  {
+   "table": "statement_assumptions",
+   "name": "Statements and Assumptions",
+   "section": "Logical Reasoning",
+   "count": 10
+  },
+  {
+   "table": "antonyms",
+   "name": "Antonyms",
+   "section": "Verbal Ability",
+   "count": 30
+  },
+  {
+   "table": "idioms",
+   "name": "Idioms and Phrases",
+   "section": "Verbal Ability",
+   "count": 30
+  },
+  {
+   "table": "preposition",
+   "name": "Prepositions",
+   "section": "Verbal Ability",
+   "count": 30
+  },
+  {
+   "table": "synonyms",
+   "name": "Synonyms",
+   "section": "Verbal Ability",
+   "count": 30
+  },
+  {
+   "table": "spelling",
+   "name": "Spelling",
+   "section": "Verbal Ability",
+   "count": 30
+  },
+  {
+   "table": "substitute",
+   "name": "One Word Substitution",
+   "section": "Verbal Ability",
+   "count": 25
+  },
+  {
+   "table": "closet",
+   "name": "Closet Test",
+   "section": "Verbal Ability",
+   "count": 10
+  },
+  {
+   "table": "pharagraph",
+   "name": "Paragraph Formation",
+   "section": "Verbal Ability",
+   "count": 10
+  },
+  {
+   "table": "sentence_arrange",
+   "name": "Sentence Arrangement",
+   "section": "Verbal Ability",
+   "count": 10
+  },
+  {
+   "table": "sentence_complete",
+   "name": "Sentence Completion",
+   "section": "Verbal Ability",
+   "count": 10
+  },
+  {
+   "table": "politics",
+   "name": "Indian Politics",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "indian_geo",
+   "name": "Indian Geography",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "awards",
+   "name": "Awards And Honors",
+   "section": "General Knowledge",
+   "count": 25
+  },
+  {
+   "table": "indian_history",
+   "name": "India And World History",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "world_geo",
+   "name": "World Geography",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "basic_gk",
+   "name": "Basic General Knowledge",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "computer",
+   "name": "Computer Awareness",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "inventions",
+   "name": "Inventions And Discoveries",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "general_science",
+   "name": "General Science",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "sports",
+   "name": "Sports",
+   "section": "General Knowledge",
+   "count": 30
+  },
+  {
+   "table": "famous",
+   "name": "Famous Personalities",
+   "section": "General Knowledge",
+   "count": 30
+  }
+ ],
+ "mocks": [
+  {
+   "table": "mock1",
+   "name": "Mock Test 1",
+   "count": 25
+  },
+  {
+   "table": "mock2",
+   "name": "Mock Test 2",
+   "count": 25
+  },
+  {
+   "table": "mock3",
+   "name": "Mock Test 3",
+   "count": 25
+  },
+  {
+   "table": "mock4",
+   "name": "Mock Test 4",
+   "count": 25
+  },
+  {
+   "table": "mock5",
+   "name": "Mock Test 5",
+   "count": 25
+  },
+  {
+   "table": "mock6",
+   "name": "Mock Test 6",
+   "count": 25
+  },
+  {
+   "table": "mock7",
+   "name": "Mock Test 7",
+   "count": 25
+  },
+  {
+   "table": "mock8",
+   "name": "Mock Test 8",
+   "count": 25
+  },
+  {
+   "table": "mock9",
+   "name": "Mock Test 9",
+   "count": 25
+  },
+  {
+   "table": "mock10",
+   "name": "Mock Test 10",
+   "count": 25
+  }
+ ],
+ "total": 1560
+}

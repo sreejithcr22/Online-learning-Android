@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aptitude & GK Guide — Free Offline Practice | 1,560 Questions, Mock Tests, Formulas</title>
+<meta name="description" content="Free aptitude, reasoning, verbal & GK practice: 1,560 questions across 51 topics, 10 mock tests, formulas, interview tips. Companion site for the offline Android app.">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+<header class="nav"><div class="wrap nav-in">
+<a class="brand" href="#top">🎯 Aptitude &amp; GK Guide</a>
+<nav><a href="#practice">Practice</a><a href="#mocks">Mock tests</a><a href="#formulas">Formulas</a><a href="#interview">Interview</a><a href="#app">App</a><a href="#contact">Contact</a></nav>
+</div></header>
+<main id="top">
+<section class="hero wrap">
+<div>
+<h1>Free aptitude, reasoning, verbal &amp; GK practice — fully offline in the app, free on the web.</h1>
+<p class="sub">Companion site for the <b>Aptitude &amp; GK Guide</b> Android app (Kotlin / Jetpack Compose rewrite of the classic interview-prep app). Timer for every question, mock tests, formulas, interview tips &amp; progress tracking.</p>
+<div class="stats" id="stats"><div><b id="st-q">1,560</b><span>questions</span></div><div><b id="st-t">51</b><span>topics</span></div><div><b>10</b><span>mock tests</span></div><div><b>4</b><span>sections</span></div></div>
+<div class="cta"><a class="btn primary" href="#practice">Start practicing →</a><a class="btn" href="https://play.google.com/store/apps/details?id=com.codit.interview.aptitude">Get it on Google Play</a></div>
+<p class="tiny">Static site · no login · no tracking · works offline once loaded. Content mirrors <code>assets/databases/master.db</code> + <code>interview.db</code> from the repo.</p>
+</div>
+</section>
+
+<section id="practice" class="wrap">
+<h2>Practice by topic</h2>
+<div class="toolbar">
+<div class="tabs" id="section-tabs"></div>
+<input id="search" type="search" placeholder="Search topics or questions… (e.g. trains, synonyms, GK)">
+</div>
+<div id="topic-grid" class="grid"></div>
+<div id="search-results" class="results" hidden></div>
+<div id="quiz" class="quiz" hidden>
+<div class="quiz-head"><button id="quiz-back">← All topics</button><h3 id="quiz-title"></h3><div class="timer">⏱ <span id="q-timer">00:00</span></div></div>
+<div class="progress"><div id="q-progress"></div></div>
+<div id="q-card"></div>
+<div class="quiz-nav"><button id="q-prev">← Prev</button><span id="q-pos"></span><button id="q-next">Next →</button></div>
+</div>
+</section>
+
+<section id="mocks" class="wrap"><h2>Mock tests</h2><p>Each mock = 25 exam-style questions with a whole-test timer. Same content as the app's <code>mock1…mock10</code> tables.</p><div id="mock-grid" class="grid"></div></section>
+
+<section id="formulas" class="wrap"><h2>Formulas &amp; concepts</h2><div class="tabs" id="formula-tabs"></div><div id="formula-list" class="cards"></div></section>
+
+<section id="interview" class="wrap"><h2>Interview tips</h2><div class="tabs" id="tip-tabs"></div><div id="tip-list" class="cards"></div></section>
+
+<section id="app" class="wrap app">
+<h2>The Android app</h2>
+<div class="app-grid"><div>
+<ul><li>✅ 100% offline — pre-seeded SQLite, no internet needed</li><li>⏱ Per-question timer + whole-test timer for mocks</li><li>🧮 Built-in calculator &amp; per-question notes</li><li>📊 Progress: accuracy, avg/best time, per-topic completion</li><li>⭐ Favourites for questions, tips &amp; formulas</li><li>🎨 Instant theme switching (Compose + Material 3, MVVM/Hilt)</li></ul>
+<a class="btn primary" href="https://play.google.com/store/apps/details?id=com.codit.interview.aptitude">Get it on Google Play</a>
+<p class="tiny">Package: <code>com.codit.interview.aptitude</code> · minSdk 24 · <a href="https://github.com/sreejithcr22/Online-learning-Android">Source on GitHub</a></p>
+</div><div class="code">./gradlew :app:assembleDebug<br>./gradlew :app:testDebugUnitTest</div></div>
+</section>
+
+<section id="contact" class="wrap"><h2>Contact</h2><p>Questions, corrections or startup-program verification: <a id="contact-mail" href="mailto:hello@example.com">hello@example.com</a> — update this to your <code>founder@yourdomain.com</code> once your domain is live.</p></section>
+</main>
+<footer><div class="wrap">© Aptitude &amp; GK Guide · Content from the open repo · <a href="https://github.com/sreejithcr22/Online-learning-Android">GitHub</a></div></footer>
+<script src="app.js"></script>
+</body>
+</html>
